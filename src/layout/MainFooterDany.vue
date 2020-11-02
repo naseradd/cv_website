@@ -6,7 +6,7 @@
   >
     <div class="container">
       <div class="copyright" >
-        &copy; {{ year }}, made with Creative Tim by Dany Naser Addin
+      
       </div>
     </div>
   </footer>
