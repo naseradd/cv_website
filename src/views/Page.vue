@@ -13,6 +13,7 @@
                 <div class="name">
                   <h3 class="title">Dany Naser Addin</h3>
                   <h6>M. Sc. A. et Ing. en génie informatique et logiciel</h6>
+                  Loisirs :
                   <md-icon>sports_esports</md-icon>
                   <md-icon>laptop</md-icon>
                   <md-icon>airplanemode_active</md-icon>
@@ -27,8 +28,7 @@
               </div>
             </div>
           </div>
-          <div class="description text-center">
-            <script type="application/javascript" defer src="alert();"></script>
+          <div class="description text-center" >
             <p>
               Jeune français de 25 ans diplômé de Polytechnique Montréal (Canada) et Polytechnique Grenoble (France), je
               suis à la recherche d'un emploi temps plein pour commencer ma carrière professionnelle.
@@ -36,7 +36,7 @@
           </div>
           <template class="Projet">
             <div class="elevation-demo">
-              <div v-on:click="project_index=1">
+              <div v-on:click="see_project(1)" href="#project">
                 <md-card md-with-hover class="md-elevation-8 text-center" ><md-ripple>
                   <div class="case" vertical-align: middle>
                     <i class="fab fa-windows fa-5x"></i><br><br>
@@ -44,7 +44,7 @@
                   </div></md-ripple>
                 </md-card>
               </div>
-              <div v-on:click="project_index=2">
+              <div v-on:click="see_project(2)">
                 <md-card md-with-hover class="md-elevation-8 text-center" v-on:click="project_index=2"><md-ripple>
                   <div class="case" vertical-align: middle>
                     <md-icon class="md-size-4x">panorama_horizontal</md-icon><br><br>
@@ -52,7 +52,7 @@
                   </div></md-ripple>
                 </md-card>
               </div>
-              <div v-on:click="project_index=3">
+              <div v-on:click="see_project(3)">
                 <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
                   <div class="case" vertical-align: middle>
                     <i class="fab fa-discord fa-5x"></i><br><br>
@@ -60,7 +60,7 @@
                   </div></md-ripple>
                 </md-card>
               </div>
-              <div v-on:click="project_index=4">
+              <div v-on:click="see_project(4)">
                 <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
                   <div class="case" vertical-align: middle>
                     <md-icon class="md-size-4x md-font">http</md-icon><br>
@@ -68,7 +68,7 @@
                   </div></md-ripple>
                 </md-card>
               </div>
-              <div v-on:click="project_index=5">
+              <div v-on:click="see_project(5)">
                 <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
                   <div class="case" vertical-align: middle>
                     <i class="fas fa-cubes fa-5x"></i><br><br>
@@ -78,6 +78,7 @@
               </div>
             </div>
           </template>
+          <div id="project"></div><br><br>
           <div class="container">
           <div v-if="project_index === 1" >
             <h4 class="title text-center">{{project_1}}</h4>
@@ -351,6 +352,14 @@ export default {
       default: require("@/assets/img/dany_cv/stage_hololens.jpg")
     }
   },
+  methods:{
+    see_project: function (index) {
+          // `this` inside methods points to the Vue instance
+          this.project_index = index
+          document.getElementById('project').scrollIntoView()
+    }
+
+  },
   computed: {
     headerStyle() {
       return {
@@ -362,6 +371,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .section {
   padding: 0;
 }
