@@ -36,41 +36,116 @@
           </div>
           <template class="Projet">
             <div class="elevation-demo">
-              <md-content class="md-elevation-8 text-center">
-                <div class="case" vertical-align: middle>
-                  <i class="fab fa-windows fa-5x"></i><br><br>
-                  <span>Conception d'un logiciel C#/WPF Windows 10</span>
-                </div>
-              </md-content>
-              <md-content class="md-elevation-8 text-center">
-                <div class="case" vertical-align: middle>
-                  <md-icon class="md-size-4x">panorama_horizontal</md-icon><br>
-                  <span>Conception d'une application AR C++ pour Magic Leap 1 avec Unreal Engine 4 </span>
-                </div>
-              </md-content>
-              <md-content class="md-elevation-8 text-center">
-                <div class="case" vertical-align: middle>
-                  <i class="fab fa-discord fa-5x"></i><br>
-                  <span>Bot Discord Javascript pour gérer les questions dans un cours
-                    de Polytechnique Montréal</span>
-                </div>
-              </md-content>
-              <md-content class="md-elevation-8 text-center">
-                <div class="case" vertical-align: middle>
-                  <md-icon class="md-size-4x md-font">http</md-icon><br>
-                  <span>Serveur REST (django/python), BDD et module de communication
-                    C++ pour inter-connectivité Hololens 1.0</span>
-                </div>
-              </md-content>
-              <md-content class="md-elevation-8 text-center">
-                <div class="case" vertical-align: middle>
-                  <i class="fas fa-cubes fa-5x"></i><br><br>
-                  <span>Modélisation 3D (Javascript/WebGL) d'un entrepôt depuis une
-                    BDD</span>
-                </div>
-              </md-content>
+              <div v-on:click="project_index=1">
+                <md-card md-with-hover class="md-elevation-8 text-center" ><md-ripple>
+                  <div class="case" vertical-align: middle>
+                    <i class="fab fa-windows fa-5x"></i><br><br>
+                    <span>{{project_1}}</span>
+                  </div></md-ripple>
+                </md-card>
+              </div>
+              <div v-on:click="project_index=2">
+                <md-card md-with-hover class="md-elevation-8 text-center" v-on:click="project_index=2"><md-ripple>
+                  <div class="case" vertical-align: middle>
+                    <md-icon class="md-size-4x">panorama_horizontal</md-icon><br><br>
+                    <span>{{project_2}}</span>
+                  </div></md-ripple>
+                </md-card>
+              </div>
+              <div v-on:click="project_index=3">
+                <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
+                  <div class="case" vertical-align: middle>
+                    <i class="fab fa-discord fa-5x"></i><br><br>
+                    <span>{{project_3}}</span>
+                  </div></md-ripple>
+                </md-card>
+              </div>
+              <div v-on:click="project_index=4">
+                <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
+                  <div class="case" vertical-align: middle>
+                    <md-icon class="md-size-4x md-font">http</md-icon><br>
+                    <span>{{project_4}}</span>
+                  </div></md-ripple>
+                </md-card>
+              </div>
+              <div v-on:click="project_index=5">
+                <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
+                  <div class="case" vertical-align: middle>
+                    <i class="fas fa-cubes fa-5x"></i><br><br>
+                    <span>{{project_5}}</span>
+                  </div></md-ripple>
+                </md-card>
+              </div>
             </div>
           </template>
+          <div class="container">
+          <div v-if="project_index === 1" >
+            <h4 class="title text-center">{{project_1}}</h4>
+            <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
+              <img :src="img_logiciel" alt="Raised Image" class="img-raised rounded"
+                :class="{ 'responsive-image': false }" />
+            </div>
+            
+            <ul>
+              <li>Projet industriel de 6 mois pour livraison et recette a l'entreprise Constellium C-TEC</li>
+              <li>Conception complète d'une application C#/WPF pour ordinateur tactile Windows 10</li>
+              <li>Cahier des charges et recette directement à l'entreprise</li>
+              <li>Service après vente pour installation et maintenant au sein de l'entreprise</li>
+            </ul>
+            
+          </div>
+          <div v-else-if="project_index === 2">
+            <h4 class="title text-center">{{project_2}}</h4>
+            <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
+              <img :src="img_ar" alt="Raised Image" class="img-raised rounded"
+                :class="{ 'responsive-image': false }" />
+            </div>
+            <ul>
+              <li>Dans le projet d'une maitrise recherche à Polytechnique Montréal</li>
+              <li>Développement avec Unreal Engine 4 pour déploiement en VR et AR</li>
+              <li>Interaction avec l'utilisation des mains dans un univers 3D</li>
+              <li>Assistance en réalité augmentée dans les situations d'urgence</li>
+            </ul>
+          </div>
+          <div v-else-if="project_index === 3">
+            <h4 class="title text-center">{{project_3}}</h4>
+            <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
+              <img :src="img_discord" alt="Circle Image" class="img-circle rounded"
+                :class="{ 'responsive-image': false }" />
+            </div>
+            <ul>
+              <li>Développement JavaScript avec Node.js pour un bot automatique sur les serveurs discords</li>
+              <li>Gestion automatique de demande des tickets</li>
+              <li>Redirection des acteurs selon l'ordre des demandes</li>
+              <li>Intégration de fonctionnalités diverses (youtube, jeux, etc ...)</li>
+            </ul>
+          </div>
+          <div v-else-if="project_index === 4">
+            <h4 class="title text-center">{{project_4}}</h4>
+            <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
+              <img :src="img_hololens" alt="Raised Image" class="img-raised rounded"
+                :class="{ 'responsive-image': false }" />
+            </div>
+            <ul>
+              <li>Echange temps réel de données entre plusieurs Hololens 1.0</li>
+              <li>Centralisation sur un serveur avec BDD et serveur REST (Django/Python)</li>
+              <li>Module de communication C++ sur Hololens</li>
+            </ul>
+          </div>
+          <div v-else-if="project_index === 5">
+            <h4 class="title text-center">{{project_5}}</h4>
+            <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
+              <img :src="img_entrepot" alt="Raised Image" class="img-raised rounded"
+                :class="{ 'responsive-image': false }" />
+            </div>
+            <ul>
+              <li>Javascript et WebGL pour modéliser en 3D un entrepôt de bois</li>
+              <li>Modèle 3D dynamique depuis une base de données</li>
+            </ul>
+          </div>
+          <div v-else>
+          </div>
+          </div>
           <md-divider class="md-inset"></md-divider>
           <template class="Formations">
             <h2 class="title text-center">
@@ -221,7 +296,13 @@ export default {
   bodyClass: "profile-page",
   data() {
     return {
-      isHidden: true
+      isHidden: true,
+      project_index: 0,
+      project_1:"Conception d'un logiciel Windows 10",
+      project_2:"Conception d'une application AR Magic Leap 1",
+      project_3:"Bot Discord pour gestion de tickets",
+      project_4:"Serveur REST, BDD et module de communication inter-connectivité Hololens 1.0",
+      project_5:"Modélisation 3D d'un entrepôt depuis une BDD",
     };
   },
   props: {
@@ -245,9 +326,29 @@ export default {
       type: String,
       default: require("@/assets/img/dany_cv/constelliumlogo.png")
     },
+    img_logiciel: {
+      type: String,
+      default: require("@/assets/img/dany_cv/image_logiciel.jpg")
+    },
     img_boxmyjob: {
       type: String,
       default: require("@/assets/img/dany_cv/boxmyjoblogo.png")
+    },
+    img_entrepot: {
+      type: String,
+      default: require("@/assets/img/dany_cv/entrepot_bois.png")
+    },
+    img_discord: {
+      type: String,
+      default: require("@/assets/img/dany_cv/discord_bot.png")
+    },
+    img_ar: {
+      type: String,
+      default: require("@/assets/img/dany_cv/xr_image.jpg")
+    },
+    img_hololens: {
+      type: String,
+      default: require("@/assets/img/dany_cv/stage_hololens.jpg")
     }
   },
   computed: {
@@ -273,6 +374,14 @@ export default {
 }
 
 .md-content {
+    width: 250px;
+    height: 200px;
+    margin: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.md-card {
     width: 250px;
     height: 200px;
     margin: 24px;
