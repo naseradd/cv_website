@@ -16,31 +16,27 @@
           :class="{ toggled: toggledClass }"
           @click="toggleNavbarMobile()"
         >
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
         </md-button>
 
         <div class="md-collapse">
           <div class="md-collapse-wrapper">
             <mobile-menu nav-mobile-section-start="false">
-              <!-- Here you can add your items from the section-start of your toolbar -->
             </mobile-menu>
             <md-list>
-              <md-list-item
-                href="https://1drv.ms/b/s!AjsBwco3oDSsu04Zf1WSvJFb1sIr?e=fi684p"
-                target="_blank"
-              >
+              <md-list-item v-on:click="ReadFileFR()" href="">
+                  <i class="material-icons">content_paste</i>
+                  <a>Résumé FR</a>
+                </md-list-item>
+              <md-list-item  v-on:click="ReadFileEN()" >
                 <i class="material-icons">content_paste</i>
-                <p>Résumé FR</p>
+                <a>Resume EN</a>
               </md-list-item>
-
-              <md-list-item 
-                href="https://www.linkedin.com/in/dany-naser-addin-116163101"
-                target="_blank"
-              >
+              <md-list-item href="https://www.linkedin.com/in/dany-naser-addin-116163101" target="_blank">
                 <i class="material-icons">work</i>
-                <p>Linkedin EN/FR</p>
+                <a>Linkedin EN/FR</a>
               </md-list-item>
             </md-list>
           </div>
@@ -103,6 +99,13 @@ export default {
     }
   },
   methods: {
+
+  ReadFileEN: function () {
+      window.open("@/assets/img/dany_cv/CV_EN_CAD_DanyNaserAddin.pdf", "_blank") 
+    },
+  ReadFileFR: function () {
+      window.open("@/assets/img/dany_cv/CV_FR_CAD_DanyNaserAddin.pdf", "_blank") 
+    },
     bodyClick() {
       let bodyClick = document.getElementById("bodyClick");
 

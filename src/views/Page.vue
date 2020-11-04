@@ -420,7 +420,7 @@ export default {
 .md-layout {
   margin: 24px;
   display: flex;
-  align-items: center;
+  align-items: top;
 }
 
 [class*="case"] {
