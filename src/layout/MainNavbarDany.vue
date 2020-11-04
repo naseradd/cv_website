@@ -27,11 +27,11 @@
               <!-- Here you can add your items from the section-start of your toolbar -->
             </mobile-menu>
             <md-list>
-              <md-list-item href="https://docdro.id/qChbcXj" target="_blank">
+              <md-list-item href="https://1drv.ms/b/s!AjsBwco3oDSsu04Zf1WSvJFb1sIr?e=zpzsV5" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Résumé FR</p>
               </md-list-item>
-              <md-list-item href="https://docdro.id/7ABfo8F" target="_blank">
+              <md-list-item href="https://1drv.ms/b/s!AjsBwco3oDSsu03xSN0EuaRG68Mr?e=l5IkSy" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Resume EN</p>
               </md-list-item>
