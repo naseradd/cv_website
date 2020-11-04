@@ -28,11 +28,11 @@
             </mobile-menu>
             <md-list>
               <md-list-item
-                href="https://onedrive.live.com/?cid=ac34a037cac1013b&id=AC34A037CAC1013B%217629&authkey=%21APFI3QS5pEbrwys"
+                href="https://1drv.ms/b/s!AjsBwco3oDSsu04Zf1WSvJFb1sIr?e=fi684p"
                 target="_blank"
               >
                 <i class="material-icons">content_paste</i>
-                <p>Résumé</p>
+                <p>Résumé FR</p>
               </md-list-item>
 
               <md-list-item 
@@ -40,7 +40,7 @@
                 target="_blank"
               >
                 <i class="material-icons">work</i>
-                <p>Linkedin</p>
+                <p>Linkedin EN/FR</p>
               </md-list-item>
             </md-list>
           </div>

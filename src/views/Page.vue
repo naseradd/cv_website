@@ -281,7 +281,7 @@
           </md-button>
           <h5 v-if="!isHidden" class="mr-auto ml-auto">
               <b>Courriel :</b> <a href="mailto: naser.dany.0795@gmail.com">naser.dany.0795[at]gmail.com</a><br>
-              <b>Langues :</b> Français (native) - Anglais (intermediaire)<br>
+              <b>Langues :</b> Français (native) - Anglais (intermédiaire)<br>
               <b>Permis voiture :</b> B (européen)<br>
               <b>Nationalité :</b> Française<br>
           </h5>
