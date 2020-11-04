@@ -12,7 +12,7 @@
                 </div>
                 <div class="name">
                   <h3 class="title">Dany Naser Addin</h3>
-                  <h6>M. Sc. A. et Ing. en génie informatique et logiciel</h6>
+                  <h4><b>M. Sc. A. et Ing. en génie informatique et logiciel</b></h4>
                   Loisirs :
                   <md-icon>sports_esports</md-icon>
                   <md-icon>laptop</md-icon>
@@ -28,18 +28,18 @@
               </div>
             </div>
           </div>
-          <div class="description text-center" >
-            <p>
+          <div class="text-center" >
+            <h4>
               Jeune français de 25 ans diplômé de Polytechnique Montréal (Canada) et Polytechnique Grenoble (France), je
               suis à la recherche d'un emploi temps plein pour commencer ma carrière professionnelle.
-            </p>
+            </h4>
           </div>
           <template class="Projet">
             <div class="elevation-demo">
               <div v-on:click="see_project(1)" >
                 <md-card md-with-hover class="md-elevation-8 text-center" ><md-ripple>
                   <div class="case" vertical-align: middle>
-                    <i class="fab fa-windows fa-5x"></i><br><br>
+                    <i class="fab fa-windows fa-3x"></i><br><br>
                     <span>{{project_1}}</span>
                   </div></md-ripple>
                 </md-card>
@@ -47,7 +47,7 @@
               <div v-on:click="see_project(2)">
                 <md-card md-with-hover class="md-elevation-8 text-center" v-on:click="project_index=2"><md-ripple>
                   <div class="case" vertical-align: middle>
-                    <md-icon class="md-size-4x">panorama_horizontal</md-icon><br><br>
+                    <md-icon class="md-size-2x">panorama_horizontal</md-icon><br><br>
                     <span>{{project_2}}</span>
                   </div></md-ripple>
                 </md-card>
@@ -55,7 +55,7 @@
               <div v-on:click="see_project(3)">
                 <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
                   <div class="case" vertical-align: middle>
-                    <i class="fab fa-discord fa-5x"></i><br><br>
+                    <i class="fab fa-discord fa-3x"></i><br><br>
                     <span>{{project_3}}</span>
                   </div></md-ripple>
                 </md-card>
@@ -63,7 +63,7 @@
               <div v-on:click="see_project(4)">
                 <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
                   <div class="case" vertical-align: middle>
-                    <md-icon class="md-size-4x md-font">http</md-icon><br>
+                    <md-icon class="md-size-2x md-font">http</md-icon><br>
                     <span>{{project_4}}</span>
                   </div></md-ripple>
                 </md-card>
@@ -71,7 +71,7 @@
               <div v-on:click="see_project(5)">
                 <md-card md-with-hover class="md-elevation-8 text-center"><md-ripple>
                   <div class="case" vertical-align: middle>
-                    <i class="fas fa-cubes fa-5x"></i><br><br>
+                    <i class="fas fa-cubes fa-3x"></i><br><br>
                     <span>{{project_5}}</span>
                   </div></md-ripple>
                 </md-card>
@@ -88,9 +88,10 @@
             </div>
             
             <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
-              <li>Projet industriel de 6 mois pour livraison et recette a l'entreprise Constellium C-TEC</li>
+              <li>Projet industriel de 6 mois pour conception et installation à l'entreprise Constellium C-TEC</li>
               <li>Conception complète d'une application C#/WPF pour ordinateur tactile Windows 10</li>
-              <li>Cahier des charges et recette directement à l'entreprise</li>
+              <li>Formulaire numérique pour assurer un suivi de processus entre plusieurs tablettes</li>
+              <li>Synchronisation des données temps réel entre plusieurs tablettes</li>
               <li>Service après vente pour installation et maintenant au sein de l'entreprise</li>
             </ul>
             
@@ -102,10 +103,12 @@
                 :class="{ 'responsive-image': false }" /><br><br>
             </div>
             <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
-              <li>Dans le projet d'une maitrise recherche à Polytechnique Montréal</li>
-              <li>Développement avec Unreal Engine 4 pour déploiement en VR et AR</li>
+              <li>Dans le projet d'une maîtrise recherche à Polytechnique Montréal</li>
+              <li>Développement avec Unreal Engine 4 pour déploiement rapide en VR et/ou AR</li>
+              <li>Conception et tests réalisés avec le laboratoire d'infographie et réalité virtuelle</li>
+              <li>Utilisation du logiciel sur le casque AR Magic Leap 1</li>
+              <li>Gestion d'un essaim de drones pour les situations d'urgence</li>
               <li>Interaction avec l'utilisation des mains dans un univers 3D</li>
-              <li>Assistance en réalité augmentée dans les situations d'urgence</li>
             </ul>
           </div>
           <div v-else-if="project_index === 3">
@@ -149,54 +152,54 @@
           </div>
           <md-divider class="md-inset"></md-divider>
           <template class="Formations">
-            <h2 class="title text-center">
-              <md-icon class="md-size-2x">school</md-icon>
+            <h3 class="title text-center">
+              <md-icon class="md-size-1x">school</md-icon>
               <br>Formations
-            </h2>
+            </h3>
             <div class="md-layout md-gutter md-alignment-center ">
               <div class="md-layout-item md-size-30 ">
-                <img :src="img_polymtl" class="rounded" alt="Circle rounded" />
-                <h4 class="text-center"> Maîtrise recherche XR (AR/VR) Polytechnique Montréal - 2018/2020</h4>
+                <img :src="img_polymtl" class="rounded" alt="Circle rounded" /><br><br>
+                <h4 class="text-center"><b> Maîtrise recherche XR (AR/VR) Polytechnique Montréal - 2018/2020</b></h4>
                 <center><a href="https://www.polymtl.ca/rv/Activites/" target="_blank" class="text-center"> Laboratoire
                     d'infographie et réalité virtuelle (LIRV)</a></center>
                 <h6 class="text-center"> GPA : 3.86/4.0</h6>
               </div>
               <md-divider class="md-inset"></md-divider>
-              <div class="md-layout-item md-size-25">
-                <img :src="img_esisar" class="rounded" />
-                <h4 class="text-center"> Ingénieur français - Institut National Polytechnique Grenoble - ESISAR
-                  2013/2018</h4>
-                <h6 class="text-center"> Filière Informatique, Réseaux et Cybersécurité</h6>
+              <div class="md-layout-item md-size-30">
+                <img :src="img_esisar" class="rounded" /><br><br>
+                <h4 class="text-center"><b> Ingénieur français - Institut National Polytechnique Grenoble - ESISAR
+                  2013/2018</b></h4>
+                <p class="text-center"> Filière Informatique, Réseaux et Cybersécurité</p>
                 <h6 class="text-center"> GPA : 3.3/4.0</h6>
               </div>
             </div>
           </template>
           <md-divider class="md-inset"></md-divider>
           <template class="Experiences">
-            <h2 class="title text-center">
-              <md-icon class="md-size-2x">work_outline</md-icon>
+            <h3 class="title text-center">
+              <md-icon class="md-size-1x">work_outline</md-icon>
               <br>Expériences professionnelles
-            </h2>
-            <div class="md-layout md-gutter md-alignment-center-space-between ">
-              <div class="md-layout-item md-size-30 ">
+            </h3>
+            <div class="md-layout md-gutter md-alignment-top-center ">
+              <div class="md-layout-item md-size-25 ">
                 <img :src="img_boxmyjob" class="rounded" alt="Circle rounded" />
-                <h4 class="text-center">Stage technicien Boxmyjob 2015</h4>
-                <h6 class="text-center">Première expérience professionnelle dans une start-up</h6>
+                <h4 class="text-center"><b>Stage technicien Boxmyjob 2015</b></h4>
+                <p class="text-center">Première expérience professionnelle dans une start-up</p>
                 <p class="text-center">XPath - Java</p>
               </div>
               <div class="md-layout-item md-size-25">
-                <img :src="img_constellium" class="rounded" />
-                <h4 class="text-center">Projet industriel ingénieur C-TEC Constellium 2017</h4>
-                <h6 class="text-center">Conception déploiement et recette d'une application Windows 10</h6>
-                <h6 class="text-center">Service après vente chez le client</h6>
+                <img :src="img_constellium" class="rounded"/>
+                <h4 class="text-center"><b>Projet industriel ingénieur C-TEC Constellium 2017</b></h4>
+                <p class="text-center">Conception déploiement et recette d'une application Windows 10</p>
+                <p class="text-center">Service après vente chez le client</p>
                 <p class="text-center">C#/WPF - Visual Studio - Génie logiciel</p>
               </div>
               <div class="md-layout-item md-size-25">
-                <img :src="img_polymtl" class="rounded" />
-                <h4 class="text-center">Stage ingénieur au LIRV Polytechnique Montréal</h4>
-                <h6 class="text-center">Conception et développement d'une infrastructure pour la communication
+                <img :src="img_polymtl" class="rounded"/>
+                <h4 class="text-center"><b>Stage ingénieur au LIRV Polytechnique Montréal</b></h4>
+                <p class="text-center">Conception et développement d'une infrastructure pour la communication
                   temps
-                  réel de casques AR Hololens entre eux</h6>
+                  réel de casques AR Hololens entre eux</p>
                 <center><a href="https://www.polymtl.ca/rv/Activites/" target="_blank" class="text-center"> Laboratoire
                     d'infographie et réalité virtuelle (LIRV)</a></center>
                 <p class="text-center">Module de communication C++ - API Rest Django Python - BDD SQL - Modèle
@@ -204,12 +207,12 @@
                   Javascript</p>
               </div>
             </div>
-            <h4 class="text-center">
-              Autres expériences:
-            </h4>
+            <h3 class="title text-center">
+              Autres expériences
+            </h3>
             <div class="md-layout md-gutter md-alignment-top-center ">
               <div class="md-layout-item md-size-30 ">
-                <h6 class="text-center">Chargé de laboratoire – Correcteur d’examens</h6>
+                <h4 class="text-center"><b>Chargé de laboratoire – Correcteur d’examens</b></h4>
                 <p class="text-center">Gestion des étudiants en laboratoire du cours INF2705 à Polytechnique
                   Montréal (Infographie)</p>
                 <p class="text-center">Gestions des étudiants sur le laboratoire et correction des sujets.</p>
@@ -217,7 +220,7 @@
                 </p>
               </div>
               <div class="md-layout-item md-size-30">
-                <h6 class="text-center">Implication sociale dans le milieu étudiant et professionnel</h6>
+                <h4 class="text-center"><b>Implication sociale dans le milieu étudiant et professionnel</b></h4>
                 <p class="text-center">Président et gestion d'une association étudiante pour un mandat annuel.
                   Implication étudiante depuis 6 années consécutives</p>
                 <p class="text-center">Organisation et planification d’événements allant jusqu’à 600 personnes
@@ -229,10 +232,10 @@
           </template>
           <md-divider class="md-inset"></md-divider>
           <template class="Competences">
-            <h2 class="title text-center">
-              <md-icon class="md-size-2x">list_alt</md-icon>
+            <h3 class="title text-center">
+              <md-icon class="md-size-1x">list_alt</md-icon>
               <br>Compétences
-            </h2>
+            </h3>
             <div class="elevation-demo">
               <md-card class="skill">
                 <h6 class="text-center">Langages de programmation:</h6>
@@ -253,6 +256,8 @@
                   <li>Génie logiciel</li>
                   <li>Réalité augmentée et virtuelle (XR)</li>
                   <li>Cybersécurité logiciels et réseaux</li>
+                  <li>Git</li>
+                  <li>Amazon web services</li>
                   <li>Système réparti, réplication, cloud</li>
                   <li>IA / Apprentissage machine</li>
                   <li>Infographie</li>
@@ -277,7 +282,7 @@
             </div>
           </template>
           <md-divider class="md-inset"></md-divider>
-          <md-button class="md-raised ml-auto mr-auto md-info" @click="isHidden = !isHidden">Contact et informations
+          <md-button class="md-raised ml-auto mr-auto md-primary" @click="isHidden = !isHidden">Contact et informations
           </md-button>
           <h5 v-if="!isHidden" class="mr-auto ml-auto">
               <b>Courriel :</b> <a href="mailto: naser.dany.0795@gmail.com">naser.dany.0795[at]gmail.com</a><br>
@@ -305,10 +310,10 @@ export default {
     return {
       isHidden: true,
       project_index: 1,
-      project_1:"Conception d'un logiciel Windows 10",
-      project_2:"Conception d'une application AR Magic Leap 1",
+      project_1:"Formulaire numérique partagé Windows 10 (C#/WPF)",
+      project_2:"Gestion d'un essaim de drones en AR",
       project_3:"Bot Discord pour gestion de tickets",
-      project_4:"Serveur REST, BDD et module de communication inter-connectivité Hololens 1.0",
+      project_4:"Serveur REST, BDD et module de communication pour synchronisation Hololens 1.0",
       project_5:"Modélisation 3D d'un entrepôt depuis une BDD",
     };
   },
@@ -400,6 +405,12 @@ export default {
     margin: 24px;
     display: flex;
     align-items: center;
+    
+}
+
+.md-layout-item{
+  height: auto;
+  margin: 15px;
 }
 
 .md-button {
@@ -413,13 +424,13 @@ export default {
 }
 
 [class*="case"] {
-  margin: 5px;
+  margin: 30px;
   justify-content: center;
   
 }
 
 [class*="skill"] {
-    width: auto;
+    width: 270px;
     height: auto;
     margin: 12px;
     display: inline-block;
