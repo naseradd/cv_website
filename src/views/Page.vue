@@ -36,7 +36,7 @@
           </div>
           <template class="Projet">
             <div class="elevation-demo">
-              <div v-on:click="see_project(1)" href="#project">
+              <div v-on:click="see_project(1)" >
                 <md-card md-with-hover class="md-elevation-8 text-center" ><md-ripple>
                   <div class="case" vertical-align: middle>
                     <i class="fab fa-windows fa-5x"></i><br><br>
@@ -78,16 +78,16 @@
               </div>
             </div>
           </template>
-          <div id="project"></div><br><br>
+          <div class="main" id="projet"></div><br><br>
           <div class="container">
           <div v-if="project_index === 1" >
             <h4 class="title text-center">{{project_1}}</h4>
             <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <img :src="img_logiciel" alt="Raised Image" class="img-raised rounded"
-                :class="{ 'responsive-image': false }" />
+                :class="{ 'responsive-image': false }" /><br><br>
             </div>
             
-            <ul>
+            <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <li>Projet industriel de 6 mois pour livraison et recette a l'entreprise Constellium C-TEC</li>
               <li>Conception complète d'une application C#/WPF pour ordinateur tactile Windows 10</li>
               <li>Cahier des charges et recette directement à l'entreprise</li>
@@ -99,9 +99,9 @@
             <h4 class="title text-center">{{project_2}}</h4>
             <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <img :src="img_ar" alt="Raised Image" class="img-raised rounded"
-                :class="{ 'responsive-image': false }" />
+                :class="{ 'responsive-image': false }" /><br><br>
             </div>
-            <ul>
+            <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <li>Dans le projet d'une maitrise recherche à Polytechnique Montréal</li>
               <li>Développement avec Unreal Engine 4 pour déploiement en VR et AR</li>
               <li>Interaction avec l'utilisation des mains dans un univers 3D</li>
@@ -112,9 +112,9 @@
             <h4 class="title text-center">{{project_3}}</h4>
             <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <img :src="img_discord" alt="Circle Image" class="img-circle rounded"
-                :class="{ 'responsive-image': false }" />
+                :class="{ 'responsive-image': false }" /><br><br>
             </div>
-            <ul>
+            <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <li>Développement JavaScript avec Node.js pour un bot automatique sur les serveurs discords</li>
               <li>Gestion automatique de demande des tickets</li>
               <li>Redirection des acteurs selon l'ordre des demandes</li>
@@ -125,9 +125,9 @@
             <h4 class="title text-center">{{project_4}}</h4>
             <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <img :src="img_hololens" alt="Raised Image" class="img-raised rounded"
-                :class="{ 'responsive-image': false }" />
+                :class="{ 'responsive-image': false }" /><br><br>
             </div>
-            <ul>
+            <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <li>Echange temps réel de données entre plusieurs Hololens 1.0</li>
               <li>Centralisation sur un serveur avec BDD et serveur REST (Django/Python)</li>
               <li>Module de communication C++ sur Hololens</li>
@@ -137,9 +137,9 @@
             <h4 class="title text-center">{{project_5}}</h4>
             <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <img :src="img_entrepot" alt="Raised Image" class="img-raised rounded"
-                :class="{ 'responsive-image': false }" />
+                :class="{ 'responsive-image': false }" /><br><br>
             </div>
-            <ul>
+            <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <li>Javascript et WebGL pour modéliser en 3D un entrepôt de bois</li>
               <li>Modèle 3D dynamique depuis une base de données</li>
             </ul>
@@ -153,14 +153,15 @@
               <md-icon class="md-size-2x">school</md-icon>
               <br>Formations
             </h2>
-            <div class="md-layout md-gutter md-alignment-center-space-between ">
+            <div class="md-layout md-gutter md-alignment-center ">
               <div class="md-layout-item md-size-30 ">
                 <img :src="img_polymtl" class="rounded" alt="Circle rounded" />
                 <h4 class="text-center"> Maîtrise recherche XR (AR/VR) Polytechnique Montréal - 2018/2020</h4>
-                <center><a href="https://www.polymtl.ca/rv/Activites/" class="text-center"> Laboratoire
+                <center><a href="https://www.polymtl.ca/rv/Activites/" target="_blank" class="text-center"> Laboratoire
                     d'infographie et réalité virtuelle (LIRV)</a></center>
                 <h6 class="text-center"> GPA : 3.86/4.0</h6>
               </div>
+              <md-divider class="md-inset"></md-divider>
               <div class="md-layout-item md-size-25">
                 <img :src="img_esisar" class="rounded" />
                 <h4 class="text-center"> Ingénieur français - Institut National Polytechnique Grenoble - ESISAR
@@ -196,7 +197,7 @@
                 <h6 class="text-center">Conception et développement d'une infrastructure pour la communication
                   temps
                   réel de casques AR Hololens entre eux</h6>
-                <center><a href="https://www.polymtl.ca/rv/Activites/" class="text-center"> Laboratoire
+                <center><a href="https://www.polymtl.ca/rv/Activites/" target="_blank" class="text-center"> Laboratoire
                     d'infographie et réalité virtuelle (LIRV)</a></center>
                 <p class="text-center">Module de communication C++ - API Rest Django Python - BDD SQL - Modèle
                   3D
@@ -232,20 +233,23 @@
               <md-icon class="md-size-2x">list_alt</md-icon>
               <br>Compétences
             </h2>
-            <div class="md-layout md-gutter md-alignment-top-center  ">
-              <div class="md-layout-item md-size-30">
-                <h6>Langages de programmation:</h6>
-                <ul>
-                  <li>C / C++ / C#</li>
-                  <li>Java</li>
-                  <li>HTML / CSS / JavaScript</li>
-                  <li>Python</li>
-                  <li>Unix / Bash</li>
-                </ul>
-              </div>
-              <div class="md-layout-item md-size-30">
-                <h6>Notions spécifiques:</h6>
-                <ul>
+            <div class="elevation-demo">
+              <md-card class="skill">
+                <h6 class="text-center">Langages de programmation:</h6>
+                <md-card-content>
+                  <ul>
+                    <li>C / C++ / C#</li>
+                    <li>Java</li>
+                    <li>HTML / CSS / JavaScript</li>
+                    <li>Python</li>
+                    <li>Unix / Bash</li>
+                  </ul>
+                </md-card-content>
+              </md-card>
+              <md-card class="skill">
+                <h6 class="text-center">Notions spécifiques:</h6>
+                <md-card-content>
+                  <ul>
                   <li>Génie logiciel</li>
                   <li>Réalité augmentée et virtuelle (XR)</li>
                   <li>Cybersécurité logiciels et réseaux</li>
@@ -257,28 +261,29 @@
                   <li>Jeux vidéo</li>
                   <li>Multimédia</li>
                 </ul>
-              </div>
-              <div class="md-layout-item md-size-30">
-                <h6>Logiciels:</h6>
-                <ul>
-                  <li>Visual Studio 2019</li>
-                  <li>Unreal Engine 4</li>
-                  <li>PyCharm</li>
-                  <li>Unity</li>
+                </md-card-content>
+              </md-card>
+              <md-card class="skill">
+                <h6 class="text-center">Logiciels:</h6>
+                <md-card-content>
+                  <ul>
+                    <li>Visual Studio 2019</li>
+                    <li>Unreal Engine 4</li>
+                    <li>PyCharm</li>
+                    <li>Unity</li>
                 </ul>
-              </div>
+                </md-card-content>
+              </md-card>
             </div>
           </template>
           <md-divider class="md-inset"></md-divider>
           <md-button class="md-raised ml-auto mr-auto md-info" @click="isHidden = !isHidden">Contact et informations
           </md-button>
           <h5 v-if="!isHidden" class="mr-auto ml-auto">
-            <ul>
-              <li><b>Courriel :</b> <a href="mailto: naser.dany.0795@gmail.com">naser.dany.0795[at]gmail.com</a></li>
-              <li><b>Langues :</b> Français (native) - Anglais (intermediaire)</li>
-              <li><b>Permis voiture :</b> B (européen)</li>
-              <li><b>Nationalité :</b> Française</li>
-            </ul>
+              <b>Courriel :</b> <a href="mailto: naser.dany.0795@gmail.com">naser.dany.0795[at]gmail.com</a><br>
+              <b>Langues :</b> Français (native) - Anglais (intermediaire)<br>
+              <b>Permis voiture :</b> B (européen)<br>
+              <b>Nationalité :</b> Française<br>
           </h5>
         </div>
       </div>
@@ -294,11 +299,12 @@ export default {
   components: {
      
 },
+
   bodyClass: "profile-page",
   data() {
     return {
       isHidden: true,
-      project_index: 0,
+      project_index: 1,
       project_1:"Conception d'un logiciel Windows 10",
       project_2:"Conception d'une application AR Magic Leap 1",
       project_3:"Bot Discord pour gestion de tickets",
@@ -356,7 +362,7 @@ export default {
     see_project: function (index) {
           // `this` inside methods points to the Vue instance
           this.project_index = index
-          document.getElementById('project').scrollIntoView()
+          document.getElementById('projet').scrollIntoView({ behavior: 'smooth' })
     }
 
   },
@@ -372,9 +378,6 @@ export default {
 
 <style lang="scss" scoped>
 
-.section {
-  padding: 0;
-}
 
 .elevation-demo {
     padding: 16px;
@@ -403,11 +406,24 @@ export default {
   margin: 24px;
 }
 
+.md-layout {
+  margin: 24px;
+  display: flex;
+  align-items: center;
+}
+
 [class*="case"] {
   margin: 5px;
   justify-content: center;
   
 }
+
+[class*="skill"] {
+    width: auto;
+    height: auto;
+    margin: 12px;
+    display: inline-block;
+  }
 
 .profile-tabs::v-deep {
   .md-card-tabs .md-list {
@@ -422,5 +438,7 @@ export default {
       margin-bottom: 2.142rem;
     }
   }
+
+  
 }
 </style>
