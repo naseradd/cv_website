@@ -28,6 +28,11 @@ export default new Router({
         header: { colorOnScroll: 150 },
         footer: { backgroundColor: "black" }
       }
+    },
+    ,
+    {
+      path: "/memoire",
+      redirect: require("@/assets/pdf/manuscript.pdf")
     }
   ],
   scrollBehavior: to => {
