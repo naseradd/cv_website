@@ -84,14 +84,20 @@ export default {
     colorOnScroll: {
       type: Number,
       default: 0
+    },
+    pdfLinkFR: {
+      type: String,
+      default: require("@/assets/pdf/CV_FR_CAD_DanyNaserAddin.pdf")
+    },
+    pdfLinkEN: {
+      type: String,
+      default: require("@/assets/pdf/CV_EN_CAD_DanyNaserAddin.pdf")
     }
   },
   data() {
     return {
       extraNavClasses: "",
-      toggledClass: false,
-      pdfLinkFR : require('@/assets/pdf/CV_FR_CAD_DanyNaserAddin.pdf'),
-      pdfLinkEN : require('@/assets/pdf/CV_EN_CAD_DanyNaserAddin.pdf')
+      toggledClass: false
     };
   },
   computed: {
