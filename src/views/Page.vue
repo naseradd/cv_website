@@ -156,8 +156,8 @@
               <md-icon class="md-size-1x">school</md-icon>
               <br>Formations
             </h3>
-            <div class="md-layout md-gutter md-alignment-center ">
-              <div class="md-layout-item md-size-30 ">
+            <div class="md-layout md-gutter md-alignment-top-center ">
+              <div class="md-layout-item md-size-25 ">
                 <img :src="img_polymtl" class="rounded" alt="Circle rounded" /><br><br>
                 <h4 class="text-center"><b> Maîtrise recherche XR (AR/VR) Polytechnique Montréal - 2018/2020</b></h4>
                 <center><a href="https://www.polymtl.ca/rv/Activites/" target="_blank" class="text-center"> Laboratoire
@@ -165,7 +165,7 @@
                 <h6 class="text-center"> GPA : 3.86/4.0</h6>
               </div>
               <md-divider class="md-inset"></md-divider>
-              <div class="md-layout-item md-size-30">
+              <div class="md-layout-item md-size-25">
                 <img :src="img_esisar" class="rounded" /><br><br>
                 <h4 class="text-center"><b> Ingénieur français - Institut National Polytechnique Grenoble - ESISAR
                   2013/2018</b></h4>

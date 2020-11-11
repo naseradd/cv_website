@@ -24,14 +24,13 @@
         <div class="md-collapse">
           <div class="md-collapse-wrapper">
             <mobile-menu nav-mobile-section-start="false">
-              <!-- Here you can add your items from the section-start of your toolbar -->
             </mobile-menu>
             <md-list>
-              <md-list-item href="https://1drv.ms/b/s!AjsBwco3oDSsu04Zf1WSvJFb1sIr?e=zpzsV5" target="_blank">
+              <md-list-item :href="pdfLinkFR" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Résumé FR</p>
               </md-list-item>
-              <md-list-item href="https://1drv.ms/b/s!AjsBwco3oDSsu03xSN0EuaRG68Mr?e=l5IkSy" target="_blank">
+              <md-list-item :href="pdfLinkEN" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Resume EN</p>
               </md-list-item>
@@ -90,7 +89,9 @@ export default {
   data() {
     return {
       extraNavClasses: "",
-      toggledClass: false
+      toggledClass: false,
+      pdfLinkFR : require('@/assets/pdf/CV_FR_CAD_DanyNaserAddin.pdf'),
+      pdfLinkEN : require('@/assets/pdf/CV_EN_CAD_DanyNaserAddin.pdf')
     };
   },
   computed: {
