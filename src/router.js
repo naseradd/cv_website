@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Page from "./views/Page.vue";
+import PageFR from "./views/PageFR.vue";
+import PageEN from "./views/PageEN.vue";
 import MainNavbarDany from "./layout/MainNavbarDany.vue";
 import MainFooterDany from "./layout/MainFooterDany.vue";
 
@@ -9,10 +10,20 @@ Vue.use(Router);
 export default new Router({
   mode: "history",
   routes: [
+    { path: '/', redirect: '/fr' },
     {
-      path: "/",
-      name: "index",
-      components: { default: Page, header: MainNavbarDany, footer: MainFooterDany },
+      path: "/fr",
+      name: "page",
+      components: { default: PageFR, header: MainNavbarDany, footer: MainFooterDany },
+      props: {
+        header: { colorOnScroll: 150 },
+        footer: { backgroundColor: "black" }
+      }
+    },
+    {
+    path: "/en",
+      name: "page",
+      components: { default: PageEN, header: MainNavbarDany, footer: MainFooterDany },
       props: {
         header: { colorOnScroll: 150 },
         footer: { backgroundColor: "black" }

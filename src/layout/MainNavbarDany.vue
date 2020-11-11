@@ -38,6 +38,9 @@
                 <i class="material-icons">work</i>
                 <p>Linkedin EN/FR</p>
               </md-list-item>
+              <md-list-item :href="langagePageName">
+                <a>{{englishPageName}}</a>
+              </md-list-item>
             </md-list>
           </div>
         </div>
@@ -97,14 +100,16 @@ export default {
   data() {
     return {
       extraNavClasses: "",
-      toggledClass: false
+      toggledClass: false,
+      englishPageName: "Français",
+      langagePageName: "/fr"
     };
   },
   computed: {
     showDownload() {
       const excludedRoutes = ["login", "landing", "profile"];
       return excludedRoutes.every(r => r !== this.$route.name);
-    }
+    },
   },
   methods: {
     bodyClick() {
@@ -153,7 +158,15 @@ export default {
     }
   },
   mounted() {
-    document.addEventListener("scroll", this.scrollListener);
+    document.addEventListener("scroll", this.scrollListener)
+    if(this.$route.path == "/fr"){
+      this.englishPageName = "English";
+      this.langagePageName = "/en"
+    }
+    else {
+      this.englishPageName = "Français";
+      this.langagePageName = "/fr"
+    }
   },
   beforeDestroy() {
     document.removeEventListener("scroll", this.scrollListener);

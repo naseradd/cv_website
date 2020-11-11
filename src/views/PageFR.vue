@@ -215,7 +215,7 @@
                 <h4 class="text-center"><b>Chargé de laboratoire – Correcteur d’examens</b></h4>
                 <p class="text-center">Gestion des étudiants en laboratoire du cours INF2705 à Polytechnique
                   Montréal (Infographie)</p>
-                <p class="text-center">Gestions des étudiants sur le laboratoire et correction des sujets.</p>
+                <p class="text-center">Gestions des étudiants sur le laboratoire et correction des sujets</p>
                 <p class="text-center">Correction d’examens pour le cours INF1005C - Programmation procédurale
                 </p>
               </div>
@@ -226,7 +226,7 @@
                 <p class="text-center">Organisation et planification d’événements allant jusqu’à 600 personnes
                 </p>
                 <p class="text-center">Gestion d’équipes allant jusqu’à 30 personnes, mise en place
-                  d'afterwork.</p>
+                  d'afterwork</p>
               </div>
             </div>
           </template>
@@ -300,7 +300,7 @@
 import { Tabs } from "@/components";
 
 export default {
-  name: 'ElevationExample',
+  name: 'indexfr',
   components: {
      
 },
