@@ -2,10 +2,12 @@ import Vue from "vue";
 import Router from "vue-router";
 import PageFR from "./views/PageFR.vue";
 import PageEN from "./views/PageEN.vue";
+import Pdf from "./components/pdf_page.vue";
 import MainNavbarDany from "./layout/MainNavbarDany.vue";
 import MainFooterDany from "./layout/MainFooterDany.vue";
 
 Vue.use(Router);
+
 
 export default new Router({
   mode: "history",
@@ -29,10 +31,26 @@ export default new Router({
         footer: { backgroundColor: "black" }
       }
     },
-    ,
     {
       path: "/memoire",
-      redirect: require("@/assets/pdf/manuscript.pdf")
+      component: Pdf,
+      props: {
+        path: require("@/assets/pdf/manuscript.pdf")
+      }
+    },
+    {
+      path: "/french_cv",
+      component: Pdf,
+      props: {
+        path: require("@/assets/pdf/CV_FR_CAD_DanyNaserAddin.pdf")
+      }
+    },
+    {
+      path: "/english_cv",
+      component: Pdf,
+      props: {
+        path: require("@/assets/pdf/CV_EN_CAD_DanyNaserAddin.pdf")
+      }
     }
   ],
   scrollBehavior: to => {
@@ -43,3 +61,5 @@ export default new Router({
     }
   }
 });
+
+

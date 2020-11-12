@@ -26,11 +26,11 @@
             <mobile-menu nav-mobile-section-start="false">
             </mobile-menu>
             <md-list>
-              <md-list-item :href="pdfLinkFR" target="_blank">
+              <md-list-item href="/french_cv" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Résumé FR</p>
               </md-list-item>
-              <md-list-item :href="pdfLinkEN" target="_blank">
+              <md-list-item href="/english_cv" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Resume EN</p>
               </md-list-item>
@@ -87,14 +87,6 @@ export default {
     colorOnScroll: {
       type: Number,
       default: 0
-    },
-    pdfLinkFR: {
-      type: String,
-      default: require("@/assets/pdf/CV_FR_CAD_DanyNaserAddin.pdf")
-    },
-    pdfLinkEN: {
-      type: String,
-      default: require("@/assets/pdf/CV_EN_CAD_DanyNaserAddin.pdf")
     }
   },
   data() {
