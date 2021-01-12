@@ -9,19 +9,21 @@ import VueLazyload from "vue-lazyload";
 import VueCarousel from "vue-carousel";
 
 export default {
-  install(Vue) {
-    Vue.use(VueMaterial);
-    Vue.use(globalDirectives);
-    Vue.use(globalMixins);
-    Vue.use(globalComponents);
-    Vue.use(VueCarousel);
-    Vue.use(VueLazyload, {
-      observer: true,
-      // optional
-      observerOptions: {
-        rootMargin: "0px",
-        threshold: 0.1
-      }
-    });
-  }
+    install(Vue) {
+        Vue.use(VueMaterial);
+        Vue.use(globalDirectives);
+        Vue.use(globalMixins);
+        Vue.use(globalComponents);
+        Vue.use(VueCarousel);
+        Vue.use(VueLazyload, {
+            observer: true,
+            // optional
+            observerOptions: {
+                rootMargin: "0px",
+                threshold: 0.1
+            }
+        });
+
+    }
+
 };

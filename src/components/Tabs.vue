@@ -4,20 +4,20 @@
     :class="[
       { 'flex-column': flexColumn },
       { 'nav-pills-icons': navPillsIcons },
-      { 'md-card-plain': plain }
+      { 'md-card-plain': plain },
     ]"
   >
     <md-card-header slot="header-title"> </md-card-header>
 
     <md-card-content>
-      <md-list class="nav-tabs">
+      <md-list v-bind:class="{'nav-tabs': !isMobile, 'nav-tabs-mobile': isMobile}">
         <md-list-item
           v-for="(item, index) in tabName"
           @click="switchPanel(tabName[index])"
           :key="item"
           :class="[
             { active: isActivePanel(tabName[index]) },
-            { [getColorButton(colorButton)]: isActivePanel(tabName[index]) }
+            { [getColorButton(colorButton)]: isActivePanel(tabName[index]) },
           ]"
         >
           {{ tabName[index] }}
@@ -33,9 +33,7 @@
             :key="item"
             v-if="isActivePanel(tabName[index])"
           >
-            <slot :name="getTabContent(index + 1)">
-              This is the default text!
-            </slot>
+            <slot :name="getTabContent(index + 1)"> This is the default text! </slot>
           </div>
         </div>
       </transition>
@@ -47,18 +45,22 @@
 export default {
   props: {
     flexColumn: Boolean,
+    isMobile: {
+      type: Boolean,
+      default: false,
+    },
     navPillsIcons: Boolean,
     plain: Boolean,
     tabName: Array,
     tabIcon: Array,
     colorButton: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return {
-      activePanel: this.tabName[0]
+      activePanel: this.tabName[0],
     };
   },
   methods: {
@@ -68,14 +70,30 @@ export default {
     isActivePanel(panel) {
       return this.activePanel == panel;
     },
-    getColorButton: function(colorButton) {
+    getColorButton: function (colorButton) {
       return "md-" + colorButton + "";
     },
-    getTabContent: function(index) {
+    getTabContent: function (index) {
       return "tab-pane-" + index + "";
-    }
-  }
+    },
+    
+  },
 };
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+.nav-tabs-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: auto;
+  overflow-x: scroll;
+
+  
+}
+</style>

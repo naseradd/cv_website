@@ -144,7 +144,7 @@
             </div>
             <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
               <li>Javascript and WebGL to model a wood warehouse in 3D</li>
-              <li>Dynamic 3D model from a databaseM</li>
+              <li>Dynamic 3D model from a database</li>
             </ul>
           </div>
           <div v-else>

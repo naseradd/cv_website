@@ -14,16 +14,13 @@
 
  */
 
-
 //variables and mixins
 @import "material-kit/variables";
 @import "material-kit/mixins";
 @import "material-kit/shadows";
-
 //plugin css
 @import "material-kit/plugins/_perfect-scrollbar";
 @import "material-kit/plugins/_plugin-nouislider";
-
 // Core CSS
 @import "material-kit/typography";
 @import "material-kit/buttons";
@@ -50,9 +47,14 @@
 @import "material-kit/navbars";
 @import "material-kit/popups";
 @import "material-kit/footers";
-
 // Fancy Stuff
 @import "material-kit/dropdown";
 @import "material-kit/cards";
 @import "material-kit/tabs";
 @import "material-kit/responsive";
+@import "~vue-material/dist/theme/engine"; // Import the theme engine
+@include md-register-theme("default", ( primary: md-get-palette-color(purple, A200), // The primary color of your application
+accent: md-get-palette-color(green, 200), // The accent or secondary color
+success: md-get-palette-color(green, 200), theme: light // This can be dark or light
+));
+@import "~vue-material/dist/theme/all"; // Apply the theme
