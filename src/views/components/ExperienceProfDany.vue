@@ -109,7 +109,7 @@
         <h4 v-if="!isEnglish"><b>Stage ingénieur au LIRV Polytechnique Montréal</b></h4>
         <h4 v-else><b>Engineer Intern at LIRV Polytechnique Montréal</b></h4>
         <p v-if="!isEnglish">
-          Mise en place une communication entre Hololens 1.0 via une structure
+          Mise en place d'une communication entre Hololens 1.0 via une structure
           centralisée. Mise en place d'une base de données , serveur et module de
           communication pour synchroniser les actions de plusieurs hololens.
           Virtualisation d'un entrepôt en trois dimensions sur une interface web pour
