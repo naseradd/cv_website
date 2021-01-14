@@ -23,23 +23,34 @@
 
         <div class="md-collapse">
           <div class="md-collapse-wrapper">
-            <mobile-menu nav-mobile-section-start="false">
-            </mobile-menu>
+            <mobile-menu nav-mobile-section-start="false"> </mobile-menu>
             <md-list>
-              <md-list-item href="/french_cv" target="_blank">
+              <md-list-item v-if="!isEnglish" href="/french_cv" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Résumé FR</p>
               </md-list-item>
-              <md-list-item href="/english_cv" target="_blank">
+              <md-list-item v-if="isEnglish" href="/english_cv" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Resume EN</p>
               </md-list-item>
-              <md-list-item href="https://www.linkedin.com/in/dany-naser-addin-116163101" target="_blank">
+              <md-list-item
+                v-if="isEnglish"
+                href="https://www.linkedin.com/in/dany-naser-addin-116163101/?locale=en_US"
+                target="_blank"
+              >
                 <i class="material-icons">work</i>
-                <p>Linkedin EN/FR</p>
+                <p>Linkedin</p>
+              </md-list-item>
+              <md-list-item
+                v-if="!isEnglish"
+                href="https://www.linkedin.com/in/dany-naser-addin-116163101"
+                target="_blank"
+              >
+                <i class="material-icons">work</i>
+                <p>Linkedin</p>
               </md-list-item>
               <md-list-item :href="langagePageName">
-                <a>{{englishPageName}}</a>
+                <a>{{ englishPageName }}</a>
               </md-list-item>
             </md-list>
           </div>
@@ -66,7 +77,7 @@ function resizeThrottler(actualResizeHandler) {
 import MobileMenu from "@/layout/MobileMenu";
 export default {
   components: {
-    MobileMenu
+    MobileMenu,
   },
   props: {
     type: {
@@ -80,27 +91,28 @@ export default {
           "danger",
           "success",
           "warning",
-          "info"
+          "info",
         ].includes(value);
-      }
+      },
     },
     colorOnScroll: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
       extraNavClasses: "",
       toggledClass: false,
       englishPageName: "Français",
-      langagePageName: "/fr"
+      langagePageName: "/fr",
+      isEnglish: false,
     };
   },
   computed: {
     showDownload() {
       const excludedRoutes = ["login", "landing", "profile"];
-      return excludedRoutes.every(r => r !== this.$route.name);
+      return excludedRoutes.every((r) => r !== this.$route.name);
     },
   },
   methods: {
@@ -147,21 +159,22 @@ export default {
       if (element_id) {
         element_id.scrollIntoView({ block: "end", behavior: "smooth" });
       }
-    }
+    },
   },
   mounted() {
-    document.addEventListener("scroll", this.scrollListener)
-    if(this.$route.path == "/fr"){
+    document.addEventListener("scroll", this.scrollListener);
+    if (this.$route.path == "/fr") {
       this.englishPageName = "English";
-      this.langagePageName = "/en"
-    }
-    else {
+      this.langagePageName = "/en";
+      this.isEnglish = false;
+    } else {
       this.englishPageName = "Français";
-      this.langagePageName = "/fr"
+      this.langagePageName = "/fr";
+      this.isEnglish = true;
     }
   },
   beforeDestroy() {
     document.removeEventListener("scroll", this.scrollListener);
-  }
+  },
 };
 </script>

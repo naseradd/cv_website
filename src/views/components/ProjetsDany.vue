@@ -1,28 +1,43 @@
 <template class="Projets">
   <div>
-    <div class="elevation-demo">
-      <div v-for="project in project_fr" v-bind:todo="project" v-bind:key="project.id">
-        <div v-on:click="see_project(project.id)">
-          <md-card :id="project.id" class="md-elevation-8 text-center" md-with-hover
-            ><md-ripple>
-              <div class="case" vertical-align: middle>
-                <i :class="project.icon" aria-hidden="true" ></i><br /><br />
-                <span v-if="!isEnglish">{{ project.title_fr }}</span>
-                <span v-else>{{ project.title_en }}</span>
-              </div></md-ripple
-            >
-          </md-card>
+    <div v-if="isMobile">
+      <div class="elevation-demo">
+        <div
+          v-for="project in project_fr"
+          v-bind:todo="project"
+          v-bind:key="project.id"
+        >
+          <div v-on:click="see_project(project.id)">
+            <md-card
+              :id="project.id"
+              class="md-elevation-8 text-center"
+              md-with-hover
+              ><md-ripple>
+                <div class="case" vertical-align: middle>
+                  <i :class="project.icon" aria-hidden="true"></i><br /><br />
+                  <span v-if="!isEnglish">{{ project.title_fr }}</span>
+                  <span v-else>{{ project.title_en }}</span>
+                </div></md-ripple
+              >
+            </md-card>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="main" id="projet"></div>
-    <md-divider class="md-inset"></md-divider>
-    <div class="container">
-      <div v-for="project in project_fr" v-bind:todo="project" v-bind:key="project.id">
+      <div class="main" id="projet"></div>
+      <md-divider class="md-inset"></md-divider>
+      <div
+        v-for="project in project_fr"
+        v-bind:todo="project"
+        v-bind:key="project.id"
+      >
         <div v-if="project_index === project.id">
-          <h4 v-if="!isEnglish" class="title text-center">{{ project.title_fr }}</h4>
+          <h4 v-if="!isEnglish" class="title text-center">
+            {{ project.title_fr }}
+          </h4>
           <h4 v-else class="title text-center">{{ project.title_en }}</h4>
-          <div class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
+          <div
+            class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto"
+          >
             <img
               :src="project.image"
               alt="Raised Image"
@@ -31,14 +46,94 @@
             /><br /><br />
           </div>
 
-          <ul class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto">
-            <li v-if="!isEnglish" v-for="text in project.description_fr" :key="text">
+          <ul
+            class="md-layout-item md-size-40 md-xsmall-size-100 ml-auto mr-auto"
+          >
+            <li
+              v-if="!isEnglish"
+              v-for="text in project.description_fr"
+              :key="text"
+            >
               {{ text }}
             </li>
-            <li v-if="isEnglish" v-for="text in project.description_en" :key="text">
+            <li
+              v-if="isEnglish"
+              v-for="text in project.description_en"
+              :key="text"
+            >
               {{ text }}
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+    <!-- PC Display -->
+    <div v-if="!isMobile">
+      <div class="md-layout md-column">
+        <div class="md-layout-item md-size-30">
+          <div
+            v-for="project in project_fr"
+            v-bind:todo="project"
+            v-bind:key="project.id"
+          >
+            <div v-on:click="see_project(project.id)">
+              <md-card
+                :id="project.id"
+                class="md-elevation-8 text-center"
+                md-with-hover
+              >
+                <div class="case" vertical-align: middle>
+                  <i :class="project.icon" aria-hidden="true"></i><br /><br />
+                  <span v-if="!isEnglish">{{ project.title_fr }}</span>
+                  <span v-else>{{ project.title_en }}</span>
+                </div>
+              </md-card>
+            </div>
+          </div>
+        </div>
+
+        <div class="md-layout-item md-size-70">
+          <div class="main"></div>
+          <div
+            v-for="project in project_fr"
+            v-bind:todo="project"
+            v-bind:key="project.id"
+          >
+            <div v-if="project_index === project.id">
+              <h4 v-if="!isEnglish" class="title text-center">
+                {{ project.title_fr }}
+              </h4>
+              <h4 v-else class="title text-center">{{ project.title_en }}</h4>
+              <br />
+              <center>
+                <img
+                  :src="project.image"
+                  alt="Raised Image"
+                  class="img-raised rounded"
+                  :class="{ 'responsive-image': false }"
+                /><br /><br />
+              </center>
+
+              <ul
+                class="md-layout-item md-size-100 md-xsmall-size-100 ml-auto mr-auto"
+              >
+                <li
+                  v-if="!isEnglish"
+                  v-for="text in project.description_fr"
+                  :key="text"
+                >
+                  {{ text }}
+                </li>
+                <li
+                  v-if="isEnglish"
+                  v-for="text in project.description_en"
+                  :key="text"
+                >
+                  {{ text }}
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -62,20 +157,24 @@ export default {
     },
     img_entrepot: {
       type: String,
-      default: require("@/assets/img/dany_cv/entrepot_bois.png")
+      default: require("@/assets/img/dany_cv/entrepot_bois.png"),
     },
     img_discord: {
       type: String,
-      default: require("@/assets/img/dany_cv/discord_bot.png")
+      default: require("@/assets/img/dany_cv/discord_bot.png"),
     },
     img_ar: {
       type: String,
-      default: require("@/assets/img/dany_cv/xr_image.jpg")
+      default: require("@/assets/img/dany_cv/xr_image.jpg"),
     },
     img_hololens: {
       type: String,
-      default: require("@/assets/img/dany_cv/stage_hololens.jpg")
-    }
+      default: require("@/assets/img/dany_cv/stage_hololens.jpg"),
+    },
+    isMobile: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -101,7 +200,8 @@ export default {
           id: 1,
         },
         {
-          title_fr: "Interface AR avec casque pour contrôler un essaim de drônes",
+          title_fr:
+            "Interface AR avec casque pour contrôler un essaim de drônes",
           title_en: "AR headset interface  to control a swarm of UAVs",
           image: this.img_ar,
           icon: "fa fa-hand-pointer fa-3x",
@@ -185,7 +285,7 @@ export default {
       // `this` inside methods points to the Vue instance
       this.project_index = index;
       var i;
-      for(i=1;i<6;i++){
+      for (i = 1; i < 6; i++) {
         document.getElementById(i).classList.remove("md-accent");
       }
       document.getElementById(this.project_index).classList.add("md-accent");
@@ -193,7 +293,7 @@ export default {
     },
     initProject: function () {
       document.getElementById("1").classList.add("md-accent");
-    }
+    },
   },
   mounted() {
     this.initProject();
@@ -204,7 +304,6 @@ export default {
         backgroundImage: `url(${this.header})`,
       };
     },
-    
   },
 };
 </script>
@@ -217,25 +316,20 @@ export default {
   justify-content: center;
 }
 .md-content {
-  width: 250px;
-  height: 200px;
-  margin: 24px;
+  width: auto;
+  height: auto;
   display: flex;
   align-items: center;
 }
 
 .md-card {
-  width: 250px;
-  height: 200px;
-  margin: 24px;
+  width: auto;
+  height: auto;
+  margin: 12px;
   display: flex;
   align-items: center;
 }
 
-.md-layout-item {
-  height: auto;
-  margin: 15px;
-}
 
 .md-button {
   margin: 24px;
@@ -248,7 +342,17 @@ export default {
 }
 
 [class*="case"] {
-  margin: 30px;
+  margin: 12px;
   justify-content: center;
+}
+.img-raised {
+  width: auto;
+  height: 300px;
+}
+
+.md-divider {
+  border-right-width: .5px;
+  border-right-style: solid;
+  height: 100%;
 }
 </style>

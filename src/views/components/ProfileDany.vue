@@ -9,29 +9,77 @@
       <div v-for="job in job_title" v-bind:todo="job" v-bind:key="job">
         <md-content class="text-center md-elevation-1">
           <div class="case text-center" vertical-align: middle>
-            <h4>{{ job }}</h4>
+            <h6>{{ job }}</h6>
           </div>
         </md-content>
       </div>
     </div>
+    <md-divider /><br />
+    <h4 class="title text-center" v-if="isEnglish">{{ phrase_intro_en }}</h4>
+    <h4 class="title text-center" v-if="!isEnglish">{{ phrase_intro_fr }}</h4>
+    <br />
+    <center>
+      <h5 v-if="isEnglish" style="width:70%">"{{ phrase_profil_en }}"</h5>
+      <h5 v-if="!isEnglish" style="width:70%">"{{ phrase_profil_fr }}"</h5>
+      <md-button
+        class="md-success"
+        v-if="isEnglish"
+        href="/english_cv"
+        target="_blank"
+        >Access to my resume</md-button
+      >
+      <md-button
+        class="md-success"
+        v-if="!isEnglish"
+        href="/french_cv"
+        target="_blank"
+        >Accéder à mon C.V.</md-button
+      >
+      <br /><br />
+      <md-divider />
+    </center>
     <div class="Competences">
       <div class="elevation-demo">
         <md-card class="skill">
-            <md-icon class="md-size-2x md-layout-item ml-auto mr-auto md-size-100">code</md-icon>
-            <h4 v-if="!isEnglish" class="title text-center">Langages de programmation</h4>
-            <h4 v-else class="title text-center">Programing langages</h4>
+          <center>
+            <md-avatar class="md-avatar-icon md-accent md-large">
+              <md-icon
+                class="md-size-2x md-layout-item ml-auto mr-auto md-size-100"
+                >code</md-icon
+              ></md-avatar
+            >
+          </center>
+          <br />
+          <h4 v-if="!isEnglish" class="title text-center">
+            Langages de programmation
+          </h4>
+          <h4 v-else class="title text-center">Programing langages</h4>
           <md-card-content>
             <ul>
-              <li v-for="text in dev_langages" v-bind:todo="text" v-bind:key="text">
+              <li
+                v-for="text in dev_langages"
+                v-bind:todo="text"
+                v-bind:key="text"
+              >
                 {{ text }}
               </li>
             </ul>
           </md-card-content>
         </md-card>
         <md-card class="skill">
-            <md-icon class="md-size-2x md-layout-item ml-auto mr-auto md-size-100">playlist_add_check</md-icon>
-            <h4 v-if="!isEnglish" class="title text-center">Notions spécifiques</h4>
-            <h4 v-else class="title text-center">Specific concepts</h4>
+          <center>
+            <md-avatar class="md-avatar-icon md-accent md-large">
+              <md-icon
+                class="md-size-2x md-layout-item ml-auto mr-auto md-size-100"
+                >playlist_add_check</md-icon
+              ></md-avatar
+            >
+          </center>
+          <br />
+          <h4 v-if="!isEnglish" class="title text-center">
+            Notions spécifiques
+          </h4>
+          <h4 v-else class="title text-center">Specific concepts</h4>
           <md-card-content>
             <ul>
               <li
@@ -54,14 +102,25 @@
           </md-card-content>
         </md-card>
         <md-card class="skill">
-         
-            <md-icon class="md-size-2x md-layout-item ml-auto mr-auto md-size-100">apps</md-icon><br>
-            <h4 v-if="!isEnglish" class="title text-center">Logiciels</h4>
-            <h4 v-else class="title text-center">Softwares</h4>
-          
+          <center>
+            <md-avatar class="md-avatar-icon md-accent md-large">
+              <md-icon
+                class="md-size-2x md-layout-item ml-auto mr-auto md-size-100"
+                >apps</md-icon
+              ></md-avatar
+            >
+          </center>
+          <br />
+          <h4 v-if="!isEnglish" class="title text-center">Logiciels</h4>
+          <h4 v-else class="title text-center">Softwares</h4>
+
           <md-card-content>
             <ul>
-              <li v-for="text in softwares" v-bind:todo="text" v-bind:key="text">
+              <li
+                v-for="text in softwares"
+                v-bind:todo="text"
+                v-bind:key="text"
+              >
                 {{ text }}
               </li>
             </ul>
@@ -78,8 +137,8 @@ export default {
   bodyClass: "profile-dany",
   data() {
     return {
-      title_fr: "Recherche d'un emploi junior temps plein",
-      title_en: "Looking for a full-time junior job starting",
+      title_fr: "Recherche d'un emploi temps plein",
+      title_en: "Looking for a full-time job starting",
       langage_fr: "Français / Anglais",
       langage_en: "French / English",
       job_title: [],
@@ -137,6 +196,11 @@ export default {
         "Cybersecurity software and networks",
         "Multimedia",
       ],
+      phrase_intro_fr: `Diplômé de Polytechnique Montréal et Grenoble, je souhaiterais aujourd’hui rejoindre une
+         équipe pour apporter mon expérience et mon savoir-faire en tant qu’ingénieur logiciel`,
+      phrase_intro_en: `Graduate from Polytechnique Montréal and Grenoble, I would like to join a team to bring my experience as a software engineer.`,
+      phrase_profil_en: `Having studied various technologies and computer languages. I'm looking for work on concrete projects in a team in order to bring my skills. I am versatile and can adapt to various infrastructures and needs such as web, cloud or software applications.`,
+      phrase_profil_fr: `Ayant étudié diverses technologies et langages informatiques. Je suis à la recherche d'un travail sur des projets concrets en équipe afin d'apporter mes compétences. Je suis polyvalent et sais m'adapter à divers infrastructures et besoins comme les applications web, cloud ou logiciels.`,
     };
   },
   components: {},
@@ -170,7 +234,7 @@ export default {
 
 <style lang="scss" scoped>
 .elevation-demo {
-  padding: 16px;
+  padding: 12px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -179,15 +243,14 @@ export default {
 .md-content {
   width: auto;
   height: auto;
-  margin: 24px;
+  margin: 12px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
-
 [class*="case"] {
-  margin: 30px;
+  margin: 12px;
   justify-content: center;
 }
 [class*="skill"] {

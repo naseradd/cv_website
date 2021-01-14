@@ -38,6 +38,7 @@
                 nav-pills-icons
                 color-button="success"
                 :isMobile="isMobile"
+                id="projet"
               >
                 <!-- here you can add your content for tab-content -->
                 <template slot="tab-pane-1">
@@ -48,7 +49,7 @@
                 </template>
                 <template slot="tab-pane-2">
                   <md-divider class="md-inset"></md-divider>
-                  <projets-dany :isEnglish="isEnglish"></projets-dany>
+                  <projets-dany :isEnglish="isEnglish" :isMobile="isMobile"></projets-dany>
                 </template>
                 <template slot="tab-pane-3">
                   <md-divider class="md-inset"></md-divider>
@@ -67,8 +68,8 @@
               >Contact et informations
             </md-button>
             <h5 v-if="!isHidden" class="mr-auto ml-auto">
-              <b>Courriel :</b>
-              <a href="mailto: naser.dany.0795@gmail.com">naser.dany.0795[at]gmail.com</a
+              <b>Courriel : </b>
+              <a href="mailto: dany.naser-addin@polymtl.ca">dany.naser-addin[at]polymtl.ca</a
               ><br />
               <b>Langues :</b> Français (native) - Anglais (intermédiaire)<br />
               <b>Permis voiture :</b> B (européen)<br />
@@ -83,7 +84,7 @@
             </md-button>
             <h5 v-if="!isHidden" class="mr-auto ml-auto">
               <b>Mail : </b>
-              <a href="mailto: naser.dany.0795@gmail.com">naser.dany.0795[at]gmail.com</a
+              <a href="mailto: dany.naser-addin@polymtl.ca">dany.naser-addin[at]polymtl.ca</a
               ><br />
               <b>Languages :</b> French (native) - English (mid-range)<br />
               <b>Car license :</b> B (european)<br />
