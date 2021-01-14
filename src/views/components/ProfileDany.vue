@@ -137,7 +137,7 @@ export default {
   bodyClass: "profile-dany",
   data() {
     return {
-      title_fr: "Recherche d'un emploi temps plein",
+      title_fr: "Recherche un emploi temps plein",
       title_en: "Looking for a full-time job starting",
       langage_fr: "Français / Anglais",
       langage_en: "French / English",
