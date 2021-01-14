@@ -147,7 +147,7 @@ export default {
         "Back-end",
         "Réalité augmentée / Réalité virtuelle (XR)",
         "Ingénieur logiciel",
-        "Ingénieur développeur",
+        "Analyste-programmeur",
         "...",
       ],
       job_title_en: [
@@ -155,7 +155,7 @@ export default {
         "Back-end",
         "Augmented reality / Virtual Reality (XR)",
         "Software Engineer",
-        "Dev Engineer",
+        "Analyst-developer",
         "...",
       ],
       dev_langages: [
