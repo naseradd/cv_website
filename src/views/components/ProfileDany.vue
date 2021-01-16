@@ -40,8 +40,8 @@
     </center>
     <div class="Competences">
       <div class="elevation-demo">
-        <md-card class="skill">
-          <center>
+        <md-card class="skill" style="background:#f3f3f3;">
+          <center><br/>
             <md-avatar class="md-avatar-icon md-accent md-large">
               <md-icon
                 class="md-size-2x md-layout-item ml-auto mr-auto md-size-100"
@@ -66,8 +66,8 @@
             </ul>
           </md-card-content>
         </md-card>
-        <md-card class="skill">
-          <center>
+        <md-card class="skill" style="background:#f3f3f3;">
+          <center><br/>
             <md-avatar class="md-avatar-icon md-accent md-large">
               <md-icon
                 class="md-size-2x md-layout-item ml-auto mr-auto md-size-100"
@@ -101,8 +101,8 @@
             </ul>
           </md-card-content>
         </md-card>
-        <md-card class="skill">
-          <center>
+        <md-card class="skill" style="background:#f3f3f3;">
+          <center><br/>
             <md-avatar class="md-avatar-icon md-accent md-large">
               <md-icon
                 class="md-size-2x md-layout-item ml-auto mr-auto md-size-100"
@@ -249,6 +249,8 @@ export default {
   align-items: center;
 }
 
+
+
 [class*="case"] {
   margin: 12px;
   justify-content: center;
@@ -258,5 +260,8 @@ export default {
   height: auto;
   margin: 12px;
   display: inline-block;
+  
+  
 }
+
 </style>
