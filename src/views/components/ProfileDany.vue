@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3 v-if="isEnglish" class="title text-center">{{ title_en }}</h3>
-    <h3 v-if="!isEnglish" class="title text-center">{{ title_fr }}</h3>
+    <!--<h3 v-if="isEnglish" class="title text-center">{{ title_en }}</h3>
+    <h3 v-if="!isEnglish" class="title text-center">{{ title_fr }}</h3>-->
     <h4 v-if="isEnglish" class="text-center">{{ langage_en }}</h4>
     <h4 v-if="!isEnglish" class="text-center">{{ langage_fr }}</h4>
 
@@ -137,8 +137,8 @@ export default {
   bodyClass: "profile-dany",
   data() {
     return {
-      title_fr: "Recherche un emploi temps plein",
-      title_en: "Looking for a full-time job starting",
+      // title_fr: "Recherche un emploi temps plein",
+      // title_en: "Looking for a full-time job starting",
       langage_fr: "Français / Anglais",
       langage_en: "French / English",
       job_title: [],
@@ -196,11 +196,16 @@ export default {
         "Cybersecurity software and networks",
         "Multimedia",
       ],
-      phrase_intro_fr: `Diplômé de Polytechnique Montréal et Grenoble, je souhaiterais aujourd’hui rejoindre une
-         équipe pour apporter mon expérience et mon savoir-faire en tant qu’ingénieur logiciel`,
-      phrase_intro_en: `Graduate from Polytechnique Montréal and Grenoble, I would like to join a team to bring my experience as a software engineer.`,
-      phrase_profil_en: `Having studied various technologies and computer languages. I'm looking for work on concrete projects in a team in order to bring my skills. I am versatile and can adapt to various infrastructures and needs such as web, cloud or software applications.`,
-      phrase_profil_fr: `Ayant étudié diverses technologies et langages informatiques. Je suis à la recherche d'un travail sur des projets concrets en équipe afin d'apporter mes compétences. Je suis polyvalent et sais m'adapter à divers infrastructures et besoins comme les applications web, cloud ou logiciels.`,
+      // phrase_intro_fr: `Diplômé de Polytechnique Montréal et Grenoble, je souhaiterais aujourd’hui rejoindre une
+      //    équipe pour apporter mon expérience et mon savoir-faire en tant qu’ingénieur logiciel`,
+      // phrase_intro_en: `Graduate from Polytechnique Montréal and Grenoble, I would like to join a team to bring my experience as a software engineer.`,
+      phrase_intro_fr: `Diplômé de Polytechnique Montréal et Grenoble`,
+      phrase_intro_en: `Graduate from Polytechnique Montréal and Grenoble`,
+      // phrase_profil_en: `Having studied various technologies and computer languages. I'm looking for work on concrete projects in a team in order to bring my skills. I am versatile and can adapt to various infrastructures and needs such as web, cloud or software applications.`,
+      // phrase_profil_fr: `Ayant étudié diverses technologies et langages informatiques. Je suis à la recherche d'un travail sur des projets concrets en équipe afin d'apporter mes compétences. Je suis polyvalent et sais m'adapter à divers infrastructures et besoins comme les applications web, cloud ou logiciels.`,
+      phrase_profil_en: `Having studied various technologies and computer languages. I am versatile and can adapt to various infrastructures and needs such as web, cloud or software applications.`,
+      phrase_profil_fr: `Ayant étudié diverses technologies et langages informatiques. Je suis polyvalent et sais m'adapter à divers infrastructures et besoins comme les applications web, cloud ou logiciels.`,
+
     };
   },
   components: {},
