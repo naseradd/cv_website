@@ -5,7 +5,7 @@
         <img :src="img_aspen" class="rounded" alt="Circle rounded" /><br /><br />
       </div>
       <div class="md-layout-item md-size-50">
-        <h4 ><b>Software developer AspenTechnology</b></h4>
+        <h4><b>Software developer AspenTechnology</b></h4>
         <p v-if="!isEnglish">
           Emploi actuel.
         </p>
@@ -120,6 +120,25 @@
       </div>
     </div>
     <!-- MOBILE CONTENT -->
+    <div v-if="isMobile" >
+      <div class="md-layout-item">
+        <img :src="img_aspen" class="rounded" alt="Circle rounded" /><br /><br />
+      </div>
+      <div class="md-layout-item md-size-100">
+        <h4><b>Software developer AspenTechnology</b></h4>
+        <p v-if="!isEnglish">
+          Emploi actuel.
+        </p>
+        <p v-else>
+          Current job.
+        </p>
+      </div>
+      <div class="md-layout-item md-size-100">
+        <h5 v-if="!isEnglish">Février 2021</h5>
+        <h5 v-else>February 2021</h5>
+      </div>
+    </div>
+    <md-divider class="md-inset"></md-divider>
     <div v-if="isMobile">
       <div class="md-layout-item">
         <img :src="img_polymtl" class="rounded" alt="Circle rounded" /><br /><br />
