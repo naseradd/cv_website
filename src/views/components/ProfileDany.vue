@@ -7,7 +7,7 @@
 
     <div class="elevation-demo">
       <div v-for="job in job_title" v-bind:todo="job" v-bind:key="job">
-        <md-content class="text-center md-elevation-1">
+        <md-content class="text-center md-elevation-4 md-accent">
           <div class="case text-center" vertical-align: middle>
             <h6>{{ job }}</h6>
           </div>

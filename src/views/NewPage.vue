@@ -1,7 +1,7 @@
 <template>
 
   <div class="wrapper">
-  <router-view :is-english="isEnglish"></router-view>
+  <router-view></router-view>
     <parallax class="section page-header header-filter" :style="headerStyle"></parallax>
     <div class="main main-raised">
       <div class="section profile-content">
@@ -34,11 +34,13 @@
               <tabs
                 :tab-name="tabs_profile"
                 :tab-icon="tabs_icons"
+                :activePanel="tabs_profile[indexpanel]"
                 plain
                 nav-pills-icons
                 color-button="success"
                 :isMobile="isMobile"
                 id="projet"
+                @changePanel="changePanel"
               >
                 <!-- here you can add your content for tab-content -->
                 <template slot="tab-pane-1">
@@ -47,27 +49,27 @@
                     <profile-dany :isEnglish="isEnglish"></profile-dany>
                   </div>
                 </template>
-                <template slot="tab-pane-2">
+                <template slot="tab-pane-2" >
                   <md-divider class="md-inset"></md-divider>
                   <projets-dany :isEnglish="isEnglish" :isMobile="isMobile"></projets-dany>
                 </template>
-                <template slot="tab-pane-3">
+                <template slot="tab-pane-3" >
                   <md-divider class="md-inset"></md-divider>
                   <experience-prof-dany :isEnglish="isEnglish" :isMobile="isMobile"></experience-prof-dany>
                 </template>
-                <template slot="tab-pane-4">
+                <template slot="tab-pane-4" >
                   <md-divider class="md-inset"></md-divider>
                   <formation-dany :isEnglish="isEnglish" :isMobile="isMobile"></formation-dany>
                 </template>
               </tabs>
             </div>
-          <div v-if="!isEnglish" class="ml-auto mr-auto">
+          <div v-if="!isEnglish" class="contactinfo">
             <md-button
               class="md-raised ml-auto mr-auto md-success"
               @click="isHidden = !isHidden"
               >Contact et informations
             </md-button>
-            <h5 v-if="!isHidden" class="mr-auto ml-auto">
+            <h5 v-show="!isHidden" class="mr-auto ml-auto">
               <b>Courriel : </b>
               <a href="mailto: dany.naser-addin@polymtl.ca">dany.naser-addin[at]polymtl.ca</a
               ><br />
@@ -76,13 +78,13 @@
               <b>Nationalité :</b> Française<br />
             </h5>
           </div>
-          <div v-else class="ml-auto mr-auto">
+          <div v-else class="contactinfo">
             <md-button
               class="md-raised ml-auto mr-auto md-success"
               @click="isHidden = !isHidden"
               >Contact & Information
             </md-button>
-            <h5 v-if="!isHidden" class="mr-auto ml-auto">
+            <h5 v-show="!isHidden" class="mr-auto ml-auto">
               <b>Mail : </b>
               <a href="mailto: dany.naser-addin@polymtl.ca">dany.naser-addin[at]polymtl.ca</a
               ><br />
@@ -122,7 +124,7 @@ export default {
       tabs_icons: ["face", "folder", "work", "school"],
       isHidden: true,
       isMobile: false,
-      isEnglish: false,
+      indexpanel:0,
       
     };
   },
@@ -135,19 +137,20 @@ export default {
       type: String,
       default: require("@/assets/img/dany_cv/image_dany.jpg"),
     },
-    
-    
-     
+    isEnglish: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  watch:{
+    isEnglish: function(newVal){
+      this.isEnglish = newVal;
+      this.setLanguage();
+    }
   },
   methods: {
     
-    setLanguage: function () {
-      
-      if(this.$route.path == "/en"){
-        this.isEnglish = true;
-      }
-
-
+    setLanguage() {
       if (this.isEnglish == false) {
         this.tabs_profile = [
           "Profil",
@@ -177,6 +180,13 @@ export default {
         this.isMobile =  false;
       }
     },
+    changePanel(name){
+      this.tabs_profile.forEach((element, index) => {
+        if(element == name){
+          this.indexpanel = index;
+        }
+      });      
+    }
   },
   beforeMount() {
     this.setLanguage();
@@ -206,5 +216,14 @@ export default {
 
 .md-divider {
   margin: 24px;
+}
+
+.contactinfo{
+  display: flex;
+  flex-direction: column;
+  /* align-content: space-around; */
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  align-items: center;
 }
 </style>

@@ -9,29 +9,20 @@ import MainFooterDany from "./layout/MainFooterDany.vue";
 
 Vue.use(Router);
 
-
 export default new Router({
     mode: "history",
     routes: [
         // { path: '/', redirect: '/dev' },
-        { path: '/', redirect: '/fr' },
+        { path: '/en', redirect: '/' },
         {
-            path: "/fr",
+            path: "/",
             components: { default: NewPage, header: MainNavbarDany, footer: MainFooterDany },
             props: {
-                header: { colorOnScroll: 150 },
-                footer: { backgroundColor: "black" }
+                header: { colorOnScroll: 150, },
+                footer: { backgroundColor: "black"}
             }
         },
-        {
-            path: "/en",
-            components: { default: NewPage, header: MainNavbarDany, footer: MainFooterDany },
-            props: {
-                header: { colorOnScroll: 150 },
-                footer: { backgroundColor: "black" },
-
-            }
-        },
+        
         {
             path: "/memoire",
             component: Pdf,
@@ -70,4 +61,5 @@ export default new Router({
             return { x: 0, y: 0 };
         }
     }
+    
 });

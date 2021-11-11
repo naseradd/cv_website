@@ -49,6 +49,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    activePanel: String,
     navPillsIcons: Boolean,
     plain: Boolean,
     tabName: Array,
@@ -60,12 +61,13 @@ export default {
   },
   data() {
     return {
-      activePanel: this.tabName[0],
+      //activePanel: this.tabName[0],
     };
   },
   methods: {
     switchPanel(panel) {
       this.activePanel = panel;
+      this.$emit("changePanel",panel);
     },
     isActivePanel(panel) {
       return this.activePanel == panel;

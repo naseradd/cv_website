@@ -49,7 +49,7 @@
                 <i class="material-icons">work</i>
                 <p>Linkedin</p>
               </md-list-item>
-              <md-list-item :href="langagePageName">
+              <md-list-item @click="$emit('changeLangage')">
                 <a>{{ englishPageName }}</a>
               </md-list-item>
             </md-list>
@@ -99,6 +99,16 @@ export default {
       type: Number,
       default: 0,
     },
+    isEnglish: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  watch:{
+    isEnglish: function(newVal){
+      this.isEnglish = newVal;
+      this.changeLangage();
+    }
   },
   data() {
     return {
@@ -106,7 +116,6 @@ export default {
       toggledClass: false,
       englishPageName: "Français",
       langagePageName: "/fr",
-      isEnglish: false,
     };
   },
   computed: {
@@ -160,18 +169,19 @@ export default {
         element_id.scrollIntoView({ block: "end", behavior: "smooth" });
       }
     },
+    changeLangage(){
+      
+      if (!this.isEnglish) {
+      this.englishPageName = "English";
+      } else {
+        this.englishPageName = "Français";
+      }
+      
+    }
   },
   mounted() {
     document.addEventListener("scroll", this.scrollListener);
-    if (this.$route.path == "/fr") {
-      this.englishPageName = "English";
-      this.langagePageName = "/en";
-      this.isEnglish = false;
-    } else {
-      this.englishPageName = "Français";
-      this.langagePageName = "/fr";
-      this.isEnglish = true;
-    }
+    this.changeLangage();
   },
   beforeDestroy() {
     document.removeEventListener("scroll", this.scrollListener);
