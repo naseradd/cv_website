@@ -21,7 +21,7 @@
     <center>
       <h5 v-if="isEnglish" style="width:70%">"{{ phrase_profil_en }}"</h5>
       <h5 v-if="!isEnglish" style="width:70%">"{{ phrase_profil_fr }}"</h5>
-      <md-button
+      <!-- <md-button
         class="md-success"
         v-if="isEnglish"
         href="/english_cv"
@@ -34,7 +34,7 @@
         href="/french_cv"
         target="_blank"
         >Accéder à mon C.V.</md-button
-      >
+      > -->
       <br /><br />
       <md-divider />
     </center>

@@ -25,14 +25,14 @@
           <div class="md-collapse-wrapper">
             <mobile-menu nav-mobile-section-start="false"> </mobile-menu>
             <md-list>
-              <md-list-item v-if="!isEnglish" href="/french_cv" target="_blank">
+              <!-- <md-list-item v-if="!isEnglish" href="french_cv" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Résumé FR</p>
               </md-list-item>
-              <md-list-item v-if="isEnglish" href="/english_cv" target="_blank">
+              <md-list-item v-if="isEnglish" href="english_cv" target="_blank">
                 <i class="material-icons">content_paste</i>
                 <p>Resume EN</p>
-              </md-list-item>
+              </md-list-item> -->
               <md-list-item
                 v-if="isEnglish"
                 href="https://www.linkedin.com/in/dany-naser-addin-116163101/?locale=en_US"
