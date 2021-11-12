@@ -21,20 +21,20 @@
     <center>
       <h5 v-if="isEnglish" style="width:70%">"{{ phrase_profil_en }}"</h5>
       <h5 v-if="!isEnglish" style="width:70%">"{{ phrase_profil_fr }}"</h5>
-      <!-- <md-button
+      <md-button
         class="md-success"
         v-if="isEnglish"
-        href="/english_cv"
+        href="https://1drv.ms/b/s!AjsBwco3oDSswn5dYqppqn2e9bFc?e=x3dsnn"
         target="_blank"
         >Access to my resume</md-button
       >
       <md-button
         class="md-success"
         v-if="!isEnglish"
-        href="/french_cv"
+        href="https://1drv.ms/b/s!AjsBwco3oDSsu05msvz_X2OiR7oQ?e=FyYTwb"
         target="_blank"
         >Accéder à mon C.V.</md-button
-      > -->
+      >
       <br /><br />
       <md-divider />
     </center>
