@@ -324,7 +324,7 @@ export default {
     },
     img: {
       type: String,
-      default: require("@/assets/img/dany_cv/image_dany.jpg")
+      default:  require("@/assets/img/dany_cv/image_dany.jpg")
     },
     img_esisar: {
       type: String,

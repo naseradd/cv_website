@@ -15,7 +15,7 @@
                 <div class="name">
                   <h3 class="title">Dany Naser Addin</h3>
                   <h3>{{ title }}</h3>
-
+                  <h3>{{ title2 }}</h3>
                   <md-icon>sports_esports</md-icon>
                   <md-icon>laptop</md-icon>
                   <md-icon>airplanemode_active</md-icon>
@@ -120,6 +120,7 @@ export default {
   data() {
     return {
       title: "M. Sc. A. et Ing. B. en génie informatique et logiciel",
+      title2: "",
       tabs_profile: ["Profil", "Projets", "Expériences professionelles", "Formations"],
       tabs_icons: ["face", "folder", "work", "school"],
       isHidden: true,
@@ -135,7 +136,7 @@ export default {
     },
     img: {
       type: String,
-      default: require("@/assets/img/dany_cv/image_dany.jpg"),
+      default: require("@/assets/img/dany_cv/image_dany2.jpg")
     },
     isEnglish: {
       type: Boolean,
@@ -159,6 +160,7 @@ export default {
           "Formations",
         ];
         this.title = "M. Sc. A. et Ing. B. en génie informatique et logiciel";
+        this.title2 = "3 ans d'expériences professionelles";
       } else {
         this.tabs_profile = [
           "Profile",
@@ -167,6 +169,7 @@ export default {
           "Formations",
         ];
         this.title = "M. Sc. A. and Ing. B. in computer science";
+        this.title2 = "3 years of professional experiences";
       }
     },
     isItMobile() {
@@ -225,5 +228,9 @@ export default {
   /* flex-wrap: wrap; */
   /* justify-content: center; */
   align-items: center;
+}
+
+.avatar img{
+  max-width: 300px !important;
 }
 </style>
