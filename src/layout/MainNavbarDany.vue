@@ -25,13 +25,13 @@
           <div class="md-collapse-wrapper">
             <mobile-menu nav-mobile-section-start="false"> </mobile-menu>
             <md-list>
-              <md-list-item v-if="!isEnglish" href="https://1drv.ms/b/s!AjsBwco3oDSsu05msvz_X2OiR7oQ?e=FyYTwb" target="_blank">
+              <md-list-item v-if="!isEnglish" href="https://1drv.ms/b/s!AjsBwco3oDSswn5dYqppqn2e9bFc?e=x3dsnn" target="_blank">
                 <i class="material-icons">content_paste</i>
-                <p>Résumé FR</p>
+                <p>Résumé</p>
               </md-list-item>
               <md-list-item v-if="isEnglish" href="https://1drv.ms/b/s!AjsBwco3oDSswn5dYqppqn2e9bFc?e=x3dsnn" target="_blank">
                 <i class="material-icons">content_paste</i>
-                <p>Resume EN</p>
+                <p>Resume</p>
               </md-list-item>
               <md-list-item
                 v-if="isEnglish"
