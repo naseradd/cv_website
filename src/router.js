@@ -14,6 +14,7 @@ export default new Router({
     routes: [
         // { path: '/', redirect: '/dev' },
         { path: '/en', redirect: '/' },
+        { path: '/fr', redirect: '/' },
         {
             path: "/",
             components: { default: NewPage, header: MainNavbarDany, footer: MainFooterDany },

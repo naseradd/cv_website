@@ -160,7 +160,7 @@ export default {
           "Formations",
         ];
         this.title = "M. Sc. A. et Ing. B. en génie informatique et logiciel";
-        this.title2 = "3 ans d'expériences professionelles";
+        this.title2 = "5 ans d'expériences professionelles";
       } else {
         this.tabs_profile = [
           "Profile",
@@ -169,7 +169,7 @@ export default {
           "Formations",
         ];
         this.title = "M. Sc. A. and Ing. B. in computer science";
-        this.title2 = "3 years of professional experiences";
+        this.title2 = "5 years of professional experiences";
       }
     },
     isItMobile() {

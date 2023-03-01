@@ -19,21 +19,12 @@
     <h4 class="title text-center" v-if="!isEnglish">{{ phrase_intro_fr }}</h4>
     <br />
     <center>
-      <h5 v-if="isEnglish" style="width:70%">"{{ phrase_profil_en }}"</h5>
-      <h5 v-if="!isEnglish" style="width:70%">"{{ phrase_profil_fr }}"</h5>
+      <h5 style="width:70%">"{{ isEnglish ? phrase_profil_en : phrase_profil_fr }}"</h5>
       <md-button
         class="md-success"
-        v-if="isEnglish"
-        href="https://1drv.ms/b/s!AjsBwco3oDSswn5dYqppqn2e9bFc?e=x3dsnn"
+        href="https://drive.google.com/drive/folders/1sxp4wSU_pixWGJlv_ASw3HbNVQty0-u4?usp=sharing"
         target="_blank"
-        >Access to my resume</md-button
-      >
-      <md-button
-        class="md-success"
-        v-if="!isEnglish"
-        href="https://1drv.ms/b/s!AjsBwco3oDSsu05msvz_X2OiR7oQ?e=FyYTwb"
-        target="_blank"
-        >Accéder à mon C.V.</md-button
+        >{{ isEnglish ? "Access to my resume": "Accéder à mon C.V."}}</md-button
       >
       <br /><br />
       <md-divider />
@@ -147,14 +138,14 @@ export default {
         "Ingénieur logiciel",
         "Container / Cloud",
         "Réalité augmentée / Réalité virtuelle (XR)",
-        "...",
+        "Programmeur Outils",
       ],
       job_title_en: [
         "Fullstack developer",
         "Software Engineer",
         "Container / Cloud",
         "Augmented reality / Virtual Reality (XR)",
-        "...",
+        "Tool Programmer",
       ],
       dev_langages: [
         "C / C++ / C# (.Net)",

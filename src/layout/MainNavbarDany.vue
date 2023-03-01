@@ -25,13 +25,9 @@
           <div class="md-collapse-wrapper">
             <mobile-menu nav-mobile-section-start="false"> </mobile-menu>
             <md-list>
-              <md-list-item v-if="!isEnglish" href="https://1drv.ms/b/s!AjsBwco3oDSswn5dYqppqn2e9bFc?e=x3dsnn" target="_blank">
+              <md-list-item href="https://drive.google.com/drive/folders/1sxp4wSU_pixWGJlv_ASw3HbNVQty0-u4?usp=sharing" target="_blank">
                 <i class="material-icons">content_paste</i>
-                <p>Résumé</p>
-              </md-list-item>
-              <md-list-item v-if="isEnglish" href="https://1drv.ms/b/s!AjsBwco3oDSswn5dYqppqn2e9bFc?e=x3dsnn" target="_blank">
-                <i class="material-icons">content_paste</i>
-                <p>Resume</p>
+                <p>{{isEnglish ? "Resume" : "Résumé"}}</p>
               </md-list-item>
               <md-list-item
                 v-if="isEnglish"
