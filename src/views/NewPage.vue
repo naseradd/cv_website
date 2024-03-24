@@ -1,8 +1,10 @@
 <template>
-
   <div class="wrapper">
-  <router-view></router-view>
-    <parallax class="section page-header header-filter" :style="headerStyle"></parallax>
+    <router-view></router-view>
+    <parallax
+      class="section page-header header-filter"
+      :style="headerStyle"
+    ></parallax>
     <div class="main main-raised">
       <div class="section profile-content">
         <div class="container">
@@ -10,7 +12,11 @@
             <div class="md-layout-item md-size-100 mx-auto">
               <div class="profile">
                 <div class="avatar">
-                  <img :src="img" alt="Rounded Image" class="img-raised rounded-raised" />
+                  <img
+                    :src="img"
+                    alt="Rounded Image"
+                    class="img-raised rounded-raised"
+                  />
                 </div>
                 <div class="name">
                   <h3 class="title">Dany Naser Addin</h3>
@@ -30,39 +36,48 @@
               </div>
             </div>
           </div>
-          <div >
-              <tabs
-                :tab-name="tabs_profile"
-                :tab-icon="tabs_icons"
-                :activePanel="tabs_profile[indexpanel]"
-                plain
-                nav-pills-icons
-                color-button="success"
-                :isMobile="isMobile"
-                id="projet"
-                @changePanel="changePanel"
-              >
-                <!-- here you can add your content for tab-content -->
-                <template slot="tab-pane-1">
-                  <md-divider class="md-inset"></md-divider>
-                  <div class="container">
-                    <profile-dany :isEnglish="isEnglish"></profile-dany>
-                  </div>
-                </template>
-                <template slot="tab-pane-2" >
-                  <md-divider class="md-inset"></md-divider>
-                  <projets-dany :isEnglish="isEnglish" :isMobile="isMobile"></projets-dany>
-                </template>
-                <template slot="tab-pane-3" >
-                  <md-divider class="md-inset"></md-divider>
-                  <experience-prof-dany :isEnglish="isEnglish" :isMobile="isMobile"></experience-prof-dany>
-                </template>
-                <template slot="tab-pane-4" >
-                  <md-divider class="md-inset"></md-divider>
-                  <formation-dany :isEnglish="isEnglish" :isMobile="isMobile"></formation-dany>
-                </template>
-              </tabs>
-            </div>
+          <div>
+            <tabs
+              :tab-name="tabs_profile"
+              :tab-icon="tabs_icons"
+              :activePanel="tabs_profile[indexpanel]"
+              plain
+              nav-pills-icons
+              color-button="success"
+              :isMobile="isMobile"
+              id="projet"
+              @changePanel="changePanel"
+            >
+              <!-- here you can add your content for tab-content -->
+              <template slot="tab-pane-1">
+                <md-divider class="md-inset"></md-divider>
+                <div class="container">
+                  <profile-dany :isEnglish="isEnglish"></profile-dany>
+                </div>
+              </template>
+              <template slot="tab-pane-2">
+                <md-divider class="md-inset"></md-divider>
+                <projets-dany
+                  :isEnglish="isEnglish"
+                  :isMobile="isMobile"
+                ></projets-dany>
+              </template>
+              <template slot="tab-pane-3">
+                <md-divider class="md-inset"></md-divider>
+                <experience-prof-dany
+                  :isEnglish="isEnglish"
+                  :isMobile="isMobile"
+                ></experience-prof-dany>
+              </template>
+              <template slot="tab-pane-4">
+                <md-divider class="md-inset"></md-divider>
+                <formation-dany
+                  :isEnglish="isEnglish"
+                  :isMobile="isMobile"
+                ></formation-dany>
+              </template>
+            </tabs>
+          </div>
           <div v-if="!isEnglish" class="contactinfo">
             <md-button
               class="md-raised ml-auto mr-auto md-success"
@@ -71,7 +86,8 @@
             </md-button>
             <h5 v-show="!isHidden" class="mr-auto ml-auto">
               <b>Courriel : </b>
-              <a href="mailto: dany.naser-addin@polymtl.ca">dany.naser-addin[at]polymtl.ca</a
+              <a href="mailto: dany.naser-addin@polymtl.ca"
+                >dany.naser-addin[at]polymtl.ca</a
               ><br />
               <b>Langues :</b> Français (native) - Anglais (intermédiaire)<br />
               <b>Permis voiture :</b> B (européen)<br />
@@ -86,7 +102,8 @@
             </md-button>
             <h5 v-show="!isHidden" class="mr-auto ml-auto">
               <b>Mail : </b>
-              <a href="mailto: dany.naser-addin@polymtl.ca">dany.naser-addin[at]polymtl.ca</a
+              <a href="mailto: dany.naser-addin@polymtl.ca"
+                >dany.naser-addin[at]polymtl.ca</a
               ><br />
               <b>Languages :</b> French (native) - English (mid-range)<br />
               <b>Car license :</b> B (european)<br />
@@ -121,12 +138,16 @@ export default {
     return {
       title: "M. Sc. A. et Ing. B. en génie informatique et logiciel",
       title2: "",
-      tabs_profile: ["Profil", "Projets", "Expériences professionelles", "Formations"],
+      tabs_profile: [
+        "Profil",
+        "Projets",
+        "Expériences professionelles",
+        "Formations",
+      ],
       tabs_icons: ["face", "folder", "work", "school"],
       isHidden: true,
       isMobile: false,
-      indexpanel:0,
-      
+      indexpanel: 0,
     };
   },
   props: {
@@ -136,21 +157,19 @@ export default {
     },
     img: {
       type: String,
-      default: require("@/assets/img/dany_cv/image_dany2.jpg")
+      default: require("@/assets/img/dany_cv/image_dany2.jpg"),
     },
     isEnglish: {
       type: Boolean,
       default: false,
     },
   },
-  watch:{
-    isEnglish: function(newVal){
-      this.isEnglish = newVal;
+  watch: {
+    isEnglish: function () {
       this.setLanguage();
-    }
+    },
   },
   methods: {
-    
     setLanguage() {
       if (this.isEnglish == false) {
         this.tabs_profile = [
@@ -180,16 +199,12 @@ export default {
       ) {
         this.isMobile = true;
       } else {
-        this.isMobile =  false;
+        this.isMobile = false;
       }
     },
-    changePanel(name){
-      this.tabs_profile.forEach((element, index) => {
-        if(element == name){
-          this.indexpanel = index;
-        }
-      });      
-    }
+    changePanel(name) {
+      this.indexpanel = this.tabs_profile.indexOf(name);
+    },
   },
   beforeMount() {
     this.setLanguage();
@@ -221,7 +236,7 @@ export default {
   margin: 24px;
 }
 
-.contactinfo{
+.contactinfo {
   display: flex;
   flex-direction: column;
   /* align-content: space-around; */
@@ -230,7 +245,7 @@ export default {
   align-items: center;
 }
 
-.avatar img{
+.avatar img {
   max-width: 300px !important;
 }
 </style>

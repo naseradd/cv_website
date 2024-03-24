@@ -25,9 +25,12 @@
           <div class="md-collapse-wrapper">
             <mobile-menu nav-mobile-section-start="false"> </mobile-menu>
             <md-list>
-              <md-list-item href="https://drive.google.com/drive/folders/1sxp4wSU_pixWGJlv_ASw3HbNVQty0-u4?usp=sharing" target="_blank">
+              <md-list-item
+                href="https://drive.google.com/drive/folders/1sxp4wSU_pixWGJlv_ASw3HbNVQty0-u4?usp=sharing"
+                target="_blank"
+              >
                 <i class="material-icons">content_paste</i>
-                <p>{{isEnglish ? "Resume" : "Résumé"}}</p>
+                <p>{{ isEnglish ? "Resume" : "Résumé" }}</p>
               </md-list-item>
               <md-list-item
                 v-if="isEnglish"
@@ -100,11 +103,10 @@ export default {
       default: false,
     },
   },
-  watch:{
-    isEnglish: function(newVal){
-      this.isEnglish = newVal;
+  watch: {
+    isEnglish: function () {
       this.changeLangage();
-    }
+    },
   },
   data() {
     return {
@@ -165,15 +167,13 @@ export default {
         element_id.scrollIntoView({ block: "end", behavior: "smooth" });
       }
     },
-    changeLangage(){
-      
+    changeLangage() {
       if (!this.isEnglish) {
-      this.englishPageName = "English";
+        this.englishPageName = "English";
       } else {
         this.englishPageName = "Français";
       }
-      
-    }
+    },
   },
   mounted() {
     document.addEventListener("scroll", this.scrollListener);
