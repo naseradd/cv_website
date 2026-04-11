@@ -1,46 +1,30 @@
 {
-  "name": "vue-material-kit",
-  "author": "Creative Tim https://www.creative-tim.com/",
-  "description": "Vue Material Kit",
-  "version": "1.2.2",
+  "name": "dany-naser-portfolio",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "dev": "npm run serve",
-    "deploy": "sh deploy.sh",
-    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run dev"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "next build && touch out/.nojekyll && npx gh-pages -d out -t true"
   },
   "dependencies": {
-    "core-js": "^3.30.1",
-    "file-loader": "^6.2.0",
-    "nouislider": "^15.7.0",
-    "v-tooltip": "2.0.2",
-    "vue": "2.6.10",
-    "vue-carousel": "0.18.0",
-    "vue-clickaway": "2.2.2",
-    "vue-lazyload": "1.3.3",
-    "vue-material": "1.0.0-beta-11",
-    "vue-router": "3.1.3"
+    "next": "15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "framer-motion": "^11.15.0",
+    "lucide-react": "^0.469.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
-    "@vue/cli-plugin-babel": "^5.0.8",
-    "@vue/cli-plugin-eslint": "^5.0.8",
-    "@vue/cli-plugin-router": "^5.0.8",
-    "@vue/cli-service": "^5.0.8",
-    "@vue/eslint-config-prettier": "6.0.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "gulp": "4.0.2",
-    "gulp-append-prepend": "1.0.8",
-    "prettier": "^2.4.1",
-    "sass": "1.23.7",
-    "sass-loader": "8.0.0",
-    "vue-template-compiler": "2.6.10"
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.0",
+    "tailwindcss": "^3.4.17",
+    "postcss": "^8.4.49",
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.2.0"
   }
 }
