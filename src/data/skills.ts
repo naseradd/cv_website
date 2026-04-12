@@ -15,7 +15,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: 'frontend',
     label: { en: 'Frontend', fr: 'Frontend' },
-    items: ['Vue.js', 'React', 'Next.js', 'Microfrontends', 'HTML/CSS', 'Cypress', 'Tailwind CSS'],
+    items: ['Vue.js', 'Microfrontends', 'Javascript', 'Cypress', 'Tailwind CSS'],
   },
   {
     id: 'devops',
@@ -45,11 +45,11 @@ export const skillCategories: SkillCategory[] = [
   },
 ]
 
-export const hotSkills = ['Go', 'C#', 'TypeScript', 'Kubernetes', 'Docker', 'Unreal Engine 4', '.NET']
+export const hotSkills = ['Go', 'C#', 'TypeScript', 'Kubernetes', 'Docker', 'Node.js', '.NET', 'AR/VR (XR)', "GitLab CI", "Claude Code", "Mentoring", "Microservices", "Vue.js", "Microfrontends"]
 
 export const marqueeItems = [
   'Go', 'C# / .NET', 'TypeScript', 'Kubernetes', 'Docker',
-  'Rainbow Six Siege', 'Ubisoft', 'Unreal Engine 4',
-  'AR / XR Research', '100M+ Players', 'GitLab CI', 'Vue.js',
+  'Unreal Engine 4',
+  'AR/VR (XR)', '100M+ Players', 'GitLab CI', 'Vue.js',
   'Microservices', 'Distributed Systems', 'Live Service',
 ]

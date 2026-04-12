@@ -25,6 +25,10 @@
           <div class="md-collapse-wrapper">
             <mobile-menu nav-mobile-section-start="false"> </mobile-menu>
             <md-list>
+              <md-list-item @click="scrollToFormations">
+                <i class="material-icons">school</i>
+                <p>{{ isEnglish ? "Education" : "Éducation" }}</p>
+              </md-list-item>
               <md-list-item
                 href="https://drive.google.com/drive/folders/1sxp4wSU_pixWGJlv_ASw3HbNVQty0-u4?usp=sharing"
                 target="_blank"
@@ -160,6 +164,12 @@ export default {
     },
     scrollListener() {
       resizeThrottler(this.handleScroll);
+    },
+    scrollToFormations() {
+      let el = document.getElementById("formations");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
     },
     scrollToElement() {
       let element_id = document.getElementById("downloadSection");

@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { key: 'nav.experience', href: '#experience' },
   { key: 'nav.skills', href: '#skills' },
   { key: 'nav.research', href: '#research' },
+  { key: 'nav.education', href: '#education' },
   { key: 'nav.projects', href: '#projects' },
   { key: 'nav.contact', href: '#contact' },
 ]

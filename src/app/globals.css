@@ -14,8 +14,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Rigid section-to-section scroll snap — always snaps after any scroll gesture */
-  scroll-snap-type: y mandatory;
+  /* Proximity snap — snaps to sections naturally but allows reaching the footer */
+  scroll-snap-type: y proximity;
   /* Reserve space for fixed navbar (56px) so anchors don't hide under it */
   scroll-padding-top: 56px;
 }

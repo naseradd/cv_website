@@ -43,7 +43,7 @@ export const experiences: Experience[] = [
         'Multiplicateur technique : référence architecture monétisation, mentorat de 3+ ingénieurs juniors/stagiaires, tech talks, documentation.',
       ],
     },
-    stack: ['Go', 'C#/.NET', 'TypeScript', 'Node.js', 'Python', 'Vue.js', 'Cypress', 'Docker', 'Kubernetes', 'ArgoCD', 'GitLab CI', 'Prometheus', 'Elasticsearch'],
+    stack: ['Rainbow Six Siege', 'Go', 'C#/.NET', 'TypeScript', 'Node.js', 'Python', 'Vue.js', 'Cypress', 'Docker', 'Kubernetes', 'ArgoCD', 'GitLab CI', 'Prometheus', 'Elasticsearch'],
   },
   {
     id: 'aspentech',

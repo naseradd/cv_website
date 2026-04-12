@@ -18,6 +18,7 @@ const translations = {
     'nav.experience': 'Experience',
     'nav.skills': 'Skills',
     'nav.research': 'Research',
+    'nav.education': 'Education',
     'nav.projects': 'Projects',
     'nav.contact': 'Contact',
     'nav.cta': 'Hire me →',
@@ -36,7 +37,7 @@ const translations = {
 
     // About
     'about.label': 'About',
-    'about.title': 'Engineer.\nResearcher.',
+    'about.title': 'Engineer.\nCreator of solutions.',
     'about.bio1': 'I\'ve spent the last 5 years building systems that actually hold up under pressure — the kind that serve millions of users and can\'t go down on a Friday night. I like hard problems and I like shipping things.',
     'about.bio2': 'On the side, I did a research master\'s at Polytechnique — studying how humans can control drone swarms through augmented reality. That paper got picked up by TechXplore, which was a nice surprise. I still think about the intersection of physical world and software a lot.',
     'about.bio3': 'I write mostly Go, TypeScript and C#. I pick up new stacks fast — I\'ve jumped into codebases and domains I didn\'t know and was productive within days. I care about clean code, but more about clear thinking. I work well autonomously, communicate early when something\'s off, and I genuinely enjoy collaborating with people who give a damn about what they build.',
@@ -103,6 +104,7 @@ const translations = {
     'nav.experience': 'Expérience',
     'nav.skills': 'Compétences',
     'nav.research': 'Recherche',
+    'nav.education': 'Éducation',
     'nav.projects': 'Projets',
     'nav.contact': 'Contact',
     'nav.cta': 'Me contacter →',
@@ -121,7 +123,7 @@ const translations = {
 
     // About
     'about.label': 'À propos',
-    'about.title': 'Ingénieur.\nChercheur.',
+    'about.title': 'Ingénieur.\nCréateur de solutions.',
     'about.bio1': 'Ça fait 5 ans que je construis des systèmes qui tiennent vraiment la route — ceux qui servent des millions d\'utilisateurs et qui n\'ont pas le droit de tomber un vendredi soir. J\'aime les problèmes complexes, et j\'aime livrer.',
     'about.bio2': 'En parallèle, j\'ai fait un master recherche à Polytechnique — sur comment des humains peuvent contrôler des essaims de drones via la réalité augmentée. L\'article a été repris par TechXplore, ce qui était une belle surprise. Je pense encore souvent à l\'intersection monde physique et logiciel.',
     'about.bio3': 'J\'écris surtout du Go, TypeScript et C#. Je prends de nouvelles stacks en main rapidement — je suis rentré dans des codebases et des domaines que je ne connaissais pas et j\'étais opérationnel en quelques jours. Je fais attention au code propre, mais plus encore à la clarté de pensée. Je travaille bien en autonomie, je communique tôt quand quelque chose cloche, et j\'aime vraiment bosser avec des gens qui se soucient de ce qu\'ils construisent.',

@@ -151,6 +151,7 @@
           </div>
           </div>
           <md-divider class="md-inset"></md-divider>
+          <div id="formations"></div>
           <template class="Formations">
             <h3 class="title text-center">
               <md-icon class="md-size-1x">school</md-icon>
@@ -354,9 +355,10 @@ export default {
   },
   methods:{
     see_project: function (index) {
-          // `this` inside methods points to the Vue instance
           this.project_index = index
-          document.getElementById('projet').scrollIntoView({ behavior: 'smooth' })
+          if (window.innerWidth > 576) {
+            document.getElementById('projet').scrollIntoView({ behavior: 'smooth' })
+          }
     }
 
   },
