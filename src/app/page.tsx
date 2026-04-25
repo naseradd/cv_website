@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { Hero } from '@/components/sections/Hero'
 import { About } from '@/components/sections/About'
 import { Experience } from '@/components/sections/Experience'
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <ScrollProgress />
       <main>
         <Hero />
         <About />

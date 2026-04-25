@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import { ExternalLink } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
@@ -8,9 +8,8 @@ import { projects } from '@/data/projects'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { Badge } from '@/components/ui/Badge'
 import { Reveal } from '@/components/ui/Reveal'
+import { cardReveal } from '@/lib/motion'
 import { cn } from '@/lib/utils'
-
-const ease = [0.16, 1, 0.3, 1] as const
 
 const typeVariant: Record<string, 'accent' | 'indigo' | 'outline'> = {
   research: 'accent',
@@ -26,6 +25,7 @@ const typeLabel = {
 
 export function Projects() {
   const { t, lang } = useLang()
+  const reduced = useReducedMotion() ?? false
 
   return (
     <section id="projects" className="py-24 md:py-32">
@@ -46,14 +46,11 @@ export function Projects() {
               <motion.div
                 key={project.id}
                 className={cn(
-                  'group rounded-2xl overflow-hidden bg-[#141414] border border-[#1e1e1e] hover:border-[#2a2a2a] transition-all duration-300',
+                  'group rounded-2xl overflow-hidden bg-[#141414] border border-[#1e1e1e] hover:border-[#2a2a2a] transition-[border-color,transform] duration-300',
                   i === 0 && 'md:col-span-2 lg:col-span-2'
                 )}
-                initial={{ opacity: 0, y: 56, scale: 0.96, filter: 'blur(6px)' }}
-                whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.75, delay: i * 0.1, ease }}
-                whileHover={{ y: -4, transition: { duration: 0.2, ease: 'easeOut' } }}
+                {...cardReveal(i * 0.1, reduced)}
+                whileHover={reduced ? undefined : { y: -4, transition: { duration: 0.2, ease: 'easeOut' } }}
               >
                 {/* Image */}
                 <div className={cn('relative overflow-hidden bg-[#1a1a1a]', i === 0 ? 'h-52 md:h-64' : 'h-40')}>
@@ -79,6 +76,7 @@ export function Projects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Open project ${project.title[lang]} in new tab`}
                       className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[rgba(0,0,0,0.6)] border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-[#888] hover:text-[#f5f5f0] hover:border-[rgba(255,255,255,0.2)] transition-all"
                     >
                       <ExternalLink size={13} />
@@ -91,7 +89,7 @@ export function Projects() {
                   <h3 className="font-display text-base font-bold text-[#f5f5f0] tracking-tight mb-2 leading-snug">
                     {project.title[lang]}
                   </h3>
-                  <p className="text-xs text-[#555] leading-relaxed mb-4">
+                  <p className="text-xs text-[#888] leading-relaxed mb-4">
                     {project.description[lang]}
                   </p>
 
@@ -100,7 +98,7 @@ export function Projects() {
                     {project.stack.map((s) => (
                       <span
                         key={s}
-                        className="text-[10px] font-semibold px-2.5 py-1 rounded-md bg-[#1a1a1a] border border-[#222] text-[#555]"
+                        className="text-[10px] font-semibold px-2.5 py-1 rounded-md bg-[#1a1a1a] border border-[#222] text-[#888]"
                       >
                         {s}
                       </span>

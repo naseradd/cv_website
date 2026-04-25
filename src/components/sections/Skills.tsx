@@ -1,22 +1,17 @@
 'use client'
 
+import { useReducedMotion } from 'framer-motion'
 import { motion } from 'framer-motion'
 import { useLang } from '@/lib/i18n'
 import { skillCategories, hotSkills } from '@/data/skills'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { Reveal } from '@/components/ui/Reveal'
+import { cardReveal } from '@/lib/motion'
 import { cn } from '@/lib/utils'
-
-const ease = [0.16, 1, 0.3, 1] as const
-const cardAnim = (delay = 0) => ({
-  initial: { opacity: 0, y: 56, scale: 0.96 },
-  whileInView: { opacity: 1, y: 0, scale: 1 },
-  viewport: { once: true, margin: '-100px' },
-  transition: { duration: 0.75, delay, ease },
-})
 
 export function Skills() {
   const { t, lang } = useLang()
+  const reduced = useReducedMotion() ?? false
 
   return (
     <section id="skills" className="py-24 md:py-32 bg-[#0a0a0a]">
@@ -37,9 +32,9 @@ export function Skills() {
             {/* Languages — featured tall card */}
             <motion.div
               className="md:row-span-2 p-6 md:p-8 rounded-2xl bg-[#141414] border border-[#1e1e1e] hover:border-[#2a2a2a] transition-colors"
-              {...cardAnim(0)}
+              {...cardReveal(0, reduced)}
             >
-              <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#444] mb-5">
+              <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#888] mb-5">
                 {skillCategories[0].label[lang]}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -50,7 +45,7 @@ export function Skills() {
                       'text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-default',
                       hotSkills.includes(s)
                         ? 'bg-[rgba(124,58,237,0.1)] border-[rgba(124,58,237,0.22)] text-[#a78bfa] hover:bg-[rgba(124,58,237,0.18)]'
-                        : 'bg-[#1a1a1a] border-[#222] text-[#666] hover:border-[#2a2a2a] hover:text-[#888]'
+                        : 'bg-[#1a1a1a] border-[#222] text-[#888] hover:border-[#2a2a2a] hover:text-[#888]'
                     )}
                   >
                     {s}
@@ -62,9 +57,9 @@ export function Skills() {
             {/* DevOps — wide card */}
             <motion.div
               className="md:col-span-2 p-6 rounded-2xl bg-[#141414] border border-[#1e1e1e] hover:border-[#2a2a2a] transition-colors"
-              {...cardAnim(0.09)}
+              {...cardReveal(0.09, reduced)}
             >
-              <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#444] mb-4">
+              <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#888] mb-4">
                 {skillCategories[2].label[lang]}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -75,7 +70,7 @@ export function Skills() {
                       'text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all duration-200',
                       hotSkills.includes(s)
                         ? 'bg-[rgba(79,70,229,0.1)] border-[rgba(79,70,229,0.22)] text-[#818cf8] hover:bg-[rgba(79,70,229,0.18)]'
-                        : 'bg-[#1a1a1a] border-[#222] text-[#666] hover:border-[#2a2a2a] hover:text-[#888]'
+                        : 'bg-[#1a1a1a] border-[#222] text-[#888] hover:border-[#2a2a2a] hover:text-[#888]'
                     )}
                   >
                     {s}
@@ -89,9 +84,9 @@ export function Skills() {
               <motion.div
                 key={cat.id}
                 className="p-6 rounded-2xl bg-[#141414] border border-[#1e1e1e] hover:border-[#2a2a2a] transition-colors"
-                {...cardAnim(0.14 + i * 0.08)}
+                {...cardReveal(0.14 + i * 0.08, reduced)}
               >
-                <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#444] mb-4">
+                <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#888] mb-4">
                   {cat.label[lang]}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -102,7 +97,7 @@ export function Skills() {
                         'text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all duration-200',
                         hotSkills.includes(s)
                           ? 'bg-[rgba(124,58,237,0.08)] border-[rgba(124,58,237,0.18)] text-[#a78bfa]'
-                          : 'bg-[#1a1a1a] border-[#222] text-[#666] hover:text-[#888]'
+                          : 'bg-[#1a1a1a] border-[#222] text-[#888] hover:text-[#888]'
                       )}
                     >
                       {s}

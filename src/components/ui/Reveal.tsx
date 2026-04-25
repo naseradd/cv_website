@@ -1,11 +1,10 @@
 'use client'
 
-import { motion, Variants } from 'framer-motion'
+import { motion, useReducedMotion, Variants } from 'framer-motion'
 import { ReactNode } from 'react'
 
 // ─── Apple / Linear-style spring easing ─────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1] as const
-const easeOut = [0.22, 1, 0.36, 1] as const
 
 // ─── Cinematic variants ──────────────────────────────────────────────────────
 // "up" = headline reveal with blur — the signature marketing-site entrance
@@ -34,6 +33,12 @@ const fade: Variants = {
   visible: { opacity: 1 },
 }
 
+// Reduced-motion fallback: opacity only, no transform/blur
+const fadeOnly: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+}
+
 const variantMap = { up, down, left, right, scale: scaleV, fade } as const
 type Direction = keyof typeof variantMap
 
@@ -56,7 +61,8 @@ export function Reveal({
   duration = 0.8,
   mount = false,
 }: RevealProps) {
-  const v = variantMap[direction]
+  const reduced = useReducedMotion() ?? false
+  const v = reduced ? fadeOnly : variantMap[direction]
   const scrollProps = mount
     ? ({ animate: 'visible' } as const)
     : ({ whileInView: 'visible', viewport: { once: true, margin: '-100px' } } as const)
@@ -67,7 +73,7 @@ export function Reveal({
       variants={v}
       initial="hidden"
       {...scrollProps}
-      transition={{ duration, delay, ease }}
+      transition={{ duration: reduced ? 0.2 : duration, delay: reduced ? 0 : delay, ease }}
     >
       {children}
     </motion.div>
@@ -123,11 +129,12 @@ export function StaggerItem({
   direction = 'up',
   duration = 0.7,
 }: StaggerItemProps) {
+  const reduced = useReducedMotion() ?? false
   return (
     <motion.div
       className={className}
-      variants={variantMap[direction]}
-      transition={{ duration, ease }}
+      variants={reduced ? fadeOnly : variantMap[direction]}
+      transition={{ duration: reduced ? 0.2 : duration, ease }}
     >
       {children}
     </motion.div>

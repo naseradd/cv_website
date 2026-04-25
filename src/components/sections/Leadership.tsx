@@ -66,7 +66,7 @@ export function Leadership() {
                   <div className={`w-9 h-9 rounded-xl ${bg} border ${border} flex items-center justify-center mb-5 ${bgHover} transition-colors`}>
                     <Icon size={16} className={color} />
                   </div>
-                  <p className="text-sm text-[#666] leading-relaxed">
+                  <p className="text-sm text-[#888] leading-relaxed">
                     {item[lang]}
                   </p>
                 </motion.div>

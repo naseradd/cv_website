@@ -1,16 +1,15 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
 import { experiences } from '@/data/experience'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { Badge } from '@/components/ui/Badge'
 import { Reveal } from '@/components/ui/Reveal'
+import { rowReveal, ease } from '@/lib/motion'
 import { cn } from '@/lib/utils'
-
-const ease = [0.16, 1, 0.3, 1] as const
 
 function CompanyLogo({ src, name }: { src: string; name: string }) {
   const [error, setError] = useState(false)
@@ -37,15 +36,9 @@ function CompanyLogo({ src, name }: { src: string; name: string }) {
   )
 }
 
-const rowAnim = (delay = 0) => ({
-  initial: { opacity: 0, y: 40, filter: 'blur(6px)' },
-  whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.7, delay, ease },
-})
-
 export function Experience() {
   const { t, lang } = useLang()
+  const reduced = useReducedMotion() ?? false
   const [expanded, setExpanded] = useState<string | null>('ubisoft')
 
   return (
@@ -61,7 +54,7 @@ export function Experience() {
                 {t('exp.title')}
               </h2>
             </div>
-            <span className="hidden md:block text-xs text-[#444]">{t('exp.positions')}</span>
+            <span className="hidden md:block text-xs text-[#888]">{t('exp.positions')}</span>
           </Reveal>
 
           {/* Experience list */}
@@ -72,7 +65,7 @@ export function Experience() {
                 <motion.div
                   key={exp.id}
                   className="group"
-                  {...rowAnim(idx * 0.1)}
+                  {...rowReveal(idx * 0.1, reduced)}
                 >
                   {/* Row header — always visible */}
                   <button
@@ -99,7 +92,7 @@ export function Experience() {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-[#555] font-medium">
+                      <p className="text-sm text-[#888] font-medium">
                         {exp.role[lang]}
                       </p>
 
@@ -108,13 +101,13 @@ export function Experience() {
                         {exp.stack.slice(0, 6).map((s) => (
                           <span
                             key={s}
-                            className="text-[10px] font-semibold px-2.5 py-1 rounded-md bg-[#141414] border border-[#1e1e1e] text-[#555] tracking-wide"
+                            className="text-[10px] font-semibold px-2.5 py-1 rounded-md bg-[#141414] border border-[#1e1e1e] text-[#888] tracking-wide"
                           >
                             {s}
                           </span>
                         ))}
                         {exp.stack.length > 6 && (
-                          <span className="text-[10px] font-semibold px-2.5 py-1 rounded-md bg-[#141414] border border-[#1e1e1e] text-[#444]">
+                          <span className="text-[10px] font-semibold px-2.5 py-1 rounded-md bg-[#141414] border border-[#1e1e1e] text-[#888]">
                             +{exp.stack.length - 6}
                           </span>
                         )}
@@ -128,7 +121,7 @@ export function Experience() {
                           'w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-200',
                           isOpen
                             ? 'border-[#7c3aed] bg-[rgba(124,58,237,0.12)] text-[#a78bfa]'
-                            : 'border-[#2a2a2a] text-[#444] group-hover:border-[#3a3a3a] group-hover:text-[#888]'
+                            : 'border-[#2a2a2a] text-[#888] group-hover:border-[#3a3a3a] group-hover:text-[#888]'
                         )}
                       >
                         {isOpen ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
@@ -143,12 +136,12 @@ export function Experience() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1] }}
+                        transition={{ duration: reduced ? 0.15 : 0.38, ease: ease.emphasized }}
                         style={{ overflow: 'hidden' }}
                       >
                         <div className="pb-8 pl-4 md:pl-[132px] pr-2">
                           {/* Description */}
-                          <p className="text-sm text-[#555] mb-5 leading-relaxed italic">
+                          <p className="text-sm text-[#888] mb-5 leading-relaxed italic">
                             {exp.description[lang]}
                           </p>
 
@@ -157,10 +150,10 @@ export function Experience() {
                             {exp.highlights[lang].map((h, i) => (
                               <motion.li
                                 key={i}
-                                className="flex gap-3 text-sm text-[#666] leading-relaxed"
-                                initial={{ opacity: 0, x: -8 }}
+                                className="flex gap-3 text-sm text-[#888] leading-relaxed"
+                                initial={reduced ? { opacity: 0 } : { opacity: 0, x: -8 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.3, delay: i * 0.05 }}
+                                transition={{ duration: reduced ? 0.15 : 0.3, delay: reduced ? 0 : i * 0.05 }}
                               >
                                 <span className="mt-[5px] w-1 h-1 rounded-full bg-[#7c3aed] flex-shrink-0" />
                                 {h}
@@ -173,7 +166,7 @@ export function Experience() {
                             {exp.stack.map((s) => (
                               <span
                                 key={s}
-                                className="text-[11px] font-semibold px-3 py-1.5 rounded-md bg-[#141414] border border-[#1e1e1e] text-[#555]"
+                                className="text-[11px] font-semibold px-3 py-1.5 rounded-md bg-[#141414] border border-[#1e1e1e] text-[#888]"
                               >
                                 {s}
                               </span>

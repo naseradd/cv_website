@@ -27,10 +27,16 @@ section[id] {
   scroll-snap-stop: normal;
 }
 
+/* Disable snap on touch devices — fights momentum scroll on iOS Safari */
+@media (max-width: 767px) {
+  html { scroll-snap-type: none; }
+  section[id] { scroll-snap-align: none; }
+}
+
 body {
   background: #0c0c0c;
   color: #f5f5f0;
-  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   overflow-x: hidden;
 }
 
@@ -67,7 +73,7 @@ body {
 ──────────────────────────────── */
 
 .font-display {
-  font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
 .gradient-text {
@@ -95,6 +101,12 @@ body {
   animation: marquee 28s linear infinite;
 }
 
+/* Soft fade on left/right edges so marquee items don't hard-clip on container borders. */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
 /* ────────────────────────────────
    Pulse dot animation
 ──────────────────────────────── */
@@ -106,4 +118,50 @@ body {
 
 .animate-pulseDot {
   animation: pulseDot 2s ease-in-out infinite;
+}
+
+/* ────────────────────────────────
+   View Transitions — lang switch crossfade
+──────────────────────────────── */
+
+@supports (view-transition-name: root) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.28s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ────────────────────────────────
+   Print — recruiters print CVs
+──────────────────────────────── */
+
+@media print {
+  * { background: transparent !important; color: #000 !important; box-shadow: none !important; }
+  html, body { background: #fff !important; color: #000 !important; }
+  nav, footer, .marquee-mask, [aria-hidden="true"] { display: none !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #555 !important; }
+  a[href^="#"]::after, a[href^="mailto:"]::after { content: ""; }
+  section { page-break-inside: avoid; padding: 0.5cm 0 !important; }
+  h1, h2, h3 { page-break-after: avoid; color: #000 !important; }
+  img { max-width: 100% !important; }
+  .animate-marquee, .animate-pulseDot { animation: none !important; }
+}
+
+/* ────────────────────────────────
+   Reduced motion — WCAG 2.3.3
+──────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee,
+  .animate-pulseDot {
+    animation: none !important;
+  }
 }

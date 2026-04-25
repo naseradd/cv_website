@@ -1,17 +1,17 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import { MapPin, Globe, Briefcase } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
 import { personal } from '@/data/personal'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { Reveal, StaggerReveal, StaggerItem } from '@/components/ui/Reveal'
-
-const ease = [0.16, 1, 0.3, 1] as const
+import { ease } from '@/lib/motion'
 
 export function About() {
   const { t, lang } = useLang()
+  const reduced = useReducedMotion() ?? false
 
   return (
     <section id="about" className="py-24 md:py-32">
@@ -29,7 +29,7 @@ export function About() {
               </h2>
             </Reveal>
 
-            <StaggerReveal className="space-y-5 text-[15px] text-[#666] leading-[1.8] max-w-[600px]" stagger={0.1} delay={0.08}>
+            <StaggerReveal className="space-y-5 text-[15px] text-[#888] leading-[1.8] max-w-[600px]" stagger={0.1} delay={0.08}>
               <StaggerItem><p>{t('about.bio1')}</p></StaggerItem>
               <StaggerItem><p>{t('about.bio2')}</p></StaggerItem>
               <StaggerItem><p>{t('about.bio3')}</p></StaggerItem>
@@ -38,19 +38,19 @@ export function About() {
             {/* Meta chips */}
             <StaggerReveal className="mt-10 flex flex-wrap gap-3" stagger={0.08} delay={0.1}>
               <StaggerItem>
-                <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#141414] border border-[#1e1e1e] text-xs text-[#666]">
+                <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#141414] border border-[#1e1e1e] text-xs text-[#888]">
                   <MapPin size={12} className="text-[#7c3aed]" />
                   {t('about.location')}
                 </div>
               </StaggerItem>
               <StaggerItem>
-                <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#141414] border border-[#1e1e1e] text-xs text-[#666]">
+                <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#141414] border border-[#1e1e1e] text-xs text-[#888]">
                   <Globe size={12} className="text-[#7c3aed]" />
                   {t('about.languages')}
                 </div>
               </StaggerItem>
               <StaggerItem>
-                <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#141414] border border-[#1e1e1e] text-xs text-[#666]">
+                <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#141414] border border-[#1e1e1e] text-xs text-[#888]">
                   <Briefcase size={12} className="text-[#7c3aed]" />
                   {t('about.open')}
                 </div>
@@ -86,13 +86,13 @@ export function About() {
                 <motion.div
                   key={i}
                   className="p-4 rounded-xl bg-[#141414] border border-[#1e1e1e] text-center"
-                  initial={{ opacity: 0, y: 20, scale: 0.9, filter: 'blur(4px)' }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                  initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.9, filter: 'blur(4px)' }}
+                  whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                   viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.6, delay: 0.2 + i * 0.08, ease }}
+                  transition={{ duration: reduced ? 0.2 : 0.6, delay: reduced ? 0 : 0.2 + i * 0.08, ease: ease.spring }}
                 >
                   <div className={`font-display text-2xl font-black mb-0.5 ${s.color}`}>{s.value}</div>
-                  <div className="text-[11px] text-[#555]">{lang === 'en' ? s.en : s.fr}</div>
+                  <div className="text-[11px] text-[#888]">{lang === 'en' ? s.en : s.fr}</div>
                 </motion.div>
               ))}
             </div>

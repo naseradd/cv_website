@@ -73,14 +73,14 @@ export function Education() {
                 </p>
 
                 {/* Spec */}
-                <p className="text-xs text-[#555] mb-1">{t(edu.specKey)}</p>
+                <p className="text-xs text-[#888] mb-1">{t(edu.specKey)}</p>
                 {edu.labKey && (
-                  <p className="text-xs text-[#444]">{t(edu.labKey)}</p>
+                  <p className="text-xs text-[#888]">{t(edu.labKey)}</p>
                 )}
 
                 {/* GPA */}
                 <div className="mt-6 pt-5 border-t border-[#1e1e1e] flex items-center justify-between">
-                  <span className="text-xs text-[#444] uppercase tracking-widest font-semibold">{t('edu.gpa')}</span>
+                  <span className="text-xs text-[#888] uppercase tracking-widest font-semibold">{t('edu.gpa')}</span>
                   <span className="font-display text-xl font-black text-[#a78bfa]">{edu.gpa}</span>
                 </div>
               </motion.div>

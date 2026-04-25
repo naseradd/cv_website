@@ -1,14 +1,13 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { Mail, Linkedin, MapPin, ArrowUpRight, Handshake, Zap, Code2 } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
 import { personal } from '@/data/personal'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { Reveal, StaggerReveal, StaggerItem } from '@/components/ui/Reveal'
-
-const ease = [0.16, 1, 0.3, 1] as const
+import { ease } from '@/lib/motion'
 
 // ─── Scramble text hook ──────────────────────────────────────────────────────
 const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$_<>/\\'
@@ -68,7 +67,7 @@ function ContractCard({ lang }: { lang: 'en' | 'fr' }) {
           initial={{ rotate: -10, scale: 0.8, opacity: 0 }}
           whileInView={{ rotate: 0, scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5, ease }}
+          transition={{ duration: 0.6, delay: 0.5, ease: ease.spring }}
         >
           <Handshake size={28} className="text-[#a78bfa]" strokeWidth={1.5} />
         </motion.div>
@@ -85,14 +84,14 @@ function ContractCard({ lang }: { lang: 'en' | 'fr' }) {
         <p className="font-display text-[17px] font-bold text-[#f5f5f0] leading-snug mb-1">
           {lang === 'en' ? 'Freelance Contracts' : 'Contrats Freelance'}
         </p>
-        <p className="text-xs text-[#555] mb-5">Remote · Montréal</p>
+        <p className="text-xs text-[#888] mb-5">Remote · Montréal</p>
 
         {/* Services */}
         <div className="space-y-2 mb-5">
           {services.map((s, i) => (
             <div key={i} className="flex items-center gap-2.5">
               <span className="w-1 h-1 rounded-full bg-[#7c3aed] flex-shrink-0" />
-              <span className="text-[11px] text-[#666]">{s}</span>
+              <span className="text-[11px] text-[#888]">{s}</span>
             </div>
           ))}
         </div>
@@ -101,7 +100,7 @@ function ContractCard({ lang }: { lang: 'en' | 'fr' }) {
         <div className="pt-4 border-t border-[#1a1a1a] flex items-center justify-between">
           <div className="flex items-center gap-1.5">
             <Zap size={10} className="text-[#7c3aed]" />
-            <span className="text-[10px] font-semibold text-[#444] uppercase tracking-widest">
+            <span className="text-[10px] font-semibold text-[#888] uppercase tracking-widest">
               {lang === 'en' ? 'Response' : 'Réponse'}
             </span>
           </div>
@@ -115,6 +114,7 @@ function ContractCard({ lang }: { lang: 'en' | 'fr' }) {
 // ─── Section ──────────────────────────────────────────────────────────────────
 export function Contact() {
   const { t, lang } = useLang()
+  const reduced = useReducedMotion() ?? false
 
   // Cursor spotlight
   const sectionRef = useRef<HTMLElement>(null)
@@ -192,13 +192,13 @@ export function Contact() {
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.7, ease }}
+                transition={{ duration: 0.7, ease: ease.spring }}
               >
                 {scrambledTitle || rawTitle}
               </motion.h2>
 
               <Reveal delay={0.15}>
-                <p className="text-base text-[#555] max-w-[480px] leading-relaxed mb-10">
+                <p className="text-base text-[#888] max-w-[480px] leading-relaxed mb-10">
                   {t('contact.subtitle')}
                 </p>
               </Reveal>
@@ -213,7 +213,7 @@ export function Contact() {
                       <Mail size={16} className="text-[#a78bfa]" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-[#444] mb-0.5 uppercase tracking-widest font-semibold">{t('contact.email')}</p>
+                      <p className="text-xs text-[#888] mb-0.5 uppercase tracking-widest font-semibold">{t('contact.email')}</p>
                       <p className="text-sm text-[#888] group-hover:text-[#f5f5f0] transition-colors truncate font-medium">{personal.email}</p>
                     </div>
                     <ArrowUpRight size={14} className="text-[#333] group-hover:text-[#7c3aed] transition-colors flex-shrink-0" />
@@ -231,7 +231,7 @@ export function Contact() {
                       <Linkedin size={16} className="text-[#818cf8]" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-xs text-[#444] mb-0.5 uppercase tracking-widest font-semibold">{t('contact.linkedin')}</p>
+                      <p className="text-xs text-[#888] mb-0.5 uppercase tracking-widest font-semibold">{t('contact.linkedin')}</p>
                       <p className="text-sm text-[#888] group-hover:text-[#f5f5f0] transition-colors font-medium">dany-naser-addin</p>
                     </div>
                     <ArrowUpRight size={14} className="text-[#333] group-hover:text-[#4f46e5] transition-colors flex-shrink-0" />
@@ -243,7 +243,7 @@ export function Contact() {
               <Reveal delay={0.38} direction="fade">
                 <div className="mt-8 flex items-center gap-2 opacity-20">
                   <Code2 size={11} className="text-[#7c3aed]" />
-                  <span className="text-[10px] font-mono text-[#555] tracking-widest">available_for_contract = true</span>
+                  <span className="text-[10px] font-mono text-[#888] tracking-widest">available_for_contract = true</span>
                 </div>
               </Reveal>
             </div>
@@ -254,7 +254,7 @@ export function Contact() {
               initial={{ opacity: 0, y: 48, filter: 'blur(8px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.8, delay: 0.2, ease }}
+              transition={{ duration: 0.8, delay: 0.2, ease: ease.spring }}
             >
               <div className="flex items-center gap-2 text-xs text-[#333]">
                 <MapPin size={11} className="text-[#7c3aed]" />
@@ -271,13 +271,13 @@ export function Contact() {
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.7, delay: 0.07, ease }}
+              transition={{ duration: 0.7, delay: 0.07, ease: ease.spring }}
             >
               {scrambledTitle || rawTitle}
             </motion.h2>
 
             <Reveal delay={0.13}>
-              <p className="text-sm text-[#555] leading-relaxed mb-8">
+              <p className="text-sm text-[#888] leading-relaxed mb-8">
                 {t('contact.subtitle')}
               </p>
             </Reveal>
@@ -293,7 +293,7 @@ export function Contact() {
                     <Mail size={15} className="text-[#a78bfa]" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[10px] text-[#444] uppercase tracking-widest font-semibold mb-0.5">{t('contact.email')}</p>
+                    <p className="text-[10px] text-[#888] uppercase tracking-widest font-semibold mb-0.5">{t('contact.email')}</p>
                     <p className="text-xs text-[#888] truncate font-medium">{personal.email}</p>
                   </div>
                   <ArrowUpRight size={13} className="text-[#333] flex-shrink-0" />
@@ -310,7 +310,7 @@ export function Contact() {
                     <Linkedin size={15} className="text-[#818cf8]" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-[10px] text-[#444] uppercase tracking-widest font-semibold mb-0.5">{t('contact.linkedin')}</p>
+                    <p className="text-[10px] text-[#888] uppercase tracking-widest font-semibold mb-0.5">{t('contact.linkedin')}</p>
                     <p className="text-xs text-[#888] font-medium">dany-naser-addin</p>
                   </div>
                   <ArrowUpRight size={13} className="text-[#333] flex-shrink-0" />
@@ -323,7 +323,7 @@ export function Contact() {
               initial={{ opacity: 0, y: 40, scale: 0.96, filter: 'blur(6px)' }}
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: 0.15, ease }}
+              transition={{ duration: 0.7, delay: 0.15, ease: ease.spring }}
               className="max-w-sm"
             >
               <ContractCard lang={lang} />

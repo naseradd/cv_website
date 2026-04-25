@@ -12,7 +12,7 @@ export function Footer() {
           <span className="text-sm font-bold text-[#f5f5f0]">Dany Naser Addin</span>
           <span className="w-1 h-1 rounded-full bg-[#7c3aed]" />
         </div>
-        <p className="text-xs text-[#444]">
+        <p className="text-xs text-[#888]">
           © {new Date().getFullYear()} · {personal.location}
         </p>
         <div className="flex items-center gap-4">
@@ -20,7 +20,7 @@ export function Footer() {
             href={personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-[#444] hover:text-[#888] transition-colors"
+            className="text-xs text-[#888] hover:text-[#888] transition-colors"
           >
             LinkedIn
           </a>
@@ -28,13 +28,13 @@ export function Footer() {
             href={personal.arxiv}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-[#444] hover:text-[#888] transition-colors"
+            className="text-xs text-[#888] hover:text-[#888] transition-colors"
           >
             arXiv
           </a>
           <a
             href={`mailto:${personal.email}`}
-            className="text-xs text-[#444] hover:text-[#888] transition-colors"
+            className="text-xs text-[#888] hover:text-[#888] transition-colors"
           >
             {personal.email}
           </a>

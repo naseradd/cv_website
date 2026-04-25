@@ -61,11 +61,11 @@ export function Publication() {
                 </h3>
 
                 {/* Authors + ref */}
-                <p className="text-sm text-[#555] mb-2">{t('pub.authors')}</p>
-                <p className="text-xs font-mono text-[#444] mb-6">arXiv:2103.14160</p>
+                <p className="text-sm text-[#888] mb-2">{t('pub.authors')}</p>
+                <p className="text-xs font-mono text-[#888] mb-6">arXiv:2103.14160</p>
 
                 {/* Summary */}
-                <p className="text-sm text-[#666] leading-relaxed max-w-[620px] mb-8">
+                <p className="text-sm text-[#888] leading-relaxed max-w-[620px] mb-8">
                   {t('pub.summary')}
                 </p>
 
@@ -103,7 +103,7 @@ export function Publication() {
                 transition={{ duration: 0.55, delay: 0.3, ease }}
               >
                 <span className="font-display text-5xl font-black text-[#a78bfa] leading-none mb-1">1st</span>
-                <span className="text-[10px] font-semibold text-[#555] text-center uppercase tracking-widest leading-snug">
+                <span className="text-[10px] font-semibold text-[#888] text-center uppercase tracking-widest leading-snug">
                   Author<br />arXiv
                 </span>
               </motion.div>

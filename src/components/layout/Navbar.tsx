@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
+import { useMagnetic } from '@/lib/hooks/useMagnetic'
 import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
@@ -19,7 +20,7 @@ export function Navbar() {
   const { lang, setLang, t } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
+  const ctaRef = useMagnetic<HTMLAnchorElement>(6, 32)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -71,7 +72,7 @@ export function Navbar() {
                 onClick={() => handleNavClick(item.href)}
                 className={cn(
                   'px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150',
-                  'text-[#666] hover:text-[#f5f5f0] hover:bg-[#1a1a1a]'
+                  'text-[#888] hover:text-[#f5f5f0] hover:bg-[#1a1a1a]'
                 )}
               >
                 {t(item.key)}
@@ -84,18 +85,20 @@ export function Navbar() {
             {/* Lang toggle */}
             <button
               onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
-              className="flex items-center gap-0 text-xs font-semibold text-[#444] hover:text-[#888] transition-colors tracking-widest"
+              className="flex items-center gap-0 text-xs font-semibold text-[#888] hover:text-[#f5f5f0] transition-colors tracking-widest"
+              aria-label={`EN/FR language toggle — currently ${lang === 'en' ? 'EN' : 'FR'}`}
             >
-              <span className={cn('transition-colors', lang === 'en' ? 'text-[#a78bfa]' : 'text-[#444]')}>EN</span>
-              <span className="mx-1 text-[#2a2a2a]">/</span>
-              <span className={cn('transition-colors', lang === 'fr' ? 'text-[#a78bfa]' : 'text-[#444]')}>FR</span>
+              <span className={cn('transition-colors', lang === 'en' ? 'text-[#a78bfa]' : 'text-[#888]')}>EN</span>
+              <span className="mx-1 text-[#3a3a3a]">/</span>
+              <span className={cn('transition-colors', lang === 'fr' ? 'text-[#a78bfa]' : 'text-[#888]')}>FR</span>
             </button>
 
             {/* CTA */}
             <a
+              ref={ctaRef}
               href="#contact"
               onClick={(e) => { e.preventDefault(); handleNavClick('#contact') }}
-              className="px-4 py-1.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-xs font-bold rounded-lg transition-all duration-200 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(124,58,237,0.4)]"
+              className="px-4 py-1.5 bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-xs font-bold rounded-lg transition-[box-shadow,background-color] duration-200 hover:shadow-[0_4px_20px_rgba(124,58,237,0.4)] will-change-transform"
             >
               {t('nav.cta')}
             </a>
@@ -132,7 +135,7 @@ export function Navbar() {
                 className="text-xs font-semibold text-[#888] tracking-widest"
               >
                 <span className={lang === 'en' ? 'text-[#a78bfa]' : ''}>EN</span>
-                <span className="mx-1 text-[#444]">/</span>
+                <span className="mx-1 text-[#888]">/</span>
                 <span className={lang === 'fr' ? 'text-[#a78bfa]' : ''}>FR</span>
               </button>
               <a

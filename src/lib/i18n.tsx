@@ -1,7 +1,8 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { ReactNode } from 'react'
+import { MotionConfig } from 'framer-motion'
 
 export type Lang = 'en' | 'fr'
 
@@ -188,8 +189,34 @@ const translations = {
 
 const I18nContext = createContext<I18nContextValue | null>(null)
 
+// View Transitions API type guard — Chrome/Edge support, Safari 18+, Firefox missing.
+type DocumentWithTransition = Document & {
+  startViewTransition?: (cb: () => void) => { finished: Promise<void> }
+}
+
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>('en')
+  const [lang, setLangState] = useState<Lang>('en')
+
+  // Sync <html lang> with current language for screen readers + SEO
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = lang
+    }
+  }, [lang])
+
+  // Wrap setLang in startViewTransition when supported — text crossfades on switch.
+  const setLang = (next: Lang) => {
+    if (typeof document === 'undefined') {
+      setLangState(next)
+      return
+    }
+    const doc = document as DocumentWithTransition
+    if (doc.startViewTransition) {
+      doc.startViewTransition(() => setLangState(next))
+    } else {
+      setLangState(next)
+    }
+  }
 
   const t = (key: string): string => {
     const dict = translations[lang] as Record<string, string>
@@ -198,7 +225,9 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   return (
     <I18nContext.Provider value={{ lang, setLang, t }}>
-      {children}
+      {/* reducedMotion="user" — framer-motion auto-disables transform/scale/blur
+          animations when prefers-reduced-motion: reduce; opacity still animates. */}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </I18nContext.Provider>
   )
 }

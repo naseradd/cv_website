@@ -1,21 +1,14 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Mail, ExternalLink } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
 import { personal } from '@/data/personal'
 import { marqueeItems } from '@/data/skills'
 import { LiveBadge } from '@/components/ui/Badge'
-
-// ─── Motion config ────────────────────────────────────────────────────────────
-const ease = [0.22, 1, 0.36, 1] as const
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease },
-})
+import { ease, fadeUp } from '@/lib/motion'
+import { useMagnetic } from '@/lib/hooks/useMagnetic'
 
 const accentClass = (a: string) =>
   a === 'violet' ? 'text-[#a78bfa]' : 'text-[#818cf8]'
@@ -23,13 +16,14 @@ const accentClass = (a: string) =>
 // ─── Scramble hook ────────────────────────────────────────────────────────────
 const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$_<>/\\'
 
-function useScramble(text: string, trigger: boolean, duration = 1400) {
+function useScramble(text: string, trigger: boolean, duration = 1000) {
   const [display, setDisplay] = useState(text)
 
   useEffect(() => {
     if (!trigger) return
     const start = Date.now()
 
+    // 25ms tick — feels decisive without strobing
     const id = setInterval(() => {
       const elapsed = Date.now() - start
       const progress = Math.min(elapsed / duration, 1)
@@ -46,7 +40,7 @@ function useScramble(text: string, trigger: boolean, duration = 1400) {
           .join('')
       )
       if (progress >= 1) clearInterval(id)
-    }, 35)
+    }, 25)
 
     return () => clearInterval(id)
   }, [trigger, text, duration])
@@ -57,6 +51,7 @@ function useScramble(text: string, trigger: boolean, duration = 1400) {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 export function Hero() {
   const { t } = useLang()
+  const reduced = useReducedMotion() ?? false
 
   // Cursor spotlight
   const sectionRef = useRef<HTMLElement>(null)
@@ -64,6 +59,7 @@ export function Hero() {
   const [hasHovered, setHasHovered] = useState(false)
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (reduced) return
     const rect = sectionRef.current?.getBoundingClientRect()
     if (!rect) return
     if (!hasHovered) setHasHovered(true)
@@ -73,14 +69,27 @@ export function Hero() {
     })
   }
 
-  // Scramble on mount — slight delay so fade-in starts first
+  // Scramble on mount — slight delay so fade-in starts first.
+  // Skipped under prefers-reduced-motion (vestibular safety + locked-in name from first paint).
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
+    if (reduced) return
     const id = setTimeout(() => setMounted(true), 350)
     return () => clearTimeout(id)
-  }, [])
+  }, [reduced])
 
-  const scrambledLast = useScramble(personal.lastName.toUpperCase(), mounted, 1600)
+  const scrambledLast = useScramble(personal.lastName.toUpperCase(), mounted, 1000)
+
+  // Section-leave dim/scale — subtle cinematic handoff to About (#9)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.4])
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.96])
+
+  // Magnetic primary CTA (#25)
+  const ctaRef = useMagnetic<HTMLButtonElement>(8, 40)
 
   const scrollTo = (id: string) => {
     const el = document.querySelector(id)
@@ -121,31 +130,41 @@ export function Hero() {
         }}
       />
 
-      {/* Faint background watermark */}
+      {/* Faint background watermark — parallax follows cursor inverse for depth (#8) */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none select-none absolute right-[-40px] top-8 font-display text-[clamp(180px,22vw,340px)] font-black leading-none"
-        style={{ color: 'transparent', WebkitTextStroke: '1px rgba(124,58,237,0.07)' }}
-        initial={{ opacity: 0, x: 40 }}
+        className="pointer-events-none select-none absolute right-[-40px] top-8 font-display text-[clamp(180px,22vw,340px)] font-black leading-none will-change-transform"
+        style={{
+          color: 'transparent',
+          WebkitTextStroke: '1px rgba(124,58,237,0.07)',
+          transform: reduced
+            ? undefined
+            : `translate3d(${(0.5 - mouse.x) * 24}px, ${(0.5 - mouse.y) * 18}px, 0)`,
+          transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+        }}
+        initial={{ opacity: 0, x: reduced ? 0 : 40 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.1, delay: 0.2, ease }}
+        transition={{ duration: reduced ? 0.2 : 1.1, delay: reduced ? 0 : 0.2, ease: ease.out }}
       >
         5+
       </motion.div>
 
-      <div className="relative max-w-[1400px] mx-auto px-6 md:px-10">
+      <motion.div
+        className="relative max-w-[1400px] mx-auto px-6 md:px-10"
+        style={reduced ? undefined : { opacity: heroOpacity, scale: heroScale }}
+      >
         {/* Top row */}
         <div className="border-t border-[#1e1e1e] pt-12 md:pt-16 grid md:grid-cols-[1fr_auto] gap-8 items-start">
           <div>
             {/* Badge */}
-            <motion.div {...fadeUp(0.05)}>
+            <motion.div {...fadeUp(0.05, reduced)}>
               <LiveBadge className="mb-7">{t('hero.badge')}</LiveBadge>
             </motion.div>
 
             {/* Name */}
             <motion.h1
               className="font-display leading-[0.9] tracking-[-0.04em] mb-6"
-              {...fadeUp(0.15)}
+              {...fadeUp(0.15, reduced)}
             >
               <span className="block text-[clamp(52px,8.5vw,118px)] font-black text-[#f5f5f0]">
                 {personal.firstName}
@@ -161,19 +180,19 @@ export function Hero() {
 
             <motion.p
               className="text-[clamp(14px,1.5vw,18px)] font-semibold text-[#f5f5f0] mb-1"
-              {...fadeUp(0.25)}
+              {...fadeUp(0.25, reduced)}
             >
               {t('hero.role')}
             </motion.p>
             <motion.p
-              className="text-sm text-[#555] mb-8 font-medium"
-              {...fadeUp(0.3)}
+              className="text-sm text-[#888] mb-8 font-medium"
+              {...fadeUp(0.3, reduced)}
             >
               {t('hero.subtitle')}
             </motion.p>
             <motion.p
-              className="text-sm text-[#666] max-w-[540px] leading-relaxed mb-10"
-              {...fadeUp(0.35)}
+              className="text-sm text-[#888] max-w-[540px] leading-relaxed mb-10"
+              {...fadeUp(0.35, reduced)}
             >
               {t('hero.bio')}
             </motion.p>
@@ -181,18 +200,19 @@ export function Hero() {
             {/* CTAs */}
             <motion.div
               className="flex flex-wrap items-center gap-3 mb-10"
-              {...fadeUp(0.42)}
+              {...fadeUp(0.42, reduced)}
             >
               <button
+                ref={ctaRef}
                 onClick={() => scrollTo('#experience')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#7c3aed] text-white rounded-lg text-sm font-semibold transition-all duration-200 hover:bg-[#6d28d9] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(124,58,237,0.35)]"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#7c3aed] text-white rounded-lg text-sm font-semibold transition-[box-shadow,background-color] duration-200 hover:bg-[#6d28d9] hover:shadow-[0_8px_24px_rgba(124,58,237,0.35)] will-change-transform"
               >
                 {t('hero.cta.work')}
                 <ArrowRight size={15} />
               </button>
               <a
                 href={`mailto:${personal.email}`}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-transparent text-[#f5f5f0] rounded-lg text-sm font-semibold border border-[#2a2a2a] hover:bg-[#1a1a1a] hover:border-[#3a3a3a] transition-all duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-transparent text-[#f5f5f0] rounded-lg text-sm font-semibold border border-[#2a2a2a] hover:bg-[#1a1a1a] hover:border-[#3a3a3a] transition-[background-color,border-color] duration-200"
               >
                 <Mail size={15} />
                 {t('hero.cta.contact')}
@@ -201,7 +221,7 @@ export function Hero() {
                 href={personal.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#555] hover:text-[#888] transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#888] hover:text-[#888] transition-colors"
               >
                 LinkedIn
                 <ExternalLink size={11} />
@@ -228,9 +248,9 @@ export function Hero() {
         {/* Stats row */}
         <motion.div
           className="mt-8 grid grid-cols-2 md:grid-cols-4 border border-[#1e1e1e] rounded-xl overflow-hidden"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: reduced ? 0 : 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.52, ease }}
+          transition={{ duration: reduced ? 0.2 : 0.6, delay: reduced ? 0 : 0.52, ease: ease.out }}
         >
           {personal.stats.map((stat, i) => (
             <div
@@ -241,22 +261,23 @@ export function Hero() {
               <div className={`font-display text-[clamp(20px,2.8vw,34px)] font-black tracking-tight leading-none mb-1.5 ${accentClass(stat.accent)}`}>
                 {stat.value}
               </div>
-              <div className="text-[11px] text-[#555] leading-snug">{t(stat.labelKey)}</div>
+              <div className="text-[11px] text-[#888] leading-snug">{t(stat.labelKey)}</div>
             </div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Marquee */}
+      {/* Marquee — soft fade on edges via mask (#7). Decorative — skills also listed in Skills section. */}
       <motion.div
-        className="mt-10 border-y border-[#1e1e1e] py-3.5 overflow-hidden bg-[#0f0f0f]"
+        aria-hidden="true"
+        className="mt-10 border-y border-[#1e1e1e] py-3.5 overflow-hidden bg-[#0f0f0f] marquee-mask"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.7 }}
       >
         <div className="flex gap-12 animate-marquee whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={i} className="flex items-center gap-3 text-[11px] font-bold tracking-[0.12em] uppercase text-[#333]">
+            <span key={i} className="flex items-center gap-3 text-[11px] font-bold tracking-[0.12em] uppercase text-[#888]">
               {item}
               <span className="w-1 h-1 rounded-full bg-[#7c3aed] opacity-60" />
             </span>
