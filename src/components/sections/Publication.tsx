@@ -13,9 +13,9 @@ export function Publication() {
   const { t } = useLang()
 
   return (
-    <section id="research" className="py-24 md:py-32">
+    <section id="research" className="py-16 md:py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="border-t border-[#1e1e1e] pt-12">
+        <div className="border-t border-[#1e1e1e] pt-8 md:pt-12">
 
           <Reveal delay={0}>
             <SectionLabel>{t('pub.label')}</SectionLabel>
@@ -75,7 +75,7 @@ export function Publication() {
                     href={personal.arxiv}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-sm font-semibold transition-all duration-200 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(124,58,237,0.35)]"
+                    className="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-lg bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-sm font-semibold transition-all duration-200 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(124,58,237,0.35)]"
                   >
                     <BookOpen size={14} />
                     {t('pub.read')}
@@ -85,7 +85,7 @@ export function Publication() {
                     href={personal.techxplore}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#141414] hover:bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#333] text-[#888] hover:text-[#f5f5f0] text-sm font-semibold transition-all duration-200"
+                    className="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-lg bg-[#141414] hover:bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#333] text-[#888] hover:text-[#f5f5f0] text-sm font-semibold transition-all duration-200"
                   >
                     <Newspaper size={14} />
                     {t('pub.press')}

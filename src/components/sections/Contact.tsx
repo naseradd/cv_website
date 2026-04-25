@@ -144,7 +144,7 @@ export function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative py-24 md:py-36 overflow-hidden"
+      className="relative py-16 md:py-36 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* ── Cursor spotlight glow ─────────────────────────────────────────── */}
@@ -172,7 +172,7 @@ export function Contact() {
       />
 
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="border-t border-[#1e1e1e] pt-12">
+        <div className="border-t border-[#1e1e1e] pt-8 md:pt-12">
 
           {/* Trigger ref for scramble */}
           <div ref={triggerRef} />

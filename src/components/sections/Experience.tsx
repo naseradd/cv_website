@@ -42,9 +42,9 @@ export function Experience() {
   const [expanded, setExpanded] = useState<string | null>('ubisoft')
 
   return (
-    <section id="experience" className="py-24 md:py-32">
+    <section id="experience" className="py-16 md:py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="border-t border-[#1e1e1e] pt-12">
+        <div className="border-t border-[#1e1e1e] pt-8 md:pt-12">
 
           {/* Header */}
           <Reveal delay={0} className="flex items-baseline justify-between mb-12">

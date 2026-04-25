@@ -28,9 +28,9 @@ export function Projects() {
   const reduced = useReducedMotion() ?? false
 
   return (
-    <section id="projects" className="py-24 md:py-32">
+    <section id="projects" className="py-16 md:py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="border-t border-[#1e1e1e] pt-12">
+        <div className="border-t border-[#1e1e1e] pt-8 md:pt-12">
 
           <Reveal delay={0}>
             <SectionLabel>{t('projects.label')}</SectionLabel>
@@ -77,7 +77,7 @@ export function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Open project ${project.title[lang]} in new tab`}
-                      className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[rgba(0,0,0,0.6)] border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-[#888] hover:text-[#f5f5f0] hover:border-[rgba(255,255,255,0.2)] transition-all"
+                      className="absolute top-3 right-3 w-11 h-11 rounded-full bg-[rgba(0,0,0,0.6)] border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-[#888] hover:text-[#f5f5f0] hover:border-[rgba(255,255,255,0.2)] transition-all"
                     >
                       <ExternalLink size={13} />
                     </a>

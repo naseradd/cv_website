@@ -15,12 +15,12 @@ export function Footer() {
         <p className="text-xs text-[#888]">
           © {new Date().getFullYear()} · {personal.location}
         </p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <a
             href={personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-[#888] hover:text-[#888] transition-colors"
+            className="inline-flex items-center px-3 min-h-[44px] text-xs text-[#888] hover:text-[#888] transition-colors"
           >
             LinkedIn
           </a>
@@ -28,13 +28,13 @@ export function Footer() {
             href={personal.arxiv}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-[#888] hover:text-[#888] transition-colors"
+            className="inline-flex items-center px-3 min-h-[44px] text-xs text-[#888] hover:text-[#888] transition-colors"
           >
             arXiv
           </a>
           <a
             href={`mailto:${personal.email}`}
-            className="text-xs text-[#888] hover:text-[#888] transition-colors"
+            className="inline-flex items-center px-3 min-h-[44px] text-xs text-[#888] hover:text-[#888] transition-colors break-all"
           >
             {personal.email}
           </a>

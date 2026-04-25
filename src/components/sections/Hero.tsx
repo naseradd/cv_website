@@ -166,12 +166,12 @@ export function Hero() {
               className="font-display leading-[0.9] tracking-[-0.04em] mb-6"
               {...fadeUp(0.15, reduced)}
             >
-              <span className="block text-[clamp(52px,8.5vw,118px)] font-black text-[#f5f5f0]">
+              <span className="block text-[clamp(44px,8.5vw,118px)] font-black text-[#f5f5f0]">
                 {personal.firstName}
               </span>
               {/* Scrambled last name — outlined stroke */}
               <span
-                className="block text-[clamp(52px,8.5vw,118px)] font-black"
+                className="block text-[clamp(44px,8.5vw,118px)] font-black"
                 style={{ WebkitTextStroke: '2px #7c3aed', color: 'transparent' }}
               >
                 {scrambledLast || personal.lastName.toUpperCase()}
@@ -221,7 +221,7 @@ export function Hero() {
                 href={personal.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#888] hover:text-[#888] transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 -mx-3 min-h-[44px] text-xs font-medium text-[#888] hover:text-[#888] transition-colors"
               >
                 LinkedIn
                 <ExternalLink size={11} />
@@ -261,7 +261,7 @@ export function Hero() {
               <div className={`font-display text-[clamp(20px,2.8vw,34px)] font-black tracking-tight leading-none mb-1.5 ${accentClass(stat.accent)}`}>
                 {stat.value}
               </div>
-              <div className="text-[11px] text-[#888] leading-snug">{t(stat.labelKey)}</div>
+              <div className="text-[10px] md:text-[11px] text-[#888] leading-snug">{t(stat.labelKey)}</div>
             </div>
           ))}
         </motion.div>

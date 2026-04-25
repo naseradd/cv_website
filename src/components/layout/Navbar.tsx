@@ -106,11 +106,11 @@ export function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-[#888] hover:text-[#f5f5f0] transition-colors"
+            className="md:hidden -mr-2 inline-flex items-center justify-center min-w-[44px] min-h-[44px] text-[#888] hover:text-[#f5f5f0] transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>

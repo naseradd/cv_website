@@ -13,9 +13,9 @@ export function Education() {
   const { t } = useLang()
 
   return (
-    <section id="education" className="py-24 md:py-32 bg-[#0a0a0a]">
+    <section id="education" className="py-16 md:py-32 bg-[#0a0a0a]">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="border-t border-[#1e1e1e] pt-12">
+        <div className="border-t border-[#1e1e1e] pt-8 md:pt-12">
 
           <Reveal delay={0}>
             <SectionLabel>{t('edu.label')}</SectionLabel>

@@ -14,9 +14,9 @@ export function About() {
   const reduced = useReducedMotion() ?? false
 
   return (
-    <section id="about" className="py-24 md:py-32">
+    <section id="about" className="py-16 md:py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="border-t border-[#1e1e1e] pt-12 grid md:grid-cols-[1fr_360px] gap-16 md:gap-20 items-start">
+        <div className="border-t border-[#1e1e1e] pt-8 md:pt-12 grid md:grid-cols-[1fr_360px] gap-16 md:gap-20 items-start">
 
           {/* Left — text */}
           <div>
