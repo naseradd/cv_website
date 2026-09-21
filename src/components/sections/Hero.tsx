@@ -1,289 +1,193 @@
 'use client'
-
-import { useRef, useState, useEffect } from 'react'
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, Mail, ExternalLink } from 'lucide-react'
-import { useLang } from '@/lib/i18n'
+import { useEffect, useRef, useState } from 'react'
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from 'framer-motion'
+import Image from 'next/image'
+import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { personal } from '@/data/personal'
-import { marqueeItems } from '@/data/skills'
-import { LiveBadge } from '@/components/ui/Badge'
-import { ease, fadeUp } from '@/lib/motion'
-import { useMagnetic } from '@/lib/hooks/useMagnetic'
+import { site } from '@/data/site'
+import { useLang } from '@/lib/i18n'
 
-const accentClass = (a: string) =>
-  a === 'violet' ? 'text-[#a78bfa]' : 'text-[#818cf8]'
-
-// ─── Scramble hook ────────────────────────────────────────────────────────────
-const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$_<>/\\'
-
-function useScramble(text: string, trigger: boolean, duration = 1000) {
-  const [display, setDisplay] = useState(text)
-
-  useEffect(() => {
-    if (!trigger) return
-    const start = Date.now()
-
-    // 25ms tick — feels decisive without strobing
-    const id = setInterval(() => {
-      const elapsed = Date.now() - start
-      const progress = Math.min(elapsed / duration, 1)
-      const revealedUpTo = Math.floor(progress * text.length)
-
-      setDisplay(
-        text
-          .split('')
-          .map((ch, i) => {
-            if (ch === ' ' || ch === '\n') return ch
-            if (i < revealedUpTo) return ch
-            return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
-          })
-          .join('')
-      )
-      if (progress >= 1) clearInterval(id)
-    }, 25)
-
-    return () => clearInterval(id)
-  }, [trigger, text, duration])
-
-  return display
-}
-
-// ─── Hero ─────────────────────────────────────────────────────────────────────
 export function Hero() {
-  const { t } = useLang()
-  const reduced = useReducedMotion() ?? false
-
-  // Cursor spotlight
-  const sectionRef = useRef<HTMLElement>(null)
-  const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 })
-  const [hasHovered, setHasHovered] = useState(false)
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (reduced) return
-    const rect = sectionRef.current?.getBoundingClientRect()
-    if (!rect) return
-    if (!hasHovered) setHasHovered(true)
-    setMouse({
-      x: (e.clientX - rect.left) / rect.width,
-      y: (e.clientY - rect.top) / rect.height,
-    })
-  }
-
-  // Scramble on mount — slight delay so fade-in starts first.
-  // Skipped under prefers-reduced-motion (vestibular safety + locked-in name from first paint).
-  const [mounted, setMounted] = useState(false)
+  const { lang } = useLang()
+  const copy = site[lang]
+  const reduced = useReducedMotion()
+  const name = personal.lastName.toUpperCase()
+  const [displayName, setDisplayName] = useState(name)
+  const section = useRef<HTMLElement>(null)
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const rotateX = useSpring(y, { stiffness: 100, damping: 25 })
+  const rotateY = useSpring(x, { stiffness: 100, damping: 25 })
   useEffect(() => {
-    if (reduced) return
-    const id = setTimeout(() => setMounted(true), 350)
-    return () => clearTimeout(id)
-  }, [reduced])
-
-  const scrambledLast = useScramble(personal.lastName.toUpperCase(), mounted, 1000)
-
-  // Section-leave dim/scale — subtle cinematic handoff to About (#9)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.4])
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.96])
-
-  // Magnetic primary CTA (#25)
-  const ctaRef = useMagnetic<HTMLButtonElement>(8, 40)
-
-  const scrollTo = (id: string) => {
-    const el = document.querySelector(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const mx = `${mouse.x * 100}%`
-  const my = `${mouse.y * 100}%`
-
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (media.matches) return
+    const started = performance.now()
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    const interval = window.setInterval(() => {
+      const progress = media.matches
+        ? 1
+        : Math.min((performance.now() - started) / 650, 1)
+      setDisplayName(
+        name
+          .split('')
+          .map((letter, i) =>
+            letter === ' ' || i < progress * name.length
+              ? letter
+              : characters[Math.floor(Math.random() * characters.length)],
+          )
+          .join(''),
+      )
+      if (progress === 1) window.clearInterval(interval)
+    }, 45)
+    return () => window.clearInterval(interval)
+  }, [name])
+  useEffect(() => {
+    const element = section.current
+    if (!element) return
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let frame = 0
+    const move = (event: PointerEvent) => {
+      if (!fine.matches || preference.matches) return
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const rect = element.getBoundingClientRect()
+        const px = event.clientX - rect.left,
+          py = event.clientY - rect.top
+        element.style.setProperty('--pointer-x', `${px}px`)
+        element.style.setProperty('--pointer-y', `${py}px`)
+        x.set((px / rect.width - 0.5) * 5)
+        y.set((0.5 - py / rect.height) * 5)
+      })
+    }
+    const reset = () => {
+      cancelAnimationFrame(frame)
+      x.set(0)
+      y.set(0)
+    }
+    element.addEventListener('pointermove', move, { passive: true })
+    element.addEventListener('pointerleave', reset)
+    preference.addEventListener('change', reset)
+    return () => {
+      cancelAnimationFrame(frame)
+      element.removeEventListener('pointermove', move)
+      element.removeEventListener('pointerleave', reset)
+      preference.removeEventListener('change', reset)
+    }
+  }, [x, y])
   return (
-    <section
-      ref={sectionRef}
-      id="hero"
-      className="relative pt-20 pb-0 overflow-hidden"
-      onMouseMove={handleMouseMove}
-    >
-      {/* ── Cursor spotlight glow ─────────────────────────────────────────── */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          opacity: hasHovered ? 1 : 0,
-          transition: 'opacity 0.5s ease',
-          background: `radial-gradient(circle 800px at ${mx} ${my}, rgba(124,58,237,0.07) 0%, transparent 65%)`,
-        }}
-      />
-
-      {/* ── Dot grid revealed by spotlight ───────────────────────────────── */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          opacity: hasHovered ? 1 : 0,
-          transition: 'opacity 0.5s ease',
-          backgroundImage:
-            'radial-gradient(circle at 1px 1px, rgba(124,58,237,0.18) 1px, transparent 0)',
-          backgroundSize: '28px 28px',
-          WebkitMaskImage: `radial-gradient(circle 520px at ${mx} ${my}, black 0%, transparent 70%)`,
-          maskImage: `radial-gradient(circle 520px at ${mx} ${my}, black 0%, transparent 70%)`,
-        }}
-      />
-
-      {/* Faint background watermark — parallax follows cursor inverse for depth (#8) */}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute right-[-40px] top-8 font-display text-[clamp(180px,22vw,340px)] font-black leading-none will-change-transform"
-        style={{
-          color: 'transparent',
-          WebkitTextStroke: '1px rgba(124,58,237,0.07)',
-          transform: reduced
-            ? undefined
-            : `translate3d(${(0.5 - mouse.x) * 24}px, ${(0.5 - mouse.y) * 18}px, 0)`,
-          transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
-        }}
-        initial={{ opacity: 0, x: reduced ? 0 : 40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: reduced ? 0.2 : 1.1, delay: reduced ? 0 : 0.2, ease: ease.out }}
-      >
-        5+
-      </motion.div>
-
-      <motion.div
-        className="relative max-w-[1400px] mx-auto px-6 md:px-10"
-        style={reduced ? undefined : { opacity: heroOpacity, scale: heroScale }}
-      >
-        {/* Top row */}
-        <div className="border-t border-[#1e1e1e] pt-12 md:pt-16 grid md:grid-cols-[1fr_auto] gap-8 items-start">
-          <div>
-            {/* Badge */}
-            <motion.div {...fadeUp(0.05, reduced)}>
-              <LiveBadge className="mb-7">{t('hero.badge')}</LiveBadge>
-            </motion.div>
-
-            {/* Name */}
-            <motion.h1
-              className="font-display leading-[0.9] tracking-[-0.04em] mb-6"
-              {...fadeUp(0.15, reduced)}
-            >
-              <span className="block text-[clamp(44px,8.5vw,118px)] font-black text-[#f5f5f0]">
-                {personal.firstName}
-              </span>
-              {/* Scrambled last name — outlined stroke */}
-              <span
-                className="block text-[clamp(44px,8.5vw,118px)] font-black"
-                style={{ WebkitTextStroke: '2px #7c3aed', color: 'transparent' }}
-              >
-                {scrambledLast || personal.lastName.toUpperCase()}
-              </span>
-            </motion.h1>
-
-            <motion.p
-              className="text-[clamp(14px,1.5vw,18px)] font-semibold text-[#f5f5f0] mb-1"
-              {...fadeUp(0.25, reduced)}
-            >
-              {t('hero.role')}
-            </motion.p>
-            <motion.p
-              className="text-sm text-[#888] mb-8 font-medium"
-              {...fadeUp(0.3, reduced)}
-            >
-              {t('hero.subtitle')}
-            </motion.p>
-            <motion.p
-              className="text-sm text-[#888] max-w-[540px] leading-relaxed mb-10"
-              {...fadeUp(0.35, reduced)}
-            >
-              {t('hero.bio')}
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              className="flex flex-wrap items-center gap-3 mb-10"
-              {...fadeUp(0.42, reduced)}
-            >
-              <button
-                ref={ctaRef}
-                onClick={() => scrollTo('#experience')}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#7c3aed] text-white rounded-lg text-sm font-semibold transition-[box-shadow,background-color] duration-200 hover:bg-[#6d28d9] hover:shadow-[0_8px_24px_rgba(124,58,237,0.35)] will-change-transform"
-              >
-                {t('hero.cta.work')}
-                <ArrowRight size={15} />
-              </button>
-              <a
-                href={`mailto:${personal.email}`}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-transparent text-[#f5f5f0] rounded-lg text-sm font-semibold border border-[#2a2a2a] hover:bg-[#1a1a1a] hover:border-[#3a3a3a] transition-[background-color,border-color] duration-200"
-              >
-                <Mail size={15} />
-                {t('hero.cta.contact')}
-              </a>
-              <a
-                href={personal.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 -mx-3 min-h-[44px] text-xs font-medium text-[#888] hover:text-[#888] transition-colors"
-              >
-                LinkedIn
-                <ExternalLink size={11} />
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Vertical label desktop */}
-          <motion.div
-            className="hidden md:flex items-start pt-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-            <p
-              className="text-[10px] font-semibold tracking-[0.22em] uppercase text-[#333]"
-              style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
-            >
-              Fullstack · Distributed Systems · XR Research
+    <section id="hero" ref={section} className="hero">
+      <div className="hero-spotlight" aria-hidden="true" />
+      <div className="shell hero-inner">
+        <div className="hero-topline">
+          <span className="availability">
+            <span />
+            {copy.availability}
+          </span>
+          <span className="location-label">{copy.location}</span>
+        </div>
+        <div className="hero-layout">
+          <div className="hero-copy">
+            <p className="eyebrow hero-kicker">
+              SOFTWARE ENGINEERING & AGENTIC AI
             </p>
+            <h1>
+              <span className="sr-only">{personal.name}</span>
+              <span aria-hidden="true" className="first-name">
+                Dany<span className="name-period">.</span>
+              </span>
+              <span aria-hidden="true" className="outlined-name">
+                {displayName}
+              </span>
+            </h1>
+            <p className="hero-role">{copy.heroRole}</p>
+            <p className="hero-subtitle">{copy.heroSubtitle}</p>
+            <p className="hero-bio">{copy.heroBio}</p>
+            <div className="hero-actions">
+              <a className="button-primary" href="#contact">
+                {copy.cta}
+                <ArrowUpRight size={18} />
+              </a>
+              <a className="text-link" href="#projects">
+                {copy.workCta}
+                <ArrowDown size={16} />
+              </a>
+            </div>
+          </div>
+          <motion.div
+            className="hero-portrait"
+            style={reduced ? undefined : { rotateX, rotateY }}
+          >
+            <div className="portrait-orbit" aria-hidden="true">
+              <svg viewBox="0 0 500 640" fill="none">
+                <path d="M40 110H390L470 190V480L385 565H85L25 505V300" />
+                <path d="M85 70H430V390" />
+                <circle cx="40" cy="110" r="5" />
+                <circle cx="25" cy="300" r="5" />
+                <circle cx="430" cy="390" r="5" />
+              </svg>
+            </div>
+            <div className="portrait-frame">
+              <Image
+                src="/images/profile/dany.webp"
+                alt="Dany Naser Addin"
+                fill
+                priority
+                sizes="(max-width: 767px) 85vw, (max-width: 1100px) 35vw, 420px"
+                className="portrait-image"
+              />
+              <div className="portrait-shade" />
+              <div className="portrait-caption">
+                <span>DANY / MONTRÉAL</span>
+                <p>{copy.portraitCaption}</p>
+              </div>
+            </div>
+            <div className="portrait-tag">
+              <span className="brand-dot" />
+              HUMAN FIRST. AI EMPOWERED.
+            </div>
           </motion.div>
         </div>
-
-        {/* Stats row */}
-        <motion.div
-          className="mt-8 grid grid-cols-2 md:grid-cols-4 border border-[#1e1e1e] rounded-xl overflow-hidden"
-          initial={{ opacity: 0, y: reduced ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduced ? 0.2 : 0.6, delay: reduced ? 0 : 0.52, ease: ease.out }}
-        >
-          {personal.stats.map((stat, i) => (
-            <div
-              key={i}
-              className="group relative px-4 md:px-6 py-5 md:py-7 border-r border-[#1e1e1e] last:border-r-0 transition-colors duration-200 hover:bg-[#141414] overflow-hidden"
-            >
-              <div className="absolute bottom-0 left-4 right-4 h-px bg-[#7c3aed] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              <div className={`font-display text-[clamp(20px,2.8vw,34px)] font-black tracking-tight leading-none mb-1.5 ${accentClass(stat.accent)}`}>
-                {stat.value}
+        <div className="hero-proof">
+          {copy.proof.map(([label, value], index) => (
+            <div key={label}>
+              <span className="proof-index">0{index + 1}</span>
+              <div>
+                <span className="proof-label">{label}</span>
+                <strong>{value}</strong>
               </div>
-              <div className="text-[10px] md:text-[11px] text-[#888] leading-snug">{t(stat.labelKey)}</div>
             </div>
           ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Marquee — soft fade on edges via mask (#7). Decorative — skills also listed in Skills section. */}
-      <motion.div
-        aria-hidden="true"
-        className="mt-10 border-y border-[#1e1e1e] py-3.5 overflow-hidden bg-[#0f0f0f] marquee-mask"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-      >
-        <div className="flex gap-12 animate-marquee whitespace-nowrap">
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={i} className="flex items-center gap-3 text-[11px] font-bold tracking-[0.12em] uppercase text-[#888]">
-              {item}
-              <span className="w-1 h-1 rounded-full bg-[#7c3aed] opacity-60" />
-            </span>
+        </div>
+      </div>
+      <div className="tech-ribbon" aria-hidden="true">
+        <div>
+          {[0, 1].map((repeat) => (
+            <div className="ribbon-group" key={repeat}>
+              {[
+                'TYPESCRIPT',
+                'GO',
+                'C# / .NET',
+                'VUE.JS',
+                'DISTRIBUTED SYSTEMS',
+                'CODEX',
+                'CLAUDE CODE',
+                'MCP',
+              ].map((label) => (
+                <span key={label}>
+                  {label}
+                  <span className="ribbon-star">✳</span>
+                </span>
+              ))}
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

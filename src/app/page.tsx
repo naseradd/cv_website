@@ -1,31 +1,27 @@
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
-import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { Hero } from '@/components/sections/Hero'
-import { About } from '@/components/sections/About'
-import { Experience } from '@/components/sections/Experience'
-import { Skills } from '@/components/sections/Skills'
-import { Publication } from '@/components/sections/Publication'
-import { Education } from '@/components/sections/Education'
-import { Projects } from '@/components/sections/Projects'
-import { Leadership } from '@/components/sections/Leadership'
-import { Contact } from '@/components/sections/Contact'
+import {
+  Expertise,
+  AgenticAI,
+  SelectedWork,
+  Career,
+  AboutAndEducation,
+  GetInTouch,
+} from '@/components/sections/Portfolio'
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <ScrollProgress />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Publication />
-        <Education />
-        <Projects />
-        <Leadership />
-        <Contact />
+        <Expertise />
+        <AgenticAI />
+        <SelectedWork />
+        <Career />
+        <AboutAndEducation />
+        <GetInTouch />
       </main>
       <Footer />
     </>

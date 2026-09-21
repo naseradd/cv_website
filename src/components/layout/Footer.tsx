@@ -1,42 +1,50 @@
 'use client'
+import { ArrowUpRight, ArrowUp } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
 import { personal } from '@/data/personal'
+import { site, resumes } from '@/data/site'
 
 export function Footer() {
   const { lang } = useLang()
-
+  const copy = site[lang]
   return (
-    <footer className="border-t border-[#1e1e1e] py-10 px-6 md:px-10">
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-bold text-[#f5f5f0]">Dany Naser Addin</span>
-          <span className="w-1 h-1 rounded-full bg-[#7c3aed]" />
+    <footer className="site-footer">
+      <div className="shell footer-inner">
+        <div>
+          <a className="wordmark" href="#hero">
+            Dany Naser Addin
+            <span className="brand-dot" />
+          </a>
+          <p>
+            © {new Date().getFullYear()} · {copy.footerNote}
+          </p>
         </div>
-        <p className="text-xs text-[#888]">
-          © {new Date().getFullYear()} · {personal.location}
-        </p>
-        <div className="flex items-center gap-2 md:gap-4">
-          <a
-            href={personal.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-3 min-h-[44px] text-xs text-[#888] hover:text-[#888] transition-colors"
-          >
+        <div className="footer-links">
+          <a href={personal.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn
+            <ArrowUpRight size={14} />
           </a>
+          {resumes.map((resume) => (
+            <div className="footer-resume" key={resume.lang}>
+              <a href={resume.href} target="_blank" rel="noopener noreferrer">
+                CV {resume.lang.toUpperCase()}
+                <ArrowUpRight size={14} />
+              </a>
+              <a
+                href={resume.href}
+                download
+                aria-label={`${copy.cvDownload} — ${resume.label}`}
+              >
+                {copy.cvDownload}
+              </a>
+            </div>
+          ))}
           <a
-            href={personal.arxiv}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-3 min-h-[44px] text-xs text-[#888] hover:text-[#888] transition-colors"
+            className="back-top icon-button"
+            href="#hero"
+            aria-label={copy.backTop}
           >
-            arXiv
-          </a>
-          <a
-            href={`mailto:${personal.email}`}
-            className="inline-flex items-center px-3 min-h-[44px] text-xs text-[#888] hover:text-[#888] transition-colors break-all"
-          >
-            {personal.email}
+            <ArrowUp size={19} />
           </a>
         </div>
       </div>

@@ -3,8 +3,8 @@ export const personal = {
   firstName: 'Dany',
   lastName: 'Naser Addin',
   title: {
-    en: 'Senior Software Engineer',
-    fr: 'Ingénieur Logiciel Senior',
+    en: 'Engineering Team Lead',
+    fr: 'Engineering Team Lead',
   },
   subtitle: {
     en: 'Fullstack · Distributed Systems · Live Service Platforms',
@@ -16,7 +16,8 @@ export const personal = {
   linkedin: 'https://www.linkedin.com/in/dany-naser-addin-116163101',
   website: 'https://www.dany-naser.com',
   arxiv: 'https://arxiv.org/abs/2103.14160',
-  techxplore: 'https://techxplore.com/news/2021-04-ar-interface-human-agents-critical.html',
+  techxplore:
+    'https://techxplore.com/news/2021-04-ar-interface-human-agents-critical.html',
   stats: [
     { value: '5+', labelKey: 'hero.stat.years', accent: 'violet' },
     { value: '5+', labelKey: 'hero.stat.microservices', accent: 'indigo' },
@@ -48,15 +49,15 @@ export const personal = {
   leadership: [
     {
       en: 'Internal Affairs Coordinator — AÉCSP (Polytechnique Montréal): organized events for 600+ attendees, managed teams of 30+ members.',
-      fr: 'Coordonnateur des affaires internes — AÉCSP (Polytechnique Montréal) : organisation d\'événements pour 600+ participants, gestion d\'équipes de 30+ membres.',
+      fr: "Coordonnateur des affaires internes — AÉCSP (Polytechnique Montréal) : organisation d'événements pour 600+ participants, gestion d'équipes de 30+ membres.",
     },
     {
       en: 'President, Secretary, Treasurer of the student association at Grenoble INP – Esisar; active member of 6+ committees simultaneously.',
-      fr: 'Président, Secrétaire, Trésorier de l\'association étudiante de Grenoble INP – Esisar ; membre actif de 6+ comités simultanément.',
+      fr: "Président, Secrétaire, Trésorier de l'association étudiante de Grenoble INP – Esisar ; membre actif de 6+ comités simultanément.",
     },
     {
       en: 'Open and collaborative work style — naturally sociable, consistently fostered positive team environments and strong cross-functional relationships.',
-      fr: 'Style de travail ouvert et collaboratif — naturellement sociable, a systématiquement favorisé des environnements d\'équipe positifs et des relations inter-fonctionnelles solides.',
+      fr: "Style de travail ouvert et collaboratif — naturellement sociable, a systématiquement favorisé des environnements d'équipe positifs et des relations inter-fonctionnelles solides.",
     },
   ],
 }

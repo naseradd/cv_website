@@ -1,14 +1,4 @@
 #!/usr/bin/env sh
-# abort on errors
-set -e
-# build
-npm run build
-# navigate into the build output directory
-cd dist
-# if you are deploying to a custom domain
-echo 'dany-naser.com' > CNAME
-git init
-git add -A
-git commit -m 'deploy'
-git push -f git@github.com:naseradd/cv_website.git master:gh-pages
-cd -
+# Deploy the already-pushed main branch through the canonical Pages workflow.
+set -eu
+gh workflow run deploy.yml --ref main
