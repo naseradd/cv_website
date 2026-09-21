@@ -353,11 +353,6 @@ h3 {
   z-index: 2;
   min-width: 0;
 }
-.hero-kicker {
-  font-size: 10px;
-  letter-spacing: 0.19em;
-  margin-bottom: 22px;
-}
 .hero h1 {
   font-weight: 900;
   letter-spacing: -0.07em;
@@ -456,11 +451,6 @@ h3 {
   letter-spacing: 0.15em;
   color: #d4c5e4;
 }
-.portrait-caption > p {
-  font-size: 13px;
-  color: white;
-  margin-top: 7px;
-}
 .portrait-orbit {
   position: absolute;
   inset: -13% -13%;
@@ -481,22 +471,6 @@ h3 {
 .portrait-orbit path:last-of-type {
   stroke-dasharray: 4 8;
   animation: orbit-dash 40s linear infinite;
-}
-.portrait-tag {
-  position: absolute;
-  top: 12%;
-  left: -29px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  background: #121015e8;
-  border: 1px solid #5f416f;
-  padding: 12px 15px;
-  border-radius: 4px;
-  font-size: 8px;
-  letter-spacing: 0.09em;
-  transform: rotate(-4deg);
-  box-shadow: 0 10px 30px #0003;
 }
 .hero-proof {
   display: grid;
@@ -849,12 +823,6 @@ h3 {
   font-size: 12px;
   color: #cbc0d7;
   line-height: 1.7;
-}
-.workflow-note {
-  font-size: 10px;
-  color: #a79ab7;
-  border-top: 1px solid #36283f;
-  padding-top: 16px;
 }
 /* Work illustrations deliberately contain no real financial or internal data. */
 .projects-grid {
@@ -1461,19 +1429,6 @@ h3 {
 .contact-aside > .text-link {
   margin-top: 16px;
 }
-.contact-note {
-  display: flex;
-  gap: 15px;
-  border-top: 1px solid #312737;
-  padding-top: 26px;
-  margin-top: 30px;
-  color: #b8a3c9;
-  font-size: 12px;
-  line-height: 1.85;
-}
-.contact-note > svg {
-  color: #a57acb;
-}
 .cv-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1663,11 +1618,6 @@ h3 {
   .hero-portrait {
     margin-right: 0;
   }
-  .portrait-tag {
-    font-size: 7px;
-    padding: 10px;
-    left: -18px;
-  }
   .hero-actions {
     gap: 16px;
   }
@@ -1748,13 +1698,7 @@ h3 {
     bottom: 22px;
     left: 16px;
   }
-  .portrait-caption > p {
-    font-size: 11px;
-  }
   .portrait-caption > span {
-    font-size: 8px;
-  }
-  .hero-kicker {
     font-size: 8px;
   }
   .service {
@@ -1940,10 +1884,6 @@ h3 {
     padding-top: 38px;
     padding-bottom: 35px;
   }
-  .hero-kicker {
-    font-size: 9px;
-    margin-bottom: 20px;
-  }
   .first-name {
     font-size: clamp(90px, 22vw, 150px);
   }
@@ -1990,13 +1930,6 @@ h3 {
   }
   .portrait-image {
     object-position: 50% 40%;
-  }
-  .portrait-tag {
-    left: -10px;
-    font-size: 7px;
-  }
-  .portrait-caption > p {
-    font-size: 12px;
   }
   .portrait-caption {
     left: 22px;
@@ -2122,10 +2055,6 @@ h3 {
   .workflow-description p {
     font-size: 12px;
   }
-  .workflow-note {
-    font-size: 10px;
-    padding-inline: 4px;
-  }
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -2221,11 +2150,6 @@ h3 {
     max-width: none;
     padding: 0;
     border: 0;
-  }
-  .contact-note {
-    max-width: 330px;
-    margin-top: 18px;
-    padding-top: 18px;
   }
   .contact-aside > .text-link {
     margin-top: 5px;

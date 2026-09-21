@@ -15,9 +15,7 @@ export function Footer() {
             Dany Naser Addin
             <span className="brand-dot" />
           </a>
-          <p>
-            © {new Date().getFullYear()} · {copy.footerNote}
-          </p>
+          <p>© {new Date().getFullYear()}</p>
         </div>
         <div className="footer-links">
           <a href={personal.linkedin} target="_blank" rel="noopener noreferrer">

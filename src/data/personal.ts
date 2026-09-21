@@ -15,16 +15,13 @@ export const personal = {
   phone: '+1 438 630 3337',
   linkedin: 'https://www.linkedin.com/in/dany-naser-addin-116163101',
   website: 'https://www.dany-naser.com',
-  arxiv: 'https://arxiv.org/abs/2103.14160',
-  techxplore:
-    'https://techxplore.com/news/2021-04-ar-interface-human-agents-critical.html',
   stats: [
     { value: '5+', labelKey: 'hero.stat.years', accent: 'violet' },
     { value: '5+', labelKey: 'hero.stat.microservices', accent: 'indigo' },
     { value: '7+', labelKey: 'hero.stat.techs', accent: 'violet' },
     { value: '1st', labelKey: 'hero.stat.author', accent: 'indigo' },
   ],
-  photo: '/images/profile/845A30F3-2774-42F9-8864-B36A2EDAB8E6_1_105_c.jpeg',
+  photo: '/images/profile/dany.webp',
   education: [
     {
       degreeKey: 'edu.poly.degree',
@@ -39,7 +36,7 @@ export const personal = {
     {
       degreeKey: 'edu.esisar.degree',
       specKey: 'edu.esisar.spec',
-      school: 'Grenoble INP – Esisar',
+      school: 'Institut polytechnique de Grenoble — Esisar',
       country: 'France',
       period: '2013 – 2018',
       gpa: '3.3 / 4.0',
@@ -52,8 +49,8 @@ export const personal = {
       fr: "Coordonnateur des affaires internes — AÉCSP (Polytechnique Montréal) : organisation d'événements pour 600+ participants, gestion d'équipes de 30+ membres.",
     },
     {
-      en: 'President, Secretary, Treasurer of the student association at Grenoble INP – Esisar; active member of 6+ committees simultaneously.',
-      fr: "Président, Secrétaire, Trésorier de l'association étudiante de Grenoble INP – Esisar ; membre actif de 6+ comités simultanément.",
+      en: 'President, Secretary, Treasurer of the student association at Polytechnique Grenoble; active member of 6+ committees simultaneously.',
+      fr: "Président, Secrétaire, Trésorier de l'association étudiante de l’Institut polytechnique de Grenoble — Esisar ; membre actif de 6+ comités simultanément.",
     },
     {
       en: 'Open and collaborative work style — naturally sociable, consistently fostered positive team environments and strong cross-functional relationships.',

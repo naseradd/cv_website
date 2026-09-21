@@ -16,9 +16,9 @@ const body = Space_Grotesk({
   display: 'swap',
   variable: '--font-body',
 })
-const title = 'Dany Naser Addin — Engineering Team Lead & Agentic AI'
+const title = 'Dany Naser Addin — Engineering Team Lead'
 const description =
-  'Engineering Team Lead at Ubisoft. Freelance software development, distributed systems and hands-on agentic AI. Based in Montréal, working in English and French.'
+  'Engineering Team Lead at Ubisoft and freelance software developer in Montréal. Web applications, business tools and AI integrations. Available in French and English.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(personal.website),
@@ -71,7 +71,7 @@ const personJsonLd = {
   knowsLanguage: ['French', 'English'],
   alumniOf: [
     { '@type': 'CollegeOrUniversity', name: 'Polytechnique Montréal' },
-    { '@type': 'CollegeOrUniversity', name: 'Grenoble INP — Esisar' },
+    { '@type': 'CollegeOrUniversity', name: 'Polytechnique Grenoble' },
   ],
   sameAs: [personal.linkedin],
   address: {

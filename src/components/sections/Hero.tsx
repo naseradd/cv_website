@@ -93,9 +93,6 @@ export function Hero() {
         </div>
         <div className="hero-layout">
           <div className="hero-copy">
-            <p className="eyebrow hero-kicker">
-              SOFTWARE ENGINEERING & AGENTIC AI
-            </p>
             <h1>
               <span className="sr-only">{personal.name}</span>
               <span aria-hidden="true" className="first-name">
@@ -134,7 +131,7 @@ export function Hero() {
             </div>
             <div className="portrait-frame">
               <Image
-                src="/images/profile/dany.webp"
+                src={personal.photo}
                 alt="Dany Naser Addin"
                 fill
                 priority
@@ -144,12 +141,7 @@ export function Hero() {
               <div className="portrait-shade" />
               <div className="portrait-caption">
                 <span>DANY / MONTRÉAL</span>
-                <p>{copy.portraitCaption}</p>
               </div>
-            </div>
-            <div className="portrait-tag">
-              <span className="brand-dot" />
-              HUMAN FIRST. AI EMPOWERED.
             </div>
           </motion.div>
         </div>

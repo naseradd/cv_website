@@ -26,12 +26,32 @@ for (const width of [375, 768, 1440]) {
       await expect(page.locator('html')).toHaveAttribute('lang', lang)
       await expect(page.locator('.outlined-name')).toHaveText('NASER ADDIN')
       await expect(page.locator('.project-card')).toHaveCount(4)
+      await expect(
+        page.locator('.portrait-tag, .workflow-note, .contact-note'),
+      ).toHaveCount(0)
+      await expect(
+        page.getByRole('heading', {
+          name: lang === 'fr' ? 'Comment j’utilise l’IA' : 'How I use AI',
+          exact: true,
+        }),
+      ).toBeVisible()
+      await expect(page.locator('body')).not.toContainText(
+        /Human first|AI empowered|Beyond the prompt|Au-delà du prompt|Engineering with intention|Concevoir avec intention|Technical multiplier|Multiplicateur technique/i,
+      )
+      await expect(page.locator('body')).not.toContainText(
+        /ComptaPerso|Photo Dash/i,
+      )
+      await expect(
+        page.locator(
+          '#projects a[href*="arxiv"], #projects a[href*="techxplore"]',
+        ),
+      ).toHaveCount(0)
       await page.locator('.workflow-steps button').nth(3).click()
       await expect(
         page.locator('.workflow-steps button').nth(3),
       ).toHaveAttribute('aria-pressed', 'true')
       await expect(page.locator('#workflow-description')).toContainText(
-        lang === 'fr' ? 'Relire le code' : 'Review the code',
+        lang === 'fr' ? 'Je relis le code' : 'I review the proposed code',
       )
       await page.evaluate(async () => {
         for (let y = 0; y < document.body.scrollHeight; y += 700) {

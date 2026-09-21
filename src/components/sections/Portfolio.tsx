@@ -1,10 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import {
   ArrowUpRight,
-  ArrowRight,
   Blocks,
   Braces,
   Check,
@@ -84,11 +82,7 @@ export function Expertise() {
   const icons = [Code2, Network, Sparkles]
   return (
     <section id="expertise" className="section shell">
-      <SectionHeading
-        label={copy.expertiseLabel}
-        title={copy.expertiseTitle}
-        intro={copy.expertiseIntro}
-      />
+      <SectionHeading label={copy.expertiseLabel} title={copy.expertiseTitle} />
       <div className="services-grid">
         {copy.services.map((service, i) => {
           const Icon = icons[i]
@@ -110,11 +104,7 @@ export function Expertise() {
         })}
       </div>
       <div className="stack-line">
-        <span>
-          {lang === 'fr'
-            ? 'MES OUTILS, SELON LE BESOIN'
-            : 'THE RIGHT TOOLS FOR THE JOB'}
-        </span>
+        <span>TECHNOLOGIES</span>
         <p>TypeScript / Go / C# / Vue.js / Node.js / Docker / Kubernetes</p>
       </div>
     </section>
@@ -202,7 +192,6 @@ export function AgenticAI() {
               <span>0{step + 1}</span>
               <p>{copy.workflowDescriptions[step]}</p>
             </div>
-            <p className="workflow-note">{copy.workflowNote}</p>
           </div>
         </div>
       </div>
@@ -215,12 +204,7 @@ function ProjectVisual({ kind }: { kind: string }) {
   if (kind === 'xr')
     return (
       <div className="project-art art-xr" aria-hidden="true">
-        <Image
-          src="/images/projects/xr.jpg"
-          alt=""
-          fill
-          sizes="(max-width: 767px) 100vw, 50vw"
-        />
+        <div className="pipeline-grid" />
         <div className="xr-reticle">
           <span />
           <span />
@@ -253,7 +237,7 @@ function ProjectVisual({ kind }: { kind: string }) {
             <span>{lang === 'fr' ? 'DÉPLOYER' : 'DEPLOY'}</span>
           </div>
         </div>
-        <span className="art-caption">MTX / LIVE OPERATIONS</span>
+        <span className="art-caption">MONETIZATION TOOLING</span>
       </div>
     )
   if (kind === 'finance')
@@ -264,7 +248,7 @@ function ProjectVisual({ kind }: { kind: string }) {
             <span />
             <span />
             <span />
-            <b>ComptaPerso</b>
+            <b>{lang === 'fr' ? 'Gestion financière' : 'Personal finance'}</b>
           </div>
           <div className="finance-drawing">
             <div className="finance-sidebar">
@@ -317,8 +301,9 @@ function ProjectVisual({ kind }: { kind: string }) {
       </div>
       <span className="photo-play">▶</span>
       <span className="art-caption">
-        PHOTO DASH /{' '}
-        {lang === 'fr' ? 'DES SOUVENIRS EN JEU' : 'SHARED MOMENTS. LIVE PLAY.'}
+        {lang === 'fr'
+          ? 'JEU MULTIJOUEUR / MÉDIAS'
+          : 'MULTIPLAYER GAME / MEDIA'}
       </span>
     </div>
   )
@@ -329,11 +314,7 @@ export function SelectedWork() {
   const copy = site[lang]
   return (
     <section id="projects" className="section shell">
-      <SectionHeading
-        label={copy.projectsLabel}
-        title={copy.projectsTitle}
-        intro={copy.projectsIntro}
-      />
+      <SectionHeading label={copy.projectsLabel} title={copy.projectsTitle} />
       <div className="projects-grid">
         {copy.projects.map((project, index) => (
           <article key={project.id} className="project-card">
@@ -364,26 +345,6 @@ export function SelectedWork() {
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              {project.id === 'xr' && (
-                <div className="research-links">
-                  <a
-                    href={personal.arxiv}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {copy.paper}
-                    <ArrowUpRight size={15} />
-                  </a>
-                  <a
-                    href={personal.techxplore}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {copy.press}
-                    <ArrowUpRight size={15} />
-                  </a>
-                </div>
-              )}
             </div>
           </article>
         ))}
@@ -400,7 +361,6 @@ export function Career() {
       <SectionHeading
         label={copy.experienceLabel}
         title={copy.experienceTitle}
-        intro={copy.experienceNote}
       />
       <div className="career-list">
         {experiences.map((experience, index) => (
@@ -451,7 +411,6 @@ export function AboutAndEducation() {
           <p className="eyebrow">{copy.aboutLabel}</p>
           <h2>{copy.aboutTitle}</h2>
           <p>{copy.aboutText}</p>
-          <p>{copy.aboutText2}</p>
           <a
             className="text-link"
             href={personal.linkedin}
@@ -522,14 +481,6 @@ export function GetInTouch() {
             LinkedIn
             <ArrowUpRight size={17} />
           </a>
-          <div className="contact-note">
-            <ArrowRight size={24} />
-            <span>
-              {lang === 'fr'
-                ? 'Un interlocuteur, du premier échange à la livraison.'
-                : 'One person to work with, from the first conversation to delivery.'}
-            </span>
-          </div>
         </aside>
       </div>
       <div className="cv-section">

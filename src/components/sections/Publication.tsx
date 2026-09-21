@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, BookOpen, Newspaper } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
-import { personal } from '@/data/personal'
+import { researchLinks } from '@/data/research'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { Reveal } from '@/components/ui/Reveal'
 
@@ -16,7 +16,6 @@ export function Publication() {
     <section id="research" className="py-16 md:py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="border-t border-[#1e1e1e] pt-8 md:pt-12">
-
           <Reveal delay={0}>
             <SectionLabel>{t('pub.label')}</SectionLabel>
           </Reveal>
@@ -57,12 +56,15 @@ export function Publication() {
 
                 {/* Title */}
                 <h3 className="font-display text-lg md:text-2xl font-bold text-[#f5f5f0] leading-snug mb-4 max-w-[680px]">
-                  Design and Test of an Adaptive Augmented Reality Interface to Manage Systems to Assist Critical Missions
+                  Design and Test of an Adaptive Augmented Reality Interface to
+                  Manage Systems to Assist Critical Missions
                 </h3>
 
                 {/* Authors + ref */}
                 <p className="text-sm text-[#888] mb-2">{t('pub.authors')}</p>
-                <p className="text-xs font-mono text-[#888] mb-6">arXiv:2103.14160</p>
+                <p className="text-xs font-mono text-[#888] mb-6">
+                  arXiv:2103.14160
+                </p>
 
                 {/* Summary */}
                 <p className="text-sm text-[#888] leading-relaxed max-w-[620px] mb-8">
@@ -72,7 +74,7 @@ export function Publication() {
                 {/* Links */}
                 <div className="flex flex-wrap gap-3">
                   <a
-                    href={personal.arxiv}
+                    href={researchLinks.arxiv}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-lg bg-[#7c3aed] hover:bg-[#6d28d9] text-white text-sm font-semibold transition-all duration-200 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(124,58,237,0.35)]"
@@ -82,7 +84,7 @@ export function Publication() {
                     <ExternalLink size={11} />
                   </a>
                   <a
-                    href={personal.techxplore}
+                    href={researchLinks.techxplore}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-lg bg-[#141414] hover:bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#333] text-[#888] hover:text-[#f5f5f0] text-sm font-semibold transition-all duration-200"
@@ -102,9 +104,13 @@ export function Publication() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: 0.3, ease }}
               >
-                <span className="font-display text-5xl font-black text-[#a78bfa] leading-none mb-1">1st</span>
+                <span className="font-display text-5xl font-black text-[#a78bfa] leading-none mb-1">
+                  1st
+                </span>
                 <span className="text-[10px] font-semibold text-[#888] text-center uppercase tracking-widest leading-snug">
-                  Author<br />arXiv
+                  Author
+                  <br />
+                  arXiv
                 </span>
               </motion.div>
             </div>
