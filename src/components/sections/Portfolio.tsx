@@ -21,6 +21,7 @@ import { site } from '@/data/site'
 import { personal } from '@/data/personal'
 import { experiences } from '@/data/experience'
 import { ResumeLinks } from '@/components/ui/Resume'
+import { LinkedInIcon } from '@/components/ui/LinkedInIcon'
 
 function SectionHeading({
   label,
@@ -417,6 +418,7 @@ export function AboutAndEducation() {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <LinkedInIcon />
             LinkedIn
             <ArrowUpRight size={17} />
           </a>
@@ -450,37 +452,48 @@ export function GetInTouch() {
       <div className="contact-main">
         <div>
           <p className="eyebrow">{copy.contactLabel}</p>
-          <h2>
-            {copy.contactTitle}
-            <span className="contact-asterisk" aria-hidden="true">
-              ✳
-            </span>
-          </h2>
+          <h2>{copy.contactTitle}</h2>
           <p className="contact-copy">{copy.contactText}</p>
-          <a className="button-primary" href={`mailto:${personal.email}`}>
-            <Mail size={18} />
-            {copy.emailCta}
-            <ArrowUpRight size={18} />
-          </a>
+          <p className="contact-invitation">{copy.contactInvitation}</p>
+          <div className="contact-actions">
+            <a className="button-primary" href={`mailto:${personal.email}`}>
+              <Mail size={18} aria-hidden="true" />
+              {copy.emailCta}
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+            <a
+              className="linkedin-contact"
+              href={personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon />
+              <span>{copy.linkedinCta}</span>
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </div>
           <a className="contact-email" href={`mailto:${personal.email}`}>
             {personal.email}
           </a>
         </div>
         <aside className="contact-aside">
+          <h3 className="eyebrow">{copy.contactServicesLabel}</h3>
+          <ul className="contact-services">
+            {copy.contactServices.map(([title, description]) => (
+              <li key={title}>
+                <ArrowUpRight size={19} aria-hidden="true" />
+                <div>
+                  <h4>{title}</h4>
+                  <p>{description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
           <span className="availability">
             <span />
             {copy.availability}
           </span>
           <p>{copy.location}</p>
-          <a
-            className="text-link"
-            href={personal.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-            <ArrowUpRight size={17} />
-          </a>
         </aside>
       </div>
       <div className="cv-section">

@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowUp } from 'lucide-react'
 import { useLang } from '@/lib/i18n'
 import { personal } from '@/data/personal'
 import { site, resumes } from '@/data/site'
+import { LinkedInIcon } from '@/components/ui/LinkedInIcon'
 
 export function Footer() {
   const { lang } = useLang()
@@ -19,6 +20,7 @@ export function Footer() {
         </div>
         <div className="footer-links">
           <a href={personal.linkedin} target="_blank" rel="noopener noreferrer">
+            <LinkedInIcon />
             LinkedIn
             <ArrowUpRight size={14} />
           </a>

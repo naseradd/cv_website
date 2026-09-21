@@ -1381,30 +1381,61 @@ h3 {
 /* Contact and CV */
 .contact-main {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 70px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 64px;
   align-items: center;
 }
 .contact-main h2 {
-  font-size: clamp(60px, 7.6vw, 105px);
+  font-size: clamp(48px, 5.7vw, 80px);
   position: relative;
   width: fit-content;
 }
-.contact-asterisk {
-  position: absolute;
-  font-size: 65px;
-  color: #a273e3;
-  top: 12px;
-  right: -115px;
-  line-height: 1;
-  font-weight: 400;
-  animation: orbit-turn 55s linear infinite;
-}
 .contact-copy {
-  max-width: 410px;
+  max-width: 530px;
   color: var(--muted);
+  font-size: 16px;
+  margin: 26px 0 18px;
+}
+.contact-invitation {
+  max-width: 500px;
+  color: var(--text);
   font-size: 14px;
-  margin: 26px 0;
+  margin-bottom: 24px;
+}
+.contact-actions {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.linkedin-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background: #0a66c2;
+  color: #fff;
+}
+.linkedin-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 10px 16px;
+  border: 1px solid #535060;
+  border-radius: 6px;
+  color: #f5f5f0;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s;
+}
+.linkedin-contact:hover {
+  background: #0a66c21a;
+  border-color: #73b5f5;
 }
 .contact-email {
   display: block;
@@ -1416,18 +1447,41 @@ h3 {
   padding-block: 9px;
 }
 .contact-aside {
-  padding: 35px;
+  padding: 12px 0 12px 36px;
   border-left: 1px solid var(--line);
-  max-width: 350px;
-  justify-self: end;
+  width: 100%;
+}
+.contact-services {
+  list-style: none;
+  margin: 10px 0 28px;
+  padding: 0;
+}
+.contact-services li {
+  display: flex;
+  gap: 14px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.contact-services li > svg {
+  flex-shrink: 0;
+  margin-top: 5px;
+  color: var(--accent);
+}
+.contact-services h4 {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.contact-services p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-top: 6px;
 }
 .contact-aside > p {
   font-size: 12px;
   color: #9f95aa;
   margin-top: 13px;
-}
-.contact-aside > .text-link {
-  margin-top: 16px;
 }
 .cv-section {
   display: grid;
@@ -1647,10 +1701,6 @@ h3 {
   .about-layout {
     gap: 55px;
   }
-  .contact-asterisk {
-    right: -85px;
-    font-size: 50px;
-  }
 }
 @media (max-width: 999px) {
   .desktop-links {
@@ -1802,9 +1852,6 @@ h3 {
   }
   .contact-aside {
     padding: 25px;
-  }
-  .contact-asterisk {
-    display: none;
   }
   .cv-section {
     gap: 35px;
@@ -2137,13 +2184,7 @@ h3 {
     gap: 35px;
   }
   .contact-main h2 {
-    font-size: clamp(58px, 14vw, 90px);
-  }
-  .contact-asterisk {
-    display: block;
-    right: 0;
-    top: -24px;
-    font-size: 34px;
+    font-size: clamp(38px, 9.5vw, 64px);
   }
   .contact-aside {
     justify-self: start;
@@ -2151,11 +2192,15 @@ h3 {
     padding: 0;
     border: 0;
   }
-  .contact-aside > .text-link {
-    margin-top: 5px;
-  }
   .contact-main .contact-copy {
-    font-size: 14px;
+    font-size: 15px;
+  }
+  .contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .contact-actions .button-primary {
+    justify-content: center;
   }
   .cv-section {
     grid-template-columns: 1fr;
@@ -2234,10 +2279,6 @@ h3 {
   .workflow-steps:before {
     top: 21px;
   }
-  .contact-asterisk {
-    right: 0;
-    font-size: 30px;
-  }
   .project-body {
     padding: 22px 18px;
   }
@@ -2279,9 +2320,6 @@ h3 {
   .project-art,
   .workflow-orbit,
   .site-footer,
-  .contact-asterisk {
-    display: none !important;
-  }
   .shell {
     width: 100%;
   }
